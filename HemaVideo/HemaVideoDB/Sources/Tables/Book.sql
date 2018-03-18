@@ -1,0 +1,5 @@
+﻿CREATE TABLE [Sources].[Book]
+(
+	BookKey INT NOT NULL IDENTITY Constraint PK_Book PRIMARY KEY,
+	BookName NVARCHAR(500) NOT NULL
+)

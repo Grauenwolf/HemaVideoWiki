@@ -1,0 +1,197 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <UserSecretsId>aspnet-HemaVideoWiki-FD37D628-46E1-4F32-B5E6-ED247CD5DB27</UserSecretsId>
+  </PropertyGroup>
+
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.5" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.0.1" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.2" PrivateAssets="All" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="2.0.1" />
+    <DotNetCliToolReference Include="Microsoft.Extensions.SecretManager.Tools" Version="2.0.0" />
+    <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\Old\Achille Marozzo.html" />
+    <None Include="wwwroot\Old\Alfieri Chapter 1.html" />
+    <None Include="wwwroot\Old\Alfieri Chapter 7.html" />
+    <None Include="wwwroot\Old\Alfieri Chapter 8.html" />
+    <None Include="wwwroot\Old\Alfieri Chapter 9.html" />
+    <None Include="wwwroot\Old\Andre Lignitzer.html" />
+    <None Include="wwwroot\Old\Caopferro Plate 5.html" />
+    <None Include="wwwroot\Old\Caopferro Plate 6.html" />
+    <None Include="wwwroot\Old\Fabris Plate 10.html" />
+    <None Include="wwwroot\Old\Fabris Plate 103.html" />
+    <None Include="wwwroot\Old\Fabris Plate 11.html" />
+    <None Include="wwwroot\Old\Fabris Plate 14.html" />
+    <None Include="wwwroot\Old\Fabris Plate 15.html" />
+    <None Include="wwwroot\Old\Fabris Plate 16.html" />
+    <None Include="wwwroot\Old\Fabris Plate 18.html" />
+    <None Include="wwwroot\Old\Fabris Plate 19.html" />
+    <None Include="wwwroot\Old\Fabris Plate 190.html" />
+    <None Include="wwwroot\Old\Fabris Plate 21.html" />
+    <None Include="wwwroot\Old\Fabris Plate 22.html" />
+    <None Include="wwwroot\Old\Fabris Plate 23.html" />
+    <None Include="wwwroot\Old\Fabris Plate 24.html" />
+    <None Include="wwwroot\Old\Fabris Plate 25.html" />
+    <None Include="wwwroot\Old\Fabris Plate 26.html" />
+    <None Include="wwwroot\Old\Fabris Plate 27.html" />
+    <None Include="wwwroot\Old\Fabris Plate 28.html" />
+    <None Include="wwwroot\Old\Fabris Plate 29.html" />
+    <None Include="wwwroot\Old\Fabris Plate 31.html" />
+    <None Include="wwwroot\Old\Fabris Plate 32.html" />
+    <None Include="wwwroot\Old\Fabris Plate 35.html" />
+    <None Include="wwwroot\Old\Fabris Plate 38.html" />
+    <None Include="wwwroot\Old\Fabris Plate 4.html" />
+    <None Include="wwwroot\Old\Fabris Plate 41.html" />
+    <None Include="wwwroot\Old\Fabris Plate 43.html" />
+    <None Include="wwwroot\Old\Fabris Plate 44.html" />
+    <None Include="wwwroot\Old\Fabris Plate 45.html" />
+    <None Include="wwwroot\Old\Fabris Plate 48.html" />
+    <None Include="wwwroot\Old\Fabris Plate 5.html" />
+    <None Include="wwwroot\Old\Fabris Plate 52.html" />
+    <None Include="wwwroot\Old\Fabris Plate 6.html" />
+    <None Include="wwwroot\Old\Fabris Plate 65.html" />
+    <None Include="wwwroot\Old\Fabris Plate 76.html" />
+    <None Include="wwwroot\Old\Fabris Plate 9.html" />
+    <None Include="wwwroot\Old\Hans Talhoffer.html" />
+    <None Include="wwwroot\Old\home.html" />
+    <None Include="wwwroot\Old\Joachim Meyer.html" />
+    <None Include="wwwroot\Old\Ledall Chase 1.html" />
+    <None Include="wwwroot\Old\Ledall Roll.html" />
+    <None Include="wwwroot\Old\Mair Dagger 1.html" />
+    <None Include="wwwroot\Old\Mair Dagger 19.html" />
+    <None Include="wwwroot\Old\Mair Dagger 2.html" />
+    <None Include="wwwroot\Old\Mair Dagger 3.html" />
+    <None Include="wwwroot\Old\Mair Dussack 1.html" />
+    <None Include="wwwroot\Old\Mair Flail 2.html" />
+    <None Include="wwwroot\Old\Mair Flail 3.html" />
+    <None Include="wwwroot\Old\Mair Flail 4.html" />
+    <None Include="wwwroot\Old\Mair Flail 6.html" />
+    <None Include="wwwroot\Old\Mair Flail 7.html" />
+    <None Include="wwwroot\Old\Mair Flail 8.html" />
+    <None Include="wwwroot\Old\Mair Halberd 1.html" />
+    <None Include="wwwroot\Old\Mair Longsword 2.html" />
+    <None Include="wwwroot\Old\Mair Pike 1.html" />
+    <None Include="wwwroot\Old\Mair Poleaxe 10.html" />
+    <None Include="wwwroot\Old\Mair Poleaxe 15.html" />
+    <None Include="wwwroot\Old\Mair Poleaxe 5.html" />
+    <None Include="wwwroot\Old\Mair Sickle 1.html" />
+    <None Include="wwwroot\Old\Mair Sickle 2.html" />
+    <None Include="wwwroot\Old\Mair Sickle 3.html" />
+    <None Include="wwwroot\Old\Mair Sickle 4.html" />
+    <None Include="wwwroot\Old\Mair Sickle 5.html" />
+    <None Include="wwwroot\Old\Mair Sickle 6.html" />
+    <None Include="wwwroot\Old\Mair Sickle 7.html" />
+    <None Include="wwwroot\Old\Mair Sickle 8.html" />
+    <None Include="wwwroot\Old\Mair Sickle 9.html" />
+    <None Include="wwwroot\Old\Mair Sidesword 1.html" />
+    <None Include="wwwroot\Old\Mair Wrestling 4.html" />
+    <None Include="wwwroot\Old\Marozzo Dagger 1.html" />
+    <None Include="wwwroot\Old\Marozzo Sword 3.html" />
+    <None Include="wwwroot\Old\MS I.33 Wards.html" />
+    <None Include="wwwroot\Old\MS I.33.html" />
+    <None Include="wwwroot\Old\Riverso to Head.html" />
+    <None Include="wwwroot\Old\Salvator Fabris.html" />
+    <None Include="wwwroot\Old\Wallerstein 10.html" />
+    <None Include="wwwroot\Old\Wallerstein 100.html" />
+    <None Include="wwwroot\Old\Wallerstein 11.html" />
+    <None Include="wwwroot\Old\Wallerstein 12.html" />
+    <None Include="wwwroot\Old\Wallerstein 13.html" />
+    <None Include="wwwroot\Old\Wallerstein 14.html" />
+    <None Include="wwwroot\Old\Wallerstein 15.html" />
+    <None Include="wwwroot\Old\Wallerstein 16.html" />
+    <None Include="wwwroot\Old\Wallerstein 17.html" />
+    <None Include="wwwroot\Old\Wallerstein 18.html" />
+    <None Include="wwwroot\Old\Wallerstein 19.html" />
+    <None Include="wwwroot\Old\Wallerstein 20.html" />
+    <None Include="wwwroot\Old\Wallerstein 21.html" />
+    <None Include="wwwroot\Old\Wallerstein 22.html" />
+    <None Include="wwwroot\Old\Wallerstein 23.html" />
+    <None Include="wwwroot\Old\Wallerstein 24.html" />
+    <None Include="wwwroot\Old\Wallerstein 25.html" />
+    <None Include="wwwroot\Old\Wallerstein 26.html" />
+    <None Include="wwwroot\Old\Wallerstein 27.html" />
+    <None Include="wwwroot\Old\Wallerstein 28.html" />
+    <None Include="wwwroot\Old\Wallerstein 31.html" />
+    <None Include="wwwroot\Old\Wallerstein 32.html" />
+    <None Include="wwwroot\Old\Wallerstein 33.html" />
+    <None Include="wwwroot\Old\Wallerstein 34.html" />
+    <None Include="wwwroot\Old\Wallerstein 35.html" />
+    <None Include="wwwroot\Old\Wallerstein 36.html" />
+    <None Include="wwwroot\Old\Wallerstein 37.html" />
+    <None Include="wwwroot\Old\Wallerstein 38.html" />
+    <None Include="wwwroot\Old\Wallerstein 39.html" />
+    <None Include="wwwroot\Old\Wallerstein 40.html" />
+    <None Include="wwwroot\Old\Wallerstein 41.html" />
+    <None Include="wwwroot\Old\Wallerstein 42.html" />
+    <None Include="wwwroot\Old\Wallerstein 43.html" />
+    <None Include="wwwroot\Old\Wallerstein 44.html" />
+    <None Include="wwwroot\Old\Wallerstein 45.html" />
+    <None Include="wwwroot\Old\Wallerstein 46.html" />
+    <None Include="wwwroot\Old\Wallerstein 47.html" />
+    <None Include="wwwroot\Old\Wallerstein 48.html" />
+    <None Include="wwwroot\Old\Wallerstein 49.html" />
+    <None Include="wwwroot\Old\Wallerstein 5.html" />
+    <None Include="wwwroot\Old\Wallerstein 51.html" />
+    <None Include="wwwroot\Old\Wallerstein 52.html" />
+    <None Include="wwwroot\Old\Wallerstein 53.html" />
+    <None Include="wwwroot\Old\Wallerstein 54.html" />
+    <None Include="wwwroot\Old\Wallerstein 55.html" />
+    <None Include="wwwroot\Old\Wallerstein 56.html" />
+    <None Include="wwwroot\Old\Wallerstein 57.html" />
+    <None Include="wwwroot\Old\Wallerstein 58.html" />
+    <None Include="wwwroot\Old\Wallerstein 59.html" />
+    <None Include="wwwroot\Old\Wallerstein 6.html" />
+    <None Include="wwwroot\Old\Wallerstein 60.html" />
+    <None Include="wwwroot\Old\Wallerstein 61.html" />
+    <None Include="wwwroot\Old\Wallerstein 62.html" />
+    <None Include="wwwroot\Old\Wallerstein 63.html" />
+    <None Include="wwwroot\Old\Wallerstein 64.html" />
+    <None Include="wwwroot\Old\Wallerstein 65.html" />
+    <None Include="wwwroot\Old\Wallerstein 66.html" />
+    <None Include="wwwroot\Old\Wallerstein 68.html" />
+    <None Include="wwwroot\Old\Wallerstein 69.html" />
+    <None Include="wwwroot\Old\Wallerstein 7.html" />
+    <None Include="wwwroot\Old\Wallerstein 70.html" />
+    <None Include="wwwroot\Old\Wallerstein 71.html" />
+    <None Include="wwwroot\Old\Wallerstein 72.html" />
+    <None Include="wwwroot\Old\Wallerstein 73.html" />
+    <None Include="wwwroot\Old\Wallerstein 74.html" />
+    <None Include="wwwroot\Old\Wallerstein 75.html" />
+    <None Include="wwwroot\Old\Wallerstein 76.html" />
+    <None Include="wwwroot\Old\Wallerstein 77.html" />
+    <None Include="wwwroot\Old\Wallerstein 78.html" />
+    <None Include="wwwroot\Old\Wallerstein 79.html" />
+    <None Include="wwwroot\Old\Wallerstein 8.html" />
+    <None Include="wwwroot\Old\Wallerstein 80.html" />
+    <None Include="wwwroot\Old\Wallerstein 81.html" />
+    <None Include="wwwroot\Old\Wallerstein 82.html" />
+    <None Include="wwwroot\Old\Wallerstein 83.html" />
+    <None Include="wwwroot\Old\Wallerstein 84.html" />
+    <None Include="wwwroot\Old\Wallerstein 85.html" />
+    <None Include="wwwroot\Old\Wallerstein 86.html" />
+    <None Include="wwwroot\Old\Wallerstein 87.html" />
+    <None Include="wwwroot\Old\Wallerstein 88.html" />
+    <None Include="wwwroot\Old\Wallerstein 89.html" />
+    <None Include="wwwroot\Old\Wallerstein 9.html" />
+    <None Include="wwwroot\Old\Wallerstein 90.html" />
+    <None Include="wwwroot\Old\Wallerstein 91.html" />
+    <None Include="wwwroot\Old\Wallerstein 92.html" />
+    <None Include="wwwroot\Old\Wallerstein 93.html" />
+    <None Include="wwwroot\Old\Wallerstein 94.html" />
+    <None Include="wwwroot\Old\Wallerstein 95.html" />
+    <None Include="wwwroot\Old\Wallerstein 96.html" />
+    <None Include="wwwroot\Old\Wallerstein 97.html" />
+    <None Include="wwwroot\Old\Wallerstein 98.html" />
+    <None Include="wwwroot\Old\Wallerstein 99.html" />
+  </ItemGroup>
+
+</Project>
