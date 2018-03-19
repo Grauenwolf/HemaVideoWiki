@@ -63,10 +63,14 @@
     <Folder Include="dbo\" />
     <Folder Include="dbo\Tables\" />
     <Folder Include="Sources\Tables" />
+    <Folder Include="Data" />
+    <Folder Include="Interpretations" />
+    <Folder Include="Interpretations\Tables" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Localhost.publish.xml" />
     <None Include="HemaVideoDB.publish.xml" />
+    <None Include="Data\Meyer.sql" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\AspNetRoles.sql" />
@@ -80,5 +84,8 @@
     <Build Include="Sources\Tables\Book.sql" />
     <Build Include="Sources\Tables\Section.sql" />
     <Build Include="Sources\Tables\Sources.sql" />
+    <Build Include="Sources\Tables\BookAuthor.sql" />
+    <Build Include="Interpretations\Interpretations.sql" />
+    <Build Include="Interpretations\Tables\Video.sql" />
   </ItemGroup>
 </Project>

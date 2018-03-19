@@ -1,18 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Claims;
-using System.Threading.Tasks;
+﻿using HemaVideoWiki.Models;
+using HemaVideoWiki.Models.AccountViewModels;
+using HemaVideoWiki.Services;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
-using HemaVideoWiki.Models;
-using HemaVideoWiki.Models.AccountViewModels;
-using HemaVideoWiki.Services;
+using System;
+using System.Security.Claims;
+using System.Threading.Tasks;
 
 namespace HemaVideoWiki.Controllers
 {
@@ -220,7 +216,7 @@ namespace HemaVideoWiki.Controllers
             ViewData["ReturnUrl"] = returnUrl;
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, DisplayName = model.DisplayName };
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {

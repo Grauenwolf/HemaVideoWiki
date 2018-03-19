@@ -1,4 +1,8 @@
-﻿CREATE TABLE [Sources].[Author]
+﻿CREATE TABLE Sources.Author
 (
-	[Id] INT NOT NULL PRIMARY KEY
-)
+    AuthorKey INT NOT NULL 
+        CONSTRAINT PK_Author PRIMARY KEY,
+    AuthorName NVARCHAR(500) NOT NULL,
+    CONSTRAINT UX_Author_AuthorName
+        UNIQUE (AuthorName)
+);
