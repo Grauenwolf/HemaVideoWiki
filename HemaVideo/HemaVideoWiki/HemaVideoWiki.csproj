@@ -10,6 +10,9 @@
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.5" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.0.1" PrivateAssets="All" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.2" PrivateAssets="All" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="1.2.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore.Swagger" Version="1.2.0" />
+    <PackageReference Include="Tortuga.Chain.SqlServer" Version="1.2.6553.39547" />
   </ItemGroup>
 
   <ItemGroup>
@@ -192,6 +195,10 @@
     <None Include="wwwroot\Old\Wallerstein 97.html" />
     <None Include="wwwroot\Old\Wallerstein 98.html" />
     <None Include="wwwroot\Old\Wallerstein 99.html" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\HemaVideoLib\HemaVideoLib.csproj" />
   </ItemGroup>
 
 </Project>

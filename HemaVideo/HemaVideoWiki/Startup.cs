@@ -1,4 +1,5 @@
-﻿using HemaVideoWiki.Data;
+﻿using HemaVideoLib;
+using HemaVideoWiki.Data;
 using HemaVideoWiki.Models;
 using HemaVideoWiki.Services;
 using Microsoft.AspNetCore.Builder;
@@ -7,6 +8,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Swashbuckle.AspNetCore.Swagger;
+using Tortuga.Chain;
 
 namespace HemaVideoWiki
 {
@@ -33,6 +36,14 @@ namespace HemaVideoWiki
             services.AddTransient<IEmailSender, EmailSender>();
 
             services.AddMvc();
+
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new Info { Title = "My API", Version = "v1" });
+            });
+
+            services.AddSingleton(new SqlServerDataSource(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddSingleton<BookService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -52,6 +63,13 @@ namespace HemaVideoWiki
             app.UseStaticFiles();
 
             app.UseAuthentication();
+
+            app.UseSwagger();
+
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+            });
 
             app.UseMvc(routes =>
             {

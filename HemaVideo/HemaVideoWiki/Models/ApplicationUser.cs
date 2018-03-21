@@ -6,5 +6,6 @@ namespace HemaVideoWiki.Models
     public class ApplicationUser : IdentityUser
     {
         public string DisplayName { get; set; }
+        public int? UserKey { get; set; }
     }
 }
