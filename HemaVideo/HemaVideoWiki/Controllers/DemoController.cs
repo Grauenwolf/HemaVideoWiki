@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 namespace HemaVideoWiki.Controllers
 {
     [ApiExplorerSettings(IgnoreApi = true)]
+    [Route("demo")]
     public class DemoController : Controller
     {
         readonly BookService m_BookService;
@@ -25,6 +26,13 @@ namespace HemaVideoWiki.Controllers
         public async Task<IActionResult> Book([FromRoute]int bookKey)
         {
             var model = await m_BookService.GetBookDetailAsync(bookKey);
+            return View(model);
+        }
+
+        [HttpGet("book/{bookKey}/section/{sectionKey}")]
+        public async Task<IActionResult> Section([FromRoute]int bookKey, [FromRoute] int sectionKey)
+        {
+            var model = await m_BookService.GetSectionDetailAsync(sectionKey);
             return View(model);
         }
     }

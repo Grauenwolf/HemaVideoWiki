@@ -91,5 +91,6 @@
     <Build Include="Interpretations\Tables\Video.sql" />
     <Build Include="Sources\Views\BookAuthorView.sql" />
     <Build Include="Interpretations\Views\VideoDetail.sql" />
+    <Build Include="Sources\Views\SectionDetail.sql" />
   </ItemGroup>
 </Project>

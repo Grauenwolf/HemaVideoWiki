@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace HemaVideoLib.Models
 {
@@ -6,6 +7,8 @@ namespace HemaVideoLib.Models
     {
         int m_Depth;
         public int BookKey { get; set; }
+
+        [NotMapped]
         public int Depth
         {
             get => m_Depth;

@@ -2,7 +2,7 @@
 
 @Html.Raw("<h" + (Model.Depth + 1) + ">")
 
-<a href="book/@Model.BookKey/section/{section.SectionKey}">
+<a href="~/demo/book/@Model.BookKey/section/@(Model.SectionKey)">
     @Model.SectionName
     @if (!string.IsNullOrEmpty(Model.PageReference))
     {

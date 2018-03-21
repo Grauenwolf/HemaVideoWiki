@@ -1,0 +1,21 @@
+﻿@model HemaVideoLib.Models.SectionDetail
+
+@{
+    ViewData["Title"] = Model.SectionName;
+}
+
+    <h1>@Model.SectionName</h1>
+
+
+
+<h2>Videos</h2>
+    @foreach(var video in Model.Videos){
+        <p>@video.VideoKey</p>
+    }
+
+<h2>Sections</h2>
+
+
+@foreach(var section in Model.Subsections){
+        @Html.Partial("_SectionSummary", section)
+}

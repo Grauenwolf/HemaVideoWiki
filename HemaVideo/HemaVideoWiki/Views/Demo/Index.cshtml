@@ -4,9 +4,9 @@
     ViewData["Title"] = "All Books";
 }
 
-    <h2>AllBooks</h2>
+    <h1>All Books</h1>
 
     @foreach(var book in Model){
-        <p><a href="book/@book.BookKey">@book.BookName</a> or @book.AlternateBookName by @book.AuthorName</p>
+        <h2><a href="book/@book.BookKey">@book.BookName</a> by @book.AuthorName</h2>
     }
 
