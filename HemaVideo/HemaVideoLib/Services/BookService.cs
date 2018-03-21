@@ -59,7 +59,7 @@ namespace HemaVideoLib.Services
         async Task<List<SectionSummary>> GetSectionsAsync(int bookKey)
         {
             var filter = new { bookKey };
-            var sections = await m_DataSource.From("Sources.Section", filter).WithSorting("DisplayOrder").ToCollection<SectionSummary>().ExecuteAsync();
+            var sections = await m_DataSource.From("Sources.SectionDetail", filter).WithSorting("DisplayOrder").ToCollection<SectionSummary>().ExecuteAsync();
             foreach (var section in sections)
                 section.Subsections.AddRange(sections.Where(x => x.ParentSectionKey == section.SectionKey));
 
@@ -72,10 +72,10 @@ namespace HemaVideoLib.Services
 
         async Task<List<SectionSummary>> GetSubsectionsAsync(int bookKey, int sectionKey)
         {
-            //This could be more efficent using a recursive CTE
+            //This could be more efficient using a recursive CTE
 
             var filter = new { bookKey };
-            var sections = await m_DataSource.From("Sources.Section", filter).WithSorting("DisplayOrder").ToCollection<SectionSummary>().ExecuteAsync();
+            var sections = await m_DataSource.From("Sources.SectionDetail", filter).WithSorting("DisplayOrder").ToCollection<SectionSummary>().ExecuteAsync();
             foreach (var section in sections)
                 section.Subsections.AddRange(sections.Where(x => x.ParentSectionKey == section.SectionKey));
 

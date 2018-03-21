@@ -92,5 +92,9 @@
     <Build Include="Sources\Views\BookAuthorView.sql" />
     <Build Include="Interpretations\Views\VideoDetail.sql" />
     <Build Include="Sources\Views\SectionDetail.sql" />
+    <Build Include="Interpretations\Tables\VideoService.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <PostDeploy Include="Script.PostDeployment.sql" />
   </ItemGroup>
 </Project>

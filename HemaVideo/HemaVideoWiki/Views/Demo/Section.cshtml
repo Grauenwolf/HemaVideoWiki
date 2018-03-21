@@ -4,18 +4,25 @@
     ViewData["Title"] = Model.SectionName;
 }
 
-    <h1>@Model.SectionName</h1>
+<h1>@Model.SectionName</h1>
 
 
 
 <h2>Videos</h2>
-    @foreach(var video in Model.Videos){
-        <p>@video.VideoKey</p>
-    }
+@foreach (var video in Model.Videos)
+{
+    <iframe width="560" height="315" src="//www.youtube.com/embed/@(video.VideoServiceVideoId)" frameborder="0" allowfullscreen></iframe><br />
+}
 
-<h2>Sections</h2>
+<div>TODO: Allow users to add videos.</div>
+
+@if (Model.Subsections.Count > 0)
+{
+    <h2>Sections</h2>
 
 
-@foreach(var section in Model.Subsections){
+    @foreach (var section in Model.Subsections)
+    {
         @Html.Partial("_SectionSummary", section)
+    }
 }

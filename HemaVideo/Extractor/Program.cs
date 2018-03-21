@@ -20,7 +20,7 @@ namespace Extractor
             var fileName2 = "Meyer2.sql";
 
 
-            ProcessFiles(sections);
+
 
             Console.WriteLine();
             Console.WriteLine();
@@ -42,7 +42,7 @@ namespace Extractor
                 foreach (var section in sections)
                 {
                     foreach (var video in section.Videos)
-                        sqlB.AppendLine($"(),");
+                        sqlB.AppendLine($"({section.SectionKey},{video.VideoServiceKey},{Escape(video.VideoServiceVideoId)}),");
                 }
 
                 Console.WriteLine(sqlB.ToString());
@@ -100,23 +100,9 @@ namespace Extractor
                 ProcessSection(lines, ref currentLineIndex, bookKey, section, 2, sections);
             }
 
+            ProcessFiles(sections, "Meyer");
+
             return sections;
-            //Console.WriteLine();
-            //Console.WriteLine();
-            //Console.WriteLine();
-            //Console.WriteLine();
-
-            ////Dump Results
-            //foreach (var section in sections)
-            //{
-            //    Console.WriteLine($"Parent {section.ParentSectionKey} Section {section.SectionKey}: {section.SectionName}");
-            //    foreach (var play in section.Plays)
-            //    {
-            //        Console.WriteLine($"\t Play: {play.PlayName} Page: {play.PageReference}");
-            //    }
-            //}
-
-
         }
 
         /// <summary>
@@ -176,7 +162,7 @@ namespace Extractor
                         ParentSectionKey = currentSection.SectionKey,
                         DisplayOrder = displayOrder,
                         PageReference = "XXX",
-                        BookKey=bookKey
+                        BookKey = bookKey
                     };
                     displayOrder += 1;
 
@@ -200,36 +186,59 @@ namespace Extractor
                 currentLineIndex += 1;
             }
         }
-        static void ProcessFiles(List<Section> sections)
+        static void ProcessFiles(List<Section> sections, string folder)
         {
-            //TODO
+            foreach (var section in sections.Where(x => x.FileName != null))
+            {
+                var file = new FileInfo(Path.Combine(folder, section.FileName));
+                if (file.Exists)
+                {
+                    foreach (var line in File.ReadAllLines(file.FullName))
+                    {
+                        var start = line.IndexOf("[[media type");
+                        if (start == -1)
+                            continue;
+
+                        var end = line.IndexOf("]]");
+                        var mediaTag = line.Substring(start + 2 + 6, end - start - 2 - 6);
+                        Console.WriteLine(mediaTag);
+                        var video = new Video() { SectionKey = section.SectionKey };
+                        var mediaParts = mediaTag.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+                        foreach (var part in mediaParts)
+                        {
+                            var binary = part.Split('=');
+                            if (binary[0] == "type")
+                            {
+                                video.VideoServiceName = binary[1].Replace("\"", "");
+                            }
+                            if (binary[0] == "key")
+                            {
+                                video.VideoServiceVideoId = binary[1].Replace("\"", "");
+                            }
+                        }
+
+                        switch (video.VideoServiceName)
+                        {
+                            case "youtube":
+                                video.VideoServiceKey = 1;
+                                break;
+                            case "vimeo":
+                                video.VideoServiceKey = 2;
+                                break;
+                            case "custom":
+                                continue; //can't handle this one
+                            default:
+                                Console.WriteLine("Unknown video type: " + video.VideoServiceName);
+                                Console.ReadLine();
+                                break;
+                        }
+
+                        section.Videos.Add(video);
+                    }
+                }
+            }
+            
+
         }
     }
-
-    class Section
-    {
-        public int BookKey { get; set; }
-        public int SectionKey { get; set; }
-        public int? ParentSectionKey { get; set; }
-        public string SectionName { get; set; }
-
-        public string PageReference { get; set; }
-        public string FileName { get; set; }
-        public int DisplayOrder { get; set; }
-        public List<Video> Videos { get; } = new List<Video>();
-    }
-
-    class Video
-    {
-        public int VideoKey { get; set; }
-        public int SectionKey { get; set; }
-        public string YouTubeId { get; set; }
-        public string Url { get; set; }
-        public TimeSpan? StartTime { get; set; }
-        public int CreatedByUserKey { get; set; } = 1;
-
-
-
-    }
-
 }

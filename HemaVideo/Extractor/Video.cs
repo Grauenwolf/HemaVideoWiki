@@ -1,21 +1,20 @@
 ﻿using System;
+using System.Linq;
 
-namespace HemaVideoLib.Models
+namespace Extractor
 {
-    public class Video
+    class Video
     {
         public int VideoKey { get; set; }
         public int SectionKey { get; set; }
         public string VideoServiceVideoId { get; set; }
-        public int VideoServiceKey { get; set; }
         public string Url { get; set; }
-
         public TimeSpan? StartTime { get; set; }
-        public int CreatedByUserKey { get; set; }
-        public DateTime CreatedDate { get; set; }
+        public int CreatedByUserKey { get; set; } = 1;
+        public string VideoServiceName { get; set; }
+        public int VideoServiceKey { get; set; }
+
 
 
     }
 }
-
-
