@@ -121,7 +121,9 @@ INSERT INTO @Section
 )
 VALUES
 (1,1,NULL,'Book 1 Longsword',NULL,0),
-(2,1,1,'Chapter 3',NULL,1),
+(869,1,1,'Chapter 1',NULL,1),
+(870,1,1,'Chapter 2',NULL,1.2),
+(2,1,1,'Chapter 3',NULL,1.3),
 (3,1,2,'Ochs (Ox)',null,1),
 (4,1,2,'Pflug (Plow)',null,2),
 (5,1,2,'Tag (Day or Roof)',null,3),
@@ -190,8 +192,10 @@ VALUES
 (64,1,37,'Verstullen (Blocking)',null,27),
 (65,1,37,'Ubergreiffen (Gripping Over)','1.22v.3',28),
 (66,1,37,'Einlauffen (Running In)',null,29),
+(871,1,1,'Chapter 6',NULL,3.9),
 (67,1,1,'Chapter 7',NULL,4),
 (68,1,67,'Three Forms of Stepping','XXX',1),
+(67,1,1,'Chapter 8',NULL,4.5),
 (69,1,1,'Chapter 9',NULL,5),
 (70,1,69,'Example Device 1','1.26r.1',1),
 (71,1,69,'Example Device 2','1.26v.1',2),
