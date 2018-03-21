@@ -6,7 +6,7 @@
         CONSTRAINT UX_Book_BookName
         UNIQUE,
     AlternateBookName NVARCHAR(500) NOT NULL,
-    Slug CHAR(50) NOT NULL
-        CONSTRAINT UX_Book_Slug
+    BookSlug CHAR(50) NOT NULL
+        CONSTRAINT UX_Book_BookSlug
         UNIQUE
 );

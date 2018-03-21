@@ -1,16 +1,18 @@
 ﻿DECLARE @Author TABLE
 (
     AuthorKey INT NOT NULL,
-    AuthorName NVARCHAR(500) NOT NULL
+    AuthorName NVARCHAR(500) NOT NULL,
+	AuthorSlug CHAR(50) NOT NULL
 );
 
 INSERT INTO @Author
 (
     AuthorKey,
-    AuthorName
+    AuthorName,
+	AuthorSlug
 )
 VALUES
-(1, N'Joachim Meyer');
+(1, N'Joachim Meyer', 'Meyer');
 
 
 
@@ -21,12 +23,13 @@ WHEN NOT MATCHED THEN
     INSERT
     (
         AuthorKey,
-        AuthorName
+        AuthorName,
+		AuthorSlug
     )
     VALUES
-    (s.AuthorKey, s.AuthorName)
+    (s.AuthorKey, s.AuthorName, s.AuthorSlug)
 WHEN MATCHED AND t.AuthorName <> s.AuthorName THEN
-    UPDATE SET t.AuthorName = s.AuthorName;
+    UPDATE SET t.AuthorName = s.AuthorName, t.AuthorSlug=s.AuthorSlug;
 
 DECLARE @Book TABLE
 (
@@ -55,16 +58,16 @@ WHEN NOT MATCHED THEN
         BookKey,
         BookName,
         AlternateBookName,
-        Slug
+        BookSlug
     )
     VALUES
     (s.BookKey, s.BookName, s.AlternateBookName, s.Slug)
 WHEN MATCHED AND s.BookName <> t.BookName
                  OR s.AlternateBookName <> t.AlternateBookName
-                 OR s.Slug <> t.Slug THEN
+                 OR s.Slug <> t.BookSlug THEN
     UPDATE SET BookName = s.BookName,
                AlternateBookName = s.AlternateBookName,
-               Slug = s.Slug;
+               BookSlug = s.Slug;
 
 
 
@@ -119,75 +122,79 @@ INSERT INTO @Section
 VALUES
 (1,1,NULL,'Book 1 Longsword',NULL,0),
 (2,1,1,'Chapter 3',NULL,1),
-(3,1,2,'Ochs (Ox)','XXX',1),
-(4,1,2,'Pflug (Plow)','XXX',2),
-(5,1,2,'Tag (Day or Roof)','XXX',3),
-(6,1,2,'Olber (Fool)','XXX',4),
-(7,1,2,'Zornhut (Wrath Guard)','XXX',5),
-(8,1,2,'Langort (Longpoint)','XXX',6),
-(9,1,2,'Wechsel (Changer)','XXX',7),
-(10,1,2,'Nebenhut (Side Guard)','XXX',8),
-(11,1,2,'Eisenport (Iron Gate) 1','XXX',9),
-(12,1,2,'Eisenport (Iron Gate) 2','XXX',10),
-(13,1,2,'Hangetort (Hanging Point)','XXX',11),
-(14,1,2,'Schlüssel (Key)','XXX',12),
-(15,1,2,'Eynhorn (Unicorn)','XXX',13),
-(16,1,2,'Flügel (Winging)','XXX',14),
-(17,1,2,'Cutting Patterns','XXX',15),
+(3,1,2,'Ochs (Ox)',null,1),
+(4,1,2,'Pflug (Plow)',null,2),
+(5,1,2,'Tag (Day or Roof)',null,3),
+(6,1,2,'Olber (Fool)',null,4),
+(7,1,2,'Zornhut (Wrath Guard)',null,5),
+(8,1,2,'Langort (Longpoint)',null,6),
+(9,1,2,'Wechsel (Changer)',null,7),
+(10,1,2,'Nebenhut (Side Guard)',null,8),
+(11,1,2,'Eisenport (Iron Gate) 1',null,9),
+(12,1,2,'Eisenport (Iron Gate) 2',null,10),
+(13,1,2,'Hangetort (Hanging Point)',null,11),
+(14,1,2,'Schlüssel (Key)',null,12),
+(15,1,2,'Eynhorn (Unicorn)',null,13),
+(16,1,2,'Flügel (Winging)',null,14),
+(17,1,2,'Cutting Patterns',null,15),
 (18,1,1,'Chapter 4',NULL,2),
-(19,1,18,'Oberhauw (High Cut)','XXX',1),
-(20,1,18,'Zornhauw (Wrath Cut)','XXX',2),
-(21,1,18,'Mittelhauw (Middle Cut)','XXX',3),
-(22,1,18,'Underhauw (Low Cut)','XXX',4),
-(23,1,18,'Schielhauw (Squinting Cut)','XXX',5),
-(24,1,18,'Krumphauw (Crooked Cut)','XXX',6),
-(25,1,18,'Zwerch (Thwart)','XXX',7),
-(26,1,18,'Kurtzhauw (Short Cut)','XXX',8),
-(27,1,18,'Glützhauw (Glancing Cut)','XXX',9),
-(28,1,18,'Prellhauw (Rebound Cut) 1','XXX',10),
-(29,1,18,'Prellhauw (Rebound Cut) 2','XXX',11),
-(30,1,18,'Blendthauw (Blind Cut)','XXX',12),
-(31,1,18,'Windthauw (Winding Cut)','XXX',13),
-(32,1,18,'Kronhauw (Crown Cut)','XXX',14),
-(33,1,18,'Kniechelhauw (Wrist Cut)','XXX',15),
-(34,1,18,'Sturzhauw (Plunge Cut)','XXX',16),
-(35,1,18,'Wechselhauw (Change Cut)','XXX',17),
-(36,1,18,'Schneller oder Zeckrur (Flick or Tag-Hit)','XXX',18),
+(19,1,18,'Oberhauw (High Cut)',null,1),
+(20,1,18,'Zornhauw (Wrath Cut)',null,2),
+(21,1,18,'Mittelhauw (Middle Cut)',null,3),
+(22,1,18,'Underhauw (Low Cut)',null,4),
+(23,1,18,'Schielhauw (Squinting Cut)','1.11v.2',5),
+(24,1,18,'Krumphauw (Crooked Cut)','1.12v.1',6),
+(25,1,18,'Zwerch (Thwart)',null,7),
+(26,1,18,'Kurtzhauw (Short Cut)','1.12v.3',8),
+(27,1,18,'Glützhauw (Glancing Cut)',null,9),
+(28,1,18,'Prellhauw (Rebound Cut) 1','1.13r.2',10),
+(29,1,18,'Prellhauw (Rebound Cut) 2','1.13r.3',11),
+(30,1,18,'Blendthauw (Blind Cut)','1.14r.1',12),
+(31,1,18,'Windthauw (Winding Cut)','1.14r.2',13),
+(32,1,18,'Kronhauw (Crown Cut)','1.14r.3',14),
+(33,1,18,'Kniechelhauw (Wrist Cut)','1.14v.1',15),
+(34,1,18,'Sturzhauw (Plunge Cut)',null,16),
+(35,1,18,'Wechselhauw (Change Cut)',null,17),
+(36,1,18,'Schneller oder Zeckrur (Flick or Tag-Hit)',null,18),
 (37,1,1,'Chapter 5',NULL,3),
-(38,1,37,'Nachreisen (Chasing or Following After) 1','XXX',1),
-(39,1,37,'Nachreisen (Chasing or Following After) 2','XXX',2),
-(40,1,37,'Schneiden (Slicing)','XXX',3),
-(41,1,37,'Umbschlagen (Striking Around)','XXX',4),
-(42,1,37,'Ablauffen (Running Off)','XXX',5),
-(43,1,37,'Verfuhren (Deceiving)','XXX',6),
-(44,1,37,'Verfliegen (Flitting)','XXX',7),
-(45,1,37,'Absetzen (Setting Off)','XXX',8),
-(46,1,37,'Schlaudern (Slinging)','XXX',9),
-(47,1,37,'Zucken (Pulling)','XXX',10),
-(48,1,37,'Doplieren (Doubling)','XXX',11),
-(49,1,37,'Verkehren (Reversing)','XXX',12),
-(50,1,37,'Umbschnappen (Snapping Around) 1','XXX',13),
-(51,1,37,'Umbschnappen (Snapping Around) 2','XXX',14),
-(52,1,37,'Fehlen (Failing)','XXX',15),
-(53,1,37,'Zirckel (Circle)','XXX',16),
-(54,1,37,'Rinde (Looping)','XXX',17),
-(55,1,37,'Winden (Winding)','XXX',18),
-(56,1,37,'Durchwinden (Winding Through)','XXX',19),
-(57,1,37,'Wechseln (Changing)','XXX',20),
-(58,1,37,'Abschneiden (Slicing Off)','XXX',21),
-(59,1,37,'Hendtrucken (Pressing Hands)','XXX',22),
-(60,1,37,'Verschieben (Sliding)','XXX',23),
-(61,1,37,'Hengen (Hanging)','XXX',24),
-(62,1,37,'Aussreissen (Wrenching)','XXX',25),
-(63,1,37,'Sperren (Barring)','XXX',26),
-(64,1,37,'Verstullen (Blocking)','XXX',27),
-(65,1,37,'Ubergreiffen (Gripping Over)','XXX',28),
-(66,1,37,'Einlauffen (Running In)','XXX',29),
+
+(866,1,37,'Some Useful Advice about Parrying (Versetzen)','1.16v.1',1),
+
+(38,1,37,'Nachreisen (Chasing or Following After) 1','1.17v.1',1),
+(39,1,37,'Nachreisen (Chasing or Following After) 2','1.18r.1',2),
+(40,1,37,'Schneiden (Slicing)','1.18r.2',3),
+(41,1,37,'Umbschlagen (Striking Around)','1.18r.3',4),
+(42,1,37,'Ablauffen (Running Off)','1.18r.4',5),
+(43,1,37,'Verfuhren (Deceiving)',null,6),
+(44,1,37,'Verfliegen (Flitting)',null,7),
+(45,1,37,'Absetzen (Setting Off)','1.18v.1',8),
+(46,1,37,'Schlaudern (Slinging)','1.19r.1',9),
+(47,1,37,'Zucken (Pulling)','1.19r.2',10),
+(48,1,37,'Doplieren (Doubling)','1.19r.3',11),
+(49,1,37,'Verkehren (Reversing)','1.19v.1',12),
+(50,1,37,'Umbschnappen (Snapping Around) 1','1.19v.2',13),
+(51,1,37,'Umbschnappen (Snapping Around) 2','1.19v.3',14),
+(52,1,37,'Fehlen (Failing)','1.19v.4',15),
+(53,1,37,'Zirckel (Circle)','1.20v.1',16),
+(54,1,37,'Rinde (Looping)',null,17),
+(55,1,37,'Winden (Winding)','1.20r.1',18),
+(56,1,37,'Durchwinden (Winding Through)',null,19),
+(57,1,37,'Wechseln (Changing) 1','1.21r.3',20),
+(867,1,37,'Wechseln (Changing) 2','1.21v.1',20),
+(58,1,37,'Abschneiden (Slicing Off)','1.21v.2',21),
+(59,1,37,'Hendtrucken (Pressing Hands)','1.21v.3',22),
+(60,1,37,'Verschieben (Sliding)','1.22r.1',23),
+(61,1,37,'Hengen (Hanging)','1.22r.2',24),
+(62,1,37,'Aussreissen (Wrenching)','1.22r.3',25),
+(63,1,37,'Sperren (Barring)','1.22v.1',26),
+(64,1,37,'Verstullen (Blocking)',null,27),
+(65,1,37,'Ubergreiffen (Gripping Over)','1.22v.3',28),
+(66,1,37,'Einlauffen (Running In)',null,29),
 (67,1,1,'Chapter 7',NULL,4),
-(68,1,67,'Stepping','XXX',1),
+(68,1,67,'Three Forms of Stepping','XXX',1),
 (69,1,1,'Chapter 9',NULL,5),
-(70,1,69,'Example Device 1','XXX',1),
-(71,1,69,'Example Device 2','XXX',2),
+(70,1,69,'Example Device 1','1.26r.1',1),
+(71,1,69,'Example Device 2','1.26v.1',2),
 (72,1,1,'Chapter 10',NULL,6),
 (73,1,72,'Pattern 1','1.27v.1',1),
 (74,1,72,'Pattern 1 with the Short Edge','XXX',2),
@@ -214,38 +221,41 @@ VALUES
 (95,1,88,'Tag Device 7 Counter','1.33v.1',7),
 (96,1,88,'Tag Device 8','1.33v.2',8),
 (97,1,87,'Zornhut (Wrath Guard)',NULL,2),
-(98,1,97,'Zornhut Device 1','XXX',1),
-(99,1,97,'Zornhut Device 2','XXX',2),
-(100,1,97,'Zornhut Device 3','XXX',3),
-(101,1,97,'Zornhut Device 4','XXX',4),
-(102,1,97,'Zornhut Precept','XXX',5),
-(103,1,97,'Zornhut Left Side','XXX',6),
+(98,1,97,'Zornhut Device 1','1.34v.1',1),
+(99,1,97,'Zornhut Device 2','1.34v.2',2),
+(100,1,97,'Zornhut Device 3','1.35r.1',3),
+(101,1,97,'Zornhut Device 4','1.35r.2',4),
+
+(868,1,97,'Zornhut Device 5','1.35r.3',4),
+
+(102,1,97,'Zornhut Precept','1.35v.1',5),
+(103,1,97,'Zornhut Left Side','1.35v.2',6),
 (104,1,87,'Ochs (Ox)',NULL,3),
-(105,1,104,'Ochs Device 1','XXX',1),
-(106,1,104,'Ochs Device 2','XXX',2),
+(105,1,104,'Ochs Device 1','1.36r.1',1),
+(106,1,104,'Ochs Device 2','1.36v.1',2),
 (107,1,87,'Einhorn (Unicorn)',NULL,4),
-(108,1,107,'Eynhorn Device 1','XXX',1),
-(109,1,107,'Eynhorn Device 2','XXX',2),
-(110,1,107,'Eynhorn Device 3','XXX',3),
-(111,1,107,'Eynhorn Device 4','XXX',4),
+(108,1,107,'Eynhorn Device 1','1.37v.1',1),
+(109,1,107,'Eynhorn Device 2','1.37v.2',2),
+(110,1,107,'Eynhorn Device 3','1.38r.1',3),
+(111,1,107,'Eynhorn Device 4','1.38r.2',4),
 (112,1,87,'Schlussel (Key)',NULL,5),
-(113,1,112,'Schlüssel Device 1','XXX',1),
-(114,1,112,'Schlüssel Device 2','XXX',2),
+(113,1,112,'Schlüssel Device 1','1.38v.1',1),
+(114,1,112,'Schlüssel Device 2','1.38v.2',2),
 (115,1,87,'Hangetort (Hanging Point)',NULL,6),
-(116,1,115,'Hangetort Device 1','XXX',1),
-(117,1,115,'Hangetort Device 2','XXX',2),
-(118,1,115,'Hangetort Device 3','XXX',3),
+(116,1,115,'Hangetort Device 1','1.39v.1',1),
+(117,1,115,'Hangetort Device 2','1.39v.2',2),
+(118,1,115,'Hangetort Device 3','1.39v.3',3),
 (119,1,87,'Eisenport (Iron Gate)',NULL,7),
-(120,1,119,'Eisenport (actually Schrankhut) Device 1','XXX',1),
-(121,1,119,'Eisenport (actually Schrankhut) Device 2','XXX',2),
-(122,1,119,'Eisenport (actually Schrankhut) Device 3','XXX',3),
-(123,1,119,'Eisenport (actually Schrankhut) Device 4','XXX',4),
+(120,1,119,'Eisenport (actually Schrankhut) Device 1','1.40r.1',1),
+(121,1,119,'Eisenport (actually Schrankhut) Device 2','1.40r.2',2),
+(122,1,119,'Eisenport (actually Schrankhut) Device 3','1.40r.3',3),
+(123,1,119,'Eisenport (actually Schrankhut) Device 4','1.40r.4',4),
 (124,1,87,'Nebenhut (Side Guard)',NULL,8),
-(125,1,124,'Nebenhut Device 1','XXX',1),
+(125,1,124,'Nebenhut Device 1','1.40r.5',1),
 (126,1,87,'Mittelhut (Middle Guard)',NULL,9),
-(127,1,126,'Mittelhut Device 1','XXX',1),
-(128,1,126,'Mittelhut Device 2 a.k.a. Rose 1','XXX',2),
-(129,1,126,'Mittelhut Device 3','XXX',3),
+(127,1,126,'Mittelhut Device 1','1.40v.1',1),
+(128,1,126,'Mittelhut Device 2 a.k.a. Rose 1','1.40v.2',2),
+(129,1,126,'Mittelhut Device 3','1.40v.3',3),
 (130,1,87,'Langort (Long Point)',NULL,10),
 (131,1,130,'Langort Device 1','1.41r.1',1),
 (132,1,130,'Langort Device 2 a.k.a. Rose 2','1.41r.2',2),

@@ -66,6 +66,8 @@
     <Folder Include="Data" />
     <Folder Include="Interpretations" />
     <Folder Include="Interpretations\Tables" />
+    <Folder Include="Sources\Views" />
+    <Folder Include="Interpretations\Views" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Localhost.publish.xml" />
@@ -87,5 +89,7 @@
     <Build Include="Sources\Tables\BookAuthor.sql" />
     <Build Include="Interpretations\Interpretations.sql" />
     <Build Include="Interpretations\Tables\Video.sql" />
+    <Build Include="Sources\Views\BookAuthorView.sql" />
+    <Build Include="Interpretations\Views\VideoDetail.sql" />
   </ItemGroup>
 </Project>
