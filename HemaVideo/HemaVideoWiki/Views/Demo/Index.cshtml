@@ -1,0 +1,12 @@
+﻿@model System.Collections.Generic.List<HemaVideoLib.Models.BookAuthorDetail>
+
+@{
+    ViewData["Title"] = "All Books";
+}
+
+    <h2>AllBooks</h2>
+
+    @foreach(var book in Model){
+        <p><a href="book/@book.BookKey">@book.BookName</a> or @book.AlternateBookName by @book.AuthorName</p>
+    }
+

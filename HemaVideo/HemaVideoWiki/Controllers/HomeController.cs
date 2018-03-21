@@ -4,6 +4,7 @@ using System.Diagnostics;
 
 namespace HemaVideoWiki.Controllers
 {
+    [ApiExplorerSettings(IgnoreApi = true)]
     public class HomeController : Controller
     {
         public IActionResult Index()

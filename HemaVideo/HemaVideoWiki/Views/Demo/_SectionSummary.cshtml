@@ -1,0 +1,28 @@
+﻿@model HemaVideoLib.Models.SectionSummary
+
+@Html.Raw("<h" + (Model.Depth + 1) + ">")
+
+<a href="book/@Model.BookKey/section/{section.SectionKey}">
+    @Model.SectionName
+    @if (!string.IsNullOrEmpty(Model.PageReference))
+    {
+        @( " (" + Model.PageReference + ")" )
+    }
+    @Html.Raw("</h" + (Model.Depth + 1) + ">")
+</a>
+
+@if (Model.VideoCount > 0)
+{
+    <div> Videos: @Model.VideoCount </div>
+
+}
+
+@if (Model.Subsections.Count > 0)
+{
+
+    @foreach (var section in Model.Subsections)
+    {
+        @Html.Partial("_SectionSummary", section)
+    }
+}
+

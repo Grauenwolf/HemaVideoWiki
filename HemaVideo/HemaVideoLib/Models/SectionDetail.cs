@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace HemaVideoLib
+namespace HemaVideoLib.Models
 {
     public class SectionDetail : SectionSummary
     {

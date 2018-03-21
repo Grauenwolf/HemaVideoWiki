@@ -1,23 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Text.Encodings.Web;
-using System.Threading.Tasks;
+﻿using HemaVideoWiki.Models;
+using HemaVideoWiki.Models.ManageViewModels;
+using HemaVideoWiki.Services;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
-using HemaVideoWiki.Models;
-using HemaVideoWiki.Models.ManageViewModels;
-using HemaVideoWiki.Services;
+using System;
+using System.Linq;
+using System.Text;
+using System.Text.Encodings.Web;
+using System.Threading.Tasks;
 
 namespace HemaVideoWiki.Controllers
 {
     [Authorize]
     [Route("[controller]/[action]")]
+    [ApiExplorerSettings(IgnoreApi = true)]
     public class ManageController : Controller
     {
         private readonly UserManager<ApplicationUser> _userManager;

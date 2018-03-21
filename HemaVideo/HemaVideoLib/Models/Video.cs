@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace HemaVideoLib
+namespace HemaVideoLib.Models
 {
     public class Video
     {

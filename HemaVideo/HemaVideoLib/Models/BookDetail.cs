@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace HemaVideoLib
+namespace HemaVideoLib.Models
 {
     public class BookDetail : BookSummary
     {

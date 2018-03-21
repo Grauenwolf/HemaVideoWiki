@@ -1,4 +1,4 @@
-﻿namespace HemaVideoLib
+﻿namespace HemaVideoLib.Models
 {
     public class Author
     {
@@ -10,3 +10,4 @@
 }
 
 
+   

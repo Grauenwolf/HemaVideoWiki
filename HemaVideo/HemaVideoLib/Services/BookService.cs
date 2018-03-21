@@ -1,10 +1,11 @@
-﻿using System;
+﻿using HemaVideoLib.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Tortuga.Chain;
 
-namespace HemaVideoLib
+namespace HemaVideoLib.Services
 {
     public class BookService
     {
@@ -38,6 +39,11 @@ namespace HemaVideoLib
             return m_DataSource.From("Sources.Book").ToCollection<BookSummary>().ExecuteAsync();
         }
 
+        public Task<List<BookAuthorDetail>> GetBooksAndAuthorsAsync()
+        {
+            return m_DataSource.From("Sources.BookAuthorDetail").ToCollection<BookAuthorDetail>().ExecuteAsync();
+        }
+
         public Task<SectionSummary> GetSectionSummaryAsync(int sectionKey)
         {
             throw new NotImplementedException();
@@ -58,7 +64,11 @@ namespace HemaVideoLib
             foreach (var section in sections)
                 section.Subsections.AddRange(sections.Where(x => x.ParentSectionKey == section.SectionKey));
 
-            return sections.Where(x => x.ParentSectionKey == null).ToList();
+
+            var result = sections.Where(x => x.ParentSectionKey == null).ToList();
+            foreach (var section in result)
+                section.Depth = 1;
+            return result;
         }
 
         public async Task<List<SectionSummary>> GetSubsectionsAsync(int bookKey, int sectionKey)
@@ -70,7 +80,12 @@ namespace HemaVideoLib
             foreach (var section in sections)
                 section.Subsections.AddRange(sections.Where(x => x.ParentSectionKey == section.SectionKey));
 
-            return sections.Where(x => x.ParentSectionKey == sectionKey).ToList();
+            List<SectionSummary> result = sections.Where(x => x.ParentSectionKey == sectionKey).ToList();
+
+            foreach (var section in result)
+                section.Depth = 1;
+
+            return result;
         }
 
     }
