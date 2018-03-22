@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
 
 namespace HemaVideoLib.Models
 {
@@ -26,6 +27,9 @@ namespace HemaVideoLib.Models
         public string SectionName { get; set; }
         public List<SectionSummary> Subsections { get; } = new List<SectionSummary>();
         public int VideoCount { get; set; }
+
+        public int TotalVideoCount => VideoCount + Subsections.Sum(x => x.TotalVideoCount);
+
     }
 }
 

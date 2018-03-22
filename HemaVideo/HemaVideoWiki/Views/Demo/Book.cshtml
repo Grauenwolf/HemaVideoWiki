@@ -5,23 +5,18 @@
 }
 
 <h1>@Model.BookName</h1>
-
-
-@*
-    @foreach(var section in Model.Sections){
-    <h2><a href="book/@Model.BookKey/section/{section.SectionKey}">@(section.SectionName)</a> </h2>
-
-    @foreach(var s2 in section.Subsections){
-
-        <h3><a href="book/@Model.BookKey/section/{s2.SectionKey}">@(s2.SectionName)</a> </h3>
-
-    }
-
+<div>@Model.AlternateBookName</div>
+<h2>Author</h2>
+@foreach (var author in Model.Authors)
+{
+    <div>@author.AuthorName</div>
 }
-    *@
 
 
-@foreach(var section in Model.Sections){
-        @Html.Partial("_SectionSummary", section)
+<h2>Sections</h2>
+
+@foreach (var section in Model.Sections)
+{
+    @Html.Partial("_SectionSummary", section)
 }
 

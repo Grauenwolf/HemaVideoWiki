@@ -50,7 +50,7 @@ namespace HemaVideoLib.Services
 
         public async Task<SectionDetail> GetSectionDetailAsync(int sectionKey)
         {
-            var section = await m_DataSource.GetByKey("Sources.Section", sectionKey).ToObject<SectionDetail>().ExecuteAsync();
+            var section = await m_DataSource.From("Sources.SectionDetail", new { sectionKey }).ToObject<SectionDetail>().ExecuteAsync();
             section.Subsections.AddRange(await GetSubsectionsAsync(section.BookKey, section.SectionKey));
             section.Videos.AddRange(await m_DataSource.From("Interpretations.Video", new { sectionKey }).ToCollection<Video>().ExecuteAsync());
             return section;
@@ -82,7 +82,7 @@ namespace HemaVideoLib.Services
             List<SectionSummary> result = sections.Where(x => x.ParentSectionKey == sectionKey).ToList();
 
             foreach (var section in result)
-                section.Depth = 2;
+                section.Depth = 1;
 
             return result;
         }

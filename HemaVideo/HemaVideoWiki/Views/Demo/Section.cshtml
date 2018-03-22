@@ -4,7 +4,18 @@
     ViewData["Title"] = Model.SectionName;
 }
 
-<h1>@Model.SectionName</h1>
+<h1>
+    @Model.SectionName
+</h1>
+<div>
+    Source: <a href="~/demo/book/@Model.BookKey">@Model.BookName</a>
+    @if (!string.IsNullOrEmpty(Model.PageReference))
+    {
+        @*<h3>Reference @Model.PageReference</h3>*@
+        <text> (@Model.PageReference)</text>
+
+    }
+</div>
 
 
 
