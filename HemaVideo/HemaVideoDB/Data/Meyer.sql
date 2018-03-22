@@ -1,4 +1,81 @@
-﻿DECLARE @Author TABLE
+﻿DECLARE @BookKey INT = 1;
+
+
+
+/***** Book *****/
+DECLARE @Book TABLE
+(
+    BookKey INT NOT NULL,
+    BookName NVARCHAR(500) NOT NULL,
+    AlternateBookName NVARCHAR(500) NOT NULL,
+    Slug CHAR(50) NOT NULL
+);
+
+INSERT INTO @Book
+(
+    BookKey,
+    BookName,
+    AlternateBookName,
+    Slug
+)
+VALUES
+(@BookKey, N'A Thorough Description of the Art of Fencing', N'Gründtliche Beschreibung der Kunst des Fechtens',
+ 'Meyer1570');
+
+MERGE INTO Sources.Book t
+USING @Book s
+ON t.BookKey = s.BookKey
+WHEN NOT MATCHED THEN
+    INSERT
+    (
+        BookKey,
+        BookName,
+        AlternateBookName,
+        BookSlug
+    )
+    VALUES
+    (s.BookKey, s.BookName, s.AlternateBookName, s.Slug)
+WHEN MATCHED AND s.BookName <> t.BookName
+                 OR s.AlternateBookName <> t.AlternateBookName
+                 OR s.Slug <> t.BookSlug THEN
+    UPDATE SET t.BookName = s.BookName,
+               t.AlternateBookName = s.AlternateBookName,
+               t.BookSlug = s.Slug;
+
+DECLARE @AlternateBookName TABLE
+(
+    BookKey INT NOT NULL,
+    AlternateBookName NVARCHAR(500) NOT NULL
+);
+
+INSERT INTO @AlternateBookName
+(
+    BookKey,
+    AlternateBookName
+)
+VALUES
+(@BookKey, N'Gründtliche Beschreibung der Kunst des Fechtens'),
+(@BookKey, N'Meyer 1570'),
+(@BookKey, N'The Art of Combat: A German Martial Arts Treatise of 1570');
+
+
+MERGE INTO Sources.AlternateBookName t
+USING @AlternateBookName s
+ON s.BookKey = t.BookKey
+   AND s.AlternateBookName = t.AlternateBookName
+WHEN NOT MATCHED THEN
+    INSERT
+    (
+        BookKey,
+        AlternateBookName
+    )
+    VALUES
+    (s.BookKey, s.AlternateBookName)
+WHEN NOT MATCHED BY SOURCE AND t.BookKey = @BookKey THEN
+    DELETE;
+
+/**** AUTHOR *******/
+DECLARE @Author TABLE
 (
     AuthorKey INT NOT NULL,
     AuthorName NVARCHAR(500) NOT NULL,
@@ -32,46 +109,6 @@ WHEN MATCHED AND t.AuthorName <> s.AuthorName THEN
     UPDATE SET t.AuthorName = s.AuthorName,
                t.AuthorSlug = s.AuthorSlug;
 
-DECLARE @Book TABLE
-(
-    BookKey INT NOT NULL,
-    BookName NVARCHAR(500) NOT NULL,
-    AlternateBookName NVARCHAR(500) NOT NULL,
-    Slug CHAR(50) NOT NULL
-);
-
-INSERT INTO @Book
-(
-    BookKey,
-    BookName,
-    AlternateBookName,
-    Slug
-)
-VALUES
-(1, N'A Thorough Description of the Art of Fencing', N'Gründtliche Beschreibung der Kunst des Fechtens', 'Meyer1570');
-
-MERGE INTO Sources.Book t
-USING @Book s
-ON t.BookKey = s.BookKey
-WHEN NOT MATCHED THEN
-    INSERT
-    (
-        BookKey,
-        BookName,
-        AlternateBookName,
-        BookSlug
-    )
-    VALUES
-    (s.BookKey, s.BookName, s.AlternateBookName, s.Slug)
-WHEN MATCHED AND s.BookName <> t.BookName
-                 OR s.AlternateBookName <> t.AlternateBookName
-                 OR s.Slug <> t.BookSlug THEN
-    UPDATE SET t.BookName = s.BookName,
-               t.AlternateBookName = s.AlternateBookName,
-               t.BookSlug = s.Slug;
-
-
-
 DECLARE @BookAuthor TABLE
 (
     BookKey INT NOT NULL,
@@ -84,8 +121,8 @@ INSERT INTO @BookAuthor
     AuthorKey
 )
 VALUES
-(   1, -- BookKey - int
-    1  -- AuthorKey - int
+(   @BookKey, -- BookKey - int
+    1         -- AuthorKey - int
     );
 
 MERGE INTO Sources.BookAuthor t
@@ -101,6 +138,7 @@ WHEN NOT MATCHED THEN
     VALUES
     (s.BookKey, s.AuthorKey);
 
+/************ SECTIONS *************/
 DECLARE @Section TABLE
 (
     SectionKey INT NOT NULL PRIMARY KEY,
@@ -419,7 +457,7 @@ VALUES
 (280, 1, 267, 'Schnellhauw (Flicking Cut)', '2.13v.1', 13),
 (281, 1, 267, 'Windthauw (Winding Cut)', '2.13v.3', 14),
 (282, 1, 267, 'Bochhauw (Knocking Cut)', '2.13v.4', 15),
-(284, 1, 267, 'Wechselhauw (Change Cut)', null, 16),
+(284, 1, 267, 'Wechselhauw (Change Cut)', NULL, 16),
 (283, 1, 267, 'Kreutzhauw (Cross Cut)', '2.14r.1', 17),
 (285, 1, 253, 'Chapter 5', NULL, 3),
 (286, 1, 285, 'Opening 1', '2.15v.1', 1),
@@ -439,7 +477,7 @@ VALUES
 (299, 1, 253, 'Chapter 8 Wacht (Watch)', NULL, 5),
 (300, 1, 299, 'Watch Device 1', '2.20r.1', 1),
 (301, 1, 299, 'Watch Device 2', '2.20v.1', 2),
-(879, 1, 299, 'Watch Precept', null, 3),
+(879, 1, 299, 'Watch Precept', NULL, 3),
 (302, 1, 299, 'Watch Device 3', '2.21r.1', 4),
 (303, 1, 299, 'Watch Device 4', '2.21r.2', 5),
 (304, 1, 299, 'Watch Device 5', '2.21v.1', 6),
@@ -459,7 +497,7 @@ VALUES
 (318, 1, 306, 'Stier Device 12 Danger', '2.27r.1', 12),
 (319, 1, 306, 'Stier Device 13 Waker', '2.27r.2', 13),
 (880, 1, 306, 'Stier Device 14 Steer', '2.27v.1', 14),
-(320, 1, 306, 'Stier Precept', null, 15),
+(320, 1, 306, 'Stier Precept', NULL, 15),
 (321, 1, 253, 'Chapter 10', NULL, 7),
 (322, 1, 321, 'Zornhut Device 1 First', '2.29r.1', 1),
 (323, 1, 321, 'Zornhut Device 2 Second', '2.29v.1', 2),
@@ -1037,7 +1075,7 @@ WHEN MATCHED THEN
                t.SectionName = s.SectionName,
                t.PageReference = s.PageReference,
                t.DisplayOrder = s.DisplayOrder
-WHEN NOT MATCHED BY SOURCE AND t.BookKey = 1 THEN
+WHEN NOT MATCHED BY SOURCE AND t.BookKey = @BookKey THEN
     DELETE;
 
 
@@ -1049,6 +1087,8 @@ DECLARE @Video TABLE
     CreatedByUserKey INT NOT NULL
         DEFAULT (1)
 );
+
+/********** VIDEOS *************/
 
 INSERT INTO @Video
 (

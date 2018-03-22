@@ -93,6 +93,8 @@
     <Build Include="Interpretations\Views\VideoDetail.sql" />
     <Build Include="Sources\Views\SectionDetail.sql" />
     <Build Include="Interpretations\Tables\VideoService.sql" />
+    <None Include="Data\I.33.sql" />
+    <Build Include="Sources\Tables\AlternateBookName.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Script.PostDeployment.sql" />

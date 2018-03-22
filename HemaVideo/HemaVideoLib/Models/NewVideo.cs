@@ -4,14 +4,19 @@ using System.Runtime.Serialization;
 
 namespace HemaVideoLib.Models
 {
-    public class Video
+    [Table("Interpretations.Video")]
+    [DataContract]
+    public class NewVideo
     {
-        public int CreatedByUserKey { get; set; }
-        public DateTime CreatedDate { get; set; }
+        [DataMember]
         public int SectionKey { get; set; }
+
+        [DataMember]
         public TimeSpan? StartTime { get; set; }
+
+        [DataMember]
         public string Url { get; set; }
-        public int VideoKey { get; set; }
+
         public int VideoServiceKey { get; set; }
         public string VideoServiceVideoId { get; set; }
     }

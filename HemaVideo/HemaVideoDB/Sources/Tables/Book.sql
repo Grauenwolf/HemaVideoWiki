@@ -5,7 +5,7 @@
     BookName NVARCHAR(500) NOT NULL
         CONSTRAINT UX_Book_BookName
         UNIQUE,
-    AlternateBookName NVARCHAR(500) NOT NULL,
+    AlternateBookName NVARCHAR(500) NULL,
     BookSlug CHAR(50) NOT NULL
         CONSTRAINT UX_Book_BookSlug
         UNIQUE

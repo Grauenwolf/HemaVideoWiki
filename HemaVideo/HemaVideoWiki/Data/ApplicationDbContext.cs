@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using HemaVideoWiki.Models;
+using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace HemaVideoWiki.Data
 {
@@ -21,6 +22,14 @@ namespace HemaVideoWiki.Data
             // Customize the ASP.NET Identity model and override the defaults if needed.
             // For example, you can rename the ASP.NET Identity table names and more.
             // Add your customizations after calling base.OnModelCreating(builder);
+
+            //builder.Entity<ApplicationUser>().Property("UserKey").UseSqlServerIdentityColumn();
+
+
+            builder.Entity<ApplicationUser>().Property(p => p.UserKey)
+               .UseSqlServerIdentityColumn();
+            builder.Entity<ApplicationUser>().Property(p => p.UserKey)
+                .Metadata.AfterSaveBehavior = PropertySaveBehavior.Ignore;
         }
     }
 }

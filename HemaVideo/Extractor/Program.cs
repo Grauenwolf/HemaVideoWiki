@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -8,20 +9,18 @@ namespace Extractor
 {
     class Program
     {
-        static string OrNull(int? value) => value.HasValue ? value.ToString() : "NULL";
-        static string Escape(string value) => value == null ? "NULL" : "'" + value.Replace("'", "''") + "'";
-
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
 
+            ProcessMeyer();
+            ProcessI33();
 
-            var sections = ProcessMeyer();
-            var fileName1 = "Meyer1.sql";
-            var fileName2 = "Meyer2.sql";
+        }
 
+        static string Escape(string value) => value == null ? "NULL" : "'" + value.Replace("'", "''") + "'";
 
-
-
+        static void GenerateSql(IList<Section> sections, string fileName1, string fileName2)
+        {
             Console.WriteLine();
             Console.WriteLine();
 
@@ -48,145 +47,25 @@ namespace Extractor
                 Console.WriteLine(sqlB.ToString());
                 File.AppendAllText(fileName2, sqlB.ToString());
             }
-
         }
+        static string OrNull(int? value) => value.HasValue ? value.ToString() : "NULL";
         /*
-         * 
-         * 
-         * VALUES
+* 
+* 
+* VALUES
 (   0,   -- PlayKey - int
-    0,   -- SectionKey - int
-    N'', -- PlayName - nvarchar(250)
-    N'', -- PageReference - nvarchar(50)
-    0.0  -- DisplayOrder - float
-    );
-         * 
-         * */
+0,   -- SectionKey - int
+N'', -- PlayName - nvarchar(250)
+N'', -- PageReference - nvarchar(50)
+0.0  -- DisplayOrder - float
+);
+* 
+* */
 
 
 
 
-        static List<Section> ProcessMeyer()
-        {
-            var sections = new List<Section>();
-            var bookKey = 1;
-
-            //Process Index Files
-            for (var indexFileIndex = 1; indexFileIndex <= 5; indexFileIndex++)
-            {
-                var indexFileName = $@"Meyer\Meyer 1570 Book {indexFileIndex}";
-                var lines = File.ReadAllLines(indexFileName);
-                var currentLineIndex = 0;
-
-                var section = new Section()
-                {
-                    BookKey = bookKey,
-                    ParentSectionKey = null,
-                    SectionKey = sections.Any() ? sections.Max(x => x.SectionKey) + 1 : 1,
-                };
-                sections.Add(section);
-
-                for (int i = 0; i < lines.Length; i++)
-                {
-                    var line = lines[i].Trim();
-                    if (line.StartsWith("==") && !line.StartsWith("==="))
-                    {
-                        section.SectionName = line.Replace("==", "");
-                        currentLineIndex = i + 1;
-                        break;
-                    }
-                }
-
-                ProcessSection(lines, ref currentLineIndex, bookKey, section, 2, sections);
-            }
-
-            ProcessFiles(sections, "Meyer");
-
-            return sections;
-        }
-
-        /// <summary>
-        /// Processes the child rows in a section.
-        /// </summary>
-        /// <param name="lines">The lines.</param>
-        /// <param name="currentLineIndex">Index of the current line.</param>
-        /// <param name="bookKey">The book key.</param>
-        /// <param name="parentSectionKey">The SectionKey for the section currently being processed.</param>
-        /// <param name="depth">The depth of the section currently being processed.</param>
-        /// <param name="sections">The sections.</param>
-        static void ProcessSection(string[] lines, ref int currentLineIndex, int bookKey, Section currentSection, int depth, List<Section> sections)
-        {
-            const string playHeader = "[[";
-            const string playFooter = "]]";
-            string childSectionHeader = new string('=', depth + 1);
-            string nextSectionHeader = new string('=', depth);
-            int displayOrder = 1;
-
-            while (currentLineIndex < lines.Length)
-            {
-                var currentLine = lines[currentLineIndex].Trim();
-                if (currentLine.StartsWith(childSectionHeader))
-                {
-                    //create section
-                    var childSection = new Section()
-                    {
-                        BookKey = bookKey,
-                        ParentSectionKey = currentSection.SectionKey,
-                        SectionKey = sections.Max(x => x.SectionKey) + 1,
-                        SectionName = currentLine.Replace(childSectionHeader, ""),
-                        DisplayOrder = displayOrder
-                    };
-                    sections.Add(childSection);
-                    currentLineIndex += 1;
-                    displayOrder += 1;
-
-                    //process section
-                    ProcessSection(lines, ref currentLineIndex, bookKey, childSection, depth + 1, sections);
-
-                    continue; //restart the loop with the new current line index
-                }
-                else if (currentLine.StartsWith(nextSectionHeader))
-                {
-                    //currentLineIndex += 1; don't increment the counter, we'll pick this up in the parent
-                    return;
-                }
-                else if (currentLine.StartsWith(playHeader))
-                {
-                    currentLine = currentLine.Replace(playHeader, "").Replace(playFooter, "");//strip the headers
-                    var split = currentLine.Split('|');
-                    var play = new Section()
-                    {
-                        FileName = split[0],
-                        SectionName = split[1],
-                        SectionKey = sections.Max(x => x.SectionKey) + 1,
-                        ParentSectionKey = currentSection.SectionKey,
-                        DisplayOrder = displayOrder,
-                        PageReference = "XXX",
-                        BookKey = bookKey
-                    };
-                    displayOrder += 1;
-
-                    if (play.SectionName.Contains("(") && play.SectionName.Contains(")"))
-                    {
-                        var startIndex = play.SectionName.IndexOf("(") + 1;
-                        var endIndex = play.SectionName.IndexOf(")") - 1;
-                        var length = endIndex - startIndex + 1;
-                        var pageRef = play.SectionName.Substring(startIndex, length);
-
-                        if (char.IsDigit(pageRef[0]))
-                        {
-                            play.PageReference = pageRef;
-                            play.SectionName = play.SectionName.Substring(0, startIndex - 2).Trim();
-                        }
-                    }
-
-                    sections.Add(play);
-                }
-
-                currentLineIndex += 1;
-            }
-        }
-        static void ProcessFiles(List<Section> sections, string folder)
+        static void ProcessFiles(IList<Section> sections, string folder)
         {
             foreach (var section in sections.Where(x => x.FileName != null))
             {
@@ -237,8 +116,170 @@ namespace Extractor
                     }
                 }
             }
-            
+
 
         }
+
+        static void ProcessI33()
+        {
+            var bookKey = 2;
+            var sections = new SectionCollection(bookKey);
+
+
+            var indexFileName = $@"I.33\MS I.33";
+            var lines = File.ReadAllLines(indexFileName);
+            var currentLineIndex = 0;
+
+            ProcessSection(lines, ref currentLineIndex, bookKey, null, 1, sections);
+
+
+            ProcessFiles(sections, "I.33");
+
+            var fileName1 = "I.33-1.sql";
+            var fileName2 = "I.33-2.sql";
+
+            GenerateSql(sections, fileName1, fileName2);
+
+        }
+
+        static void ProcessMeyer()
+        {
+            var bookKey = 1;
+            var sections = new SectionCollection(bookKey);
+
+            //Process Index Files
+            for (var indexFileIndex = 1; indexFileIndex <= 5; indexFileIndex++)
+            {
+                var indexFileName = $@"Meyer\Meyer 1570 Book {indexFileIndex}";
+                var lines = File.ReadAllLines(indexFileName);
+                var currentLineIndex = 0;
+
+                var section = new Section()
+                {
+                    BookKey = bookKey,
+                    ParentSectionKey = null,
+                    SectionKey = sections.Any() ? sections.Max(x => x.SectionKey) + 1 : 1,
+                };
+                sections.Add(section);
+
+                for (int i = 0; i < lines.Length; i++)
+                {
+                    var line = lines[i].Trim();
+                    if (line.StartsWith("==") && !line.StartsWith("==="))
+                    {
+                        section.SectionName = line.Replace("==", "");
+                        currentLineIndex = i + 1;
+                        break;
+                    }
+                }
+
+                ProcessSection(lines, ref currentLineIndex, bookKey, section, 2, sections);
+            }
+
+            ProcessFiles(sections, "Meyer");
+
+            var fileName1 = "Meyer1.sql";
+            var fileName2 = "Meyer2.sql";
+
+            GenerateSql(sections, fileName1, fileName2);
+
+        }
+
+        /// <summary>
+        /// Processes the child rows in a section.
+        /// </summary>
+        /// <param name="lines">The lines.</param>
+        /// <param name="currentLineIndex">Index of the current line.</param>
+        /// <param name="bookKey">The book key.</param>
+        /// <param name="parentSectionKey">The SectionKey for the section currently being processed.</param>
+        /// <param name="depth">The depth of the section currently being processed.</param>
+        /// <param name="sections">The sections.</param>
+        static void ProcessSection(string[] lines, ref int currentLineIndex, int bookKey, Section currentSection, int depth, SectionCollection sections)
+        {
+            const string playHeader = "[[";
+            const string playFooter = "]]";
+            string childSectionHeader = new string('=', depth + 1);
+            string nextSectionHeader = new string('=', depth);
+            int displayOrder = 1;
+
+            while (currentLineIndex < lines.Length)
+            {
+                var currentLine = lines[currentLineIndex].Trim();
+                if (currentLine.StartsWith(childSectionHeader))
+                {
+                    //create section
+                    var childSection = new Section()
+                    {
+                        BookKey = bookKey,
+                        ParentSectionKey = currentSection?.SectionKey,
+                        SectionKey = sections.NextSectionKey,
+                        SectionName = currentLine.Replace(childSectionHeader, ""),
+                        DisplayOrder = displayOrder
+                    };
+                    sections.Add(childSection);
+                    currentLineIndex += 1;
+                    displayOrder += 1;
+
+                    //process section
+                    ProcessSection(lines, ref currentLineIndex, bookKey, childSection, depth + 1, sections);
+
+                    continue; //restart the loop with the new current line index
+                }
+                else if (currentLine.StartsWith(nextSectionHeader))
+                {
+                    //currentLineIndex += 1; don't increment the counter, we'll pick this up in the parent
+                    return;
+                }
+                else if (currentLine.StartsWith("[[toc]]"))
+                {
+                    //skip
+                }
+                else if (currentLine.StartsWith(playHeader))
+                {
+                    currentLine = currentLine.Replace(playHeader, "").Replace(playFooter, "");//strip the headers
+                    var split = currentLine.Split('|');
+                    var play = new Section()
+                    {
+                        FileName = split[0],
+                        SectionName = split[1],
+                        SectionKey = sections.NextSectionKey,
+                        ParentSectionKey = currentSection?.SectionKey,
+                        DisplayOrder = displayOrder,
+                        PageReference = "XXX",
+                        BookKey = bookKey
+                    };
+                    displayOrder += 1;
+
+                    if (play.SectionName.Contains("(") && play.SectionName.Contains(")"))
+                    {
+                        var startIndex = play.SectionName.IndexOf("(") + 1;
+                        var endIndex = play.SectionName.IndexOf(")") - 1;
+                        var length = endIndex - startIndex + 1;
+                        var pageRef = play.SectionName.Substring(startIndex, length);
+
+                        if (char.IsDigit(pageRef[0]))
+                        {
+                            play.PageReference = pageRef;
+                            play.SectionName = play.SectionName.Substring(0, startIndex - 2).Trim();
+                        }
+                    }
+
+                    sections.Add(play);
+                }
+
+                currentLineIndex += 1;
+            }
+        }
+    }
+
+    class SectionCollection : Collection<Section>
+    {
+        public SectionCollection(int bookKey)
+        {
+            SectionKeyOffset = 1000 * (bookKey - 1);
+        }
+        public int SectionKeyOffset { get; }
+
+        public int NextSectionKey => SectionKeyOffset + Count + 1;
     }
 }

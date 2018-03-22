@@ -22,6 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="wwwroot\client\.swagger-codegen\VERSION" />
     <None Include="wwwroot\Old\Achille Marozzo.html" />
     <None Include="wwwroot\Old\Alfieri Chapter 1.html" />
     <None Include="wwwroot\Old\Alfieri Chapter 7.html" />

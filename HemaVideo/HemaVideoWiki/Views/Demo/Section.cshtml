@@ -22,10 +22,27 @@
 <h2>Videos</h2>
 @foreach (var video in Model.Videos)
 {
-    <iframe width="560" height="315" src="//www.youtube.com/embed/@(video.VideoServiceVideoId)" frameborder="0" allowfullscreen></iframe><br />
+    if (video.VideoServiceKey == 1)
+    {
+        <iframe width="560" height="315" src="//www.youtube.com/embed/@(video.VideoServiceVideoId)" frameborder="0" allowfullscreen></iframe><br />
+
+    }
+    else
+    {
+        <a href="@(video.Url)">@(video.Url)</a>
+    }
 }
 
-<div>TODO: Allow users to add videos.</div>
+@if (Context.User.Identity.IsAuthenticated)
+{
+    <div>Add videos is coming soon!</div>
+}
+else
+{
+    <div>Login to add videos.</div>
+}
+
+
 
 @if (Model.Subsections.Count > 0)
 {
