@@ -3,10 +3,19 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
     <UserSecretsId>aspnet-HemaVideoWiki-FD37D628-46E1-4F32-B5E6-ED247CD5DB27</UserSecretsId>
+    <TypeScriptToolsVersion>2.6</TypeScriptToolsVersion>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Scripts\file.ts" />
+    <None Remove="Scripts\**.ts" />
+  </ItemGroup>
+
+
 
 
   <ItemGroup>
+    <PackageReference Include="jQuery" Version="3.3.1" />
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.5" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.0.1" PrivateAssets="All" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.2" PrivateAssets="All" />
@@ -22,7 +31,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="wwwroot\client\.swagger-codegen\VERSION" />
+    <None Include="Scripts\client\.swagger-codegen\VERSION" />
     <None Include="wwwroot\Old\Achille Marozzo.html" />
     <None Include="wwwroot\Old\Alfieri Chapter 1.html" />
     <None Include="wwwroot\Old\Alfieri Chapter 7.html" />
@@ -201,5 +210,34 @@
   <ItemGroup>
     <ProjectReference Include="..\HemaVideoLib\HemaVideoLib.csproj" />
   </ItemGroup>
+
+  <ItemGroup>
+    <TypeScriptCompile Include="Scripts\file.ts" />
+    <TypeScriptCompile Include="Scripts\**\*.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="readme.md" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\lib\jquery\dist\" />
+  </ItemGroup>
+
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
+    <TypeScriptTarget>ES5</TypeScriptTarget>
+    <TypeScriptJSXEmit>None</TypeScriptJSXEmit>
+    <TypeScriptModuleKind>AMD</TypeScriptModuleKind>
+    <TypeScriptCompileOnSaveEnabled>True</TypeScriptCompileOnSaveEnabled>
+    <TypeScriptNoImplicitAny>False</TypeScriptNoImplicitAny>
+    <TypeScriptRemoveComments>False</TypeScriptRemoveComments>
+    <TypeScriptOutFile>wwwroot\app.js</TypeScriptOutFile>
+    <TypeScriptOutDir />
+    <TypeScriptGeneratesDeclarations>False</TypeScriptGeneratesDeclarations>
+    <TypeScriptNoEmitOnError>True</TypeScriptNoEmitOnError>
+    <TypeScriptSourceMap>True</TypeScriptSourceMap>
+    <TypeScriptMapRoot />
+    <TypeScriptSourceRoot />
+  </PropertyGroup>
 
 </Project>
