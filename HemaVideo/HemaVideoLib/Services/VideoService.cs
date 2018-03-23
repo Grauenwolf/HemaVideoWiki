@@ -1,5 +1,6 @@
 ﻿using HemaVideoLib.Models;
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using Tortuga.Chain;
@@ -14,7 +15,7 @@ namespace HemaVideoLib.Services
         {
             m_DataSource = dataSource ?? throw new ArgumentNullException(nameof(dataSource));
         }
-        public async Task AddVideo(IUser applicationUser, NewVideo video)
+        public async Task<int> AddVideo(IUser applicationUser, NewVideo video)
         {
             if (applicationUser == null)
                 throw new ArgumentNullException(nameof(applicationUser), $"{nameof(applicationUser)} is null.");
@@ -24,11 +25,21 @@ namespace HemaVideoLib.Services
 
             //https://www.youtube.com/watch?v=6ISOK-XtvYs
 
-            if (video.Url.Contains("www.youtube.com"))
+            if (video.Url.Contains("www.youtube.com") || video.Url.Contains("youtu.be"))
             {
                 var uri = new Uri(video.Url);
-                var parts = HttpUtility.ParseQueryString(uri.Query);
-                video.VideoServiceVideoId = parts["v"];
+                var query = HttpUtility.ParseQueryString(uri.Query);
+
+
+                if (query.AllKeys.Contains("v"))
+                {
+                    video.VideoServiceVideoId = query["v"];
+                }
+                else
+                {
+                    video.VideoServiceVideoId = uri.Segments.Last();
+                }
+
                 video.VideoServiceKey = 1;
             }
             else
@@ -36,9 +47,14 @@ namespace HemaVideoLib.Services
                 video.VideoServiceKey = 0;
             }
 
+            if (string.IsNullOrWhiteSpace(video.Description))
+                video.Description = null;
+            if (string.IsNullOrWhiteSpace(video.Url))
+                video.Url = null;
+            if (string.IsNullOrWhiteSpace(video.Author))
+                video.Author = null;
 
-
-            await m_DataSource.WithUser(applicationUser).Insert(video).ExecuteAsync();
+            return await m_DataSource.WithUser(applicationUser).Insert(video).ToInt32().ExecuteAsync();
         }
 
     }

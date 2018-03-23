@@ -58,10 +58,9 @@ namespace HemaVideoWiki.Controllers
 
 
         [HttpPost("addVideo")]
-        public async Task AddVideo([FromBody] NewVideo video)
+        public async Task<int> AddVideo([FromBody] NewVideo video)
         {
-
-            await m_VideoService.AddVideo(await GetCurrentUserAsync(), video);
+            return await m_VideoService.AddVideo(await GetCurrentUserAsync(), video);
         }
 
 

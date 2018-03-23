@@ -3,7 +3,7 @@ AS
 SELECT v.VideoKey,
        v.SectionKey,
        v.VideoServiceVideoId,
-       v.CustomUrl,
+       v.Url,
        v.StartTime,
        v.CreatedByUserKey,
        v.CreatedDate,
@@ -11,7 +11,9 @@ SELECT v.VideoKey,
        v.VideoServiceKey,
        vs.VideoServiceName,
        vs.VideoServiceUrlFormat,
-       vs.VideoServiceEmbedFormat
+       vs.VideoServiceEmbedFormat,
+	   v.Description,
+	   v.Author
 FROM Interpretations.Video v
     INNER JOIN Sources.Section s
         ON s.SectionKey = v.SectionKey

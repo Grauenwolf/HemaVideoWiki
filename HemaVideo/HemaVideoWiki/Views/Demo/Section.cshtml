@@ -11,9 +11,7 @@
     Source: <a href="~/demo/book/@Model.BookKey">@Model.BookName</a>
     @if (!string.IsNullOrEmpty(Model.PageReference))
     {
-        @*<h3>Reference @Model.PageReference</h3>*@
         <text> (@Model.PageReference)</text>
-
     }
 </div>
 
@@ -24,18 +22,37 @@
 {
     if (video.VideoServiceKey == 1)
     {
-        <iframe width="560" height="315" src="//www.youtube.com/embed/@(video.VideoServiceVideoId)" frameborder="0" allowfullscreen></iframe><br />
-
+        if (video.StartTime.HasValue)
+        {
+            <iframe width="560" height="315" src="//www.youtube.com/embed/@(video.VideoServiceVideoId)?start=@(video.StartTime.Value.TotalSeconds)" frameborder="0" allowfullscreen></iframe><br />
+        }
+        else
+        {
+            <iframe width="560" height="315" src="//www.youtube.com/embed/@(video.VideoServiceVideoId)" frameborder="0" allowfullscreen></iframe><br />
+        }
     }
     else
     {
-        <a href="@(video.Url)">@(video.Url)</a>
+        <div>  <a href="@(video.Url)">@(video.Description ?? video.Url)</a></div>
     }
 }
 
 @if (Context.User.Identity.IsAuthenticated)
 {
-    <div>Add videos is coming soon!</div>
+    <table class="gridtable">
+        <tr><th>URL</th><th>Description (optional)</th><th>Author (optional)</th><th>Start Time (optional)</th></tr>
+        <tr>
+            <td><input type="text" id="url" /></td>
+            <td><input type="text" id="description" /></td>
+            <td><input type="text" id="author" /></td>
+            <td><input type="text" id="startTime" /></td>
+            <td>
+                <input id="showTradeScreen" type="button" value="Save" onclick="addVideo(
+    @Model.SectionKey, readValue('url'), readValue('description'), readValue('author'), readValue('startTime'))" />
+
+            </td>
+        </tr>
+    </table>
 }
 else
 {

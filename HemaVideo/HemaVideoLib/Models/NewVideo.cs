@@ -9,6 +9,12 @@ namespace HemaVideoLib.Models
     public class NewVideo
     {
         [DataMember]
+        public string Author { get; set; }
+
+        [DataMember]
+        public string Description { get; set; }
+
+        [DataMember]
         public int SectionKey { get; set; }
 
         [DataMember]

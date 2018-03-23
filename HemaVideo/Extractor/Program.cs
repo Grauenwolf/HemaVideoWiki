@@ -271,15 +271,4 @@ N'', -- PageReference - nvarchar(50)
             }
         }
     }
-
-    class SectionCollection : Collection<Section>
-    {
-        public SectionCollection(int bookKey)
-        {
-            SectionKeyOffset = 1000 * (bookKey - 1);
-        }
-        public int SectionKeyOffset { get; }
-
-        public int NextSectionKey => SectionKeyOffset + Count + 1;
-    }
 }

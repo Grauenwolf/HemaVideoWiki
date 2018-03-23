@@ -30,12 +30,12 @@ namespace HemaVideoLib.Services
 
         public Task<List<BookAuthorDetail>> GetBooksAndAuthorsAsync()
         {
-            return m_DataSource.From("Sources.BookAuthorDetail").ToCollection<BookAuthorDetail>().ExecuteAsync();
+            return m_DataSource.From("Sources.BookAuthorDetail").WithSorting("BookName", "AuthorName").ToCollection<BookAuthorDetail>().ExecuteAsync();
         }
 
         public Task<List<BookSummary>> GetBooksAsync()
         {
-            return m_DataSource.From("Sources.Book").ToCollection<BookSummary>().ExecuteAsync();
+            return m_DataSource.From("Sources.Book").WithSorting("BookName").ToCollection<BookSummary>().ExecuteAsync();
         }
 
         public Task<BookSummary> GetBookSummaryAsync(int bookKey)

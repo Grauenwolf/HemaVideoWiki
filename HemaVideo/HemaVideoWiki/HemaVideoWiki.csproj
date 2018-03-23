@@ -8,7 +8,11 @@
 
   <ItemGroup>
     <None Remove="Scripts\file.ts" />
+    <Compile Remove="Scripts\client\**" />
+    <Content Remove="Scripts\client\**" />
+    <EmbeddedResource Remove="Scripts\client\**" />
     <None Remove="Scripts\**.ts" />
+    <None Remove="Scripts\client\**" />
   </ItemGroup>
 
 
@@ -31,7 +35,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="Scripts\client\.swagger-codegen\VERSION" />
     <None Include="wwwroot\Old\Achille Marozzo.html" />
     <None Include="wwwroot\Old\Alfieri Chapter 1.html" />
     <None Include="wwwroot\Old\Alfieri Chapter 7.html" />
@@ -214,6 +217,10 @@
   <ItemGroup>
     <TypeScriptCompile Include="Scripts\file.ts" />
     <TypeScriptCompile Include="Scripts\**\*.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <TypeScriptCompile Remove="Scripts\client\**" />
   </ItemGroup>
 
   <ItemGroup>

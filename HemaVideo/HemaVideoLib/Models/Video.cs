@@ -14,6 +14,10 @@ namespace HemaVideoLib.Models
         public int VideoKey { get; set; }
         public int VideoServiceKey { get; set; }
         public string VideoServiceVideoId { get; set; }
+
+        public string Author { get; set; }
+
+        public string Description { get; set; }
     }
 }
 

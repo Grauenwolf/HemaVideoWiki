@@ -5,15 +5,20 @@
     SectionKey INT NOT NULL
         CONSTRAINT FK_Video_SectionKey
         REFERENCES Sources.Section (SectionKey),
-    VideoServiceKey INT NOT NULL REFERENCES Interpretations.VideoService(VideoServiceKey),
+    VideoServiceKey INT NOT NULL
+        REFERENCES Interpretations.VideoService (VideoServiceKey),
     VideoServiceVideoId VARCHAR(11) NULL,
-    CustomUrl NVARCHAR(500) NULL,
+    Url NVARCHAR(500) NULL,
     StartTime TIME NULL,
     CreatedByUserKey INT NOT NULL
         REFERENCES dbo.AspNetUsers (UserKey),
     CreatedDate DATETIME2(7) NOT NULL
         CONSTRAINT D_Video_CreateDate
-            DEFAULT (GETUTCDATE())
+            DEFAULT (GETUTCDATE()),
+    Author NVARCHAR(250) NULL
+        CONSTRAINT C_Video_Author CHECK (LEN(Author) > 0),
+    Description NVARCHAR(250) NULL
+        CONSTRAINT C_Video_Description CHECK (LEN(Description) > 0)
 );
 
 GO
@@ -26,3 +31,23 @@ EXEC sys.sp_addextendedproperty @name = N'MS_Description',
                                 @level1name = N'Video',
                                 @level2type = N'COLUMN',
                                 @level2name = 'VideoServiceVideoId';
+
+GO
+
+CREATE UNIQUE NONCLUSTERED INDEX UX_Video_NoDup
+ON Interpretations.Video
+(
+    SectionKey,
+    VideoServiceKey,
+    VideoServiceVideoId
+)
+WHERE StartTime IS NULL;
+GO
+CREATE UNIQUE NONCLUSTERED INDEX UX_Video_NoDup2
+ON Interpretations.Video
+(
+    SectionKey,
+    VideoServiceKey,
+    VideoServiceVideoId,
+    StartTime
+);

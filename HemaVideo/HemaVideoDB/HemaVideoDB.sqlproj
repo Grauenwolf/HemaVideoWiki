@@ -95,6 +95,8 @@
     <Build Include="Interpretations\Tables\VideoService.sql" />
     <None Include="Data\I.33.sql" />
     <Build Include="Sources\Tables\AlternateBookName.sql" />
+    <None Include="Data\Test.sql" />
+    <None Include="Data\Díaz de Viedma.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Script.PostDeployment.sql" />
