@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -14,6 +13,7 @@ namespace Extractor
 
             ProcessMeyer();
             ProcessI33();
+            ProcessFigueyredo();
 
         }
 
@@ -28,7 +28,7 @@ namespace Extractor
                 var sqlA = new StringBuilder();
                 foreach (var section in sections)
                 {
-                    sqlA.AppendLine($"({section.SectionKey},{section.BookKey},{OrNull(section.ParentSectionKey)},{Escape(section.SectionName)},{Escape(section.PageReference)},{section.DisplayOrder}),");
+                    sqlA.AppendLine($"({section.SectionKey},{OrNull(section.ParentSectionKey)},{Escape(section.SectionName)},{Escape(section.PageReference)},{section.DisplayOrder}),");
                 }
 
                 Console.WriteLine(sqlA.ToString());
@@ -119,7 +119,27 @@ N'', -- PageReference - nvarchar(50)
 
 
         }
+        static void ProcessFigueyredo()
+        {   
+            var bookKey = 3;
+            var sections = new SectionCollection(bookKey);
 
+
+            var indexFileName = $@"Figueyredo\Diogo Gomes de Figueyredo";
+            var lines = File.ReadAllLines(indexFileName);
+            var currentLineIndex = 0;
+
+            ProcessSection(lines, ref currentLineIndex, bookKey, null, 1, sections);
+
+
+            ProcessFiles(sections, "Figueyredo");
+
+            var fileName1 = "Figueyredo-1.sql";
+            var fileName2 = "Figueyredo-2.sql";
+
+            GenerateSql(sections, fileName1, fileName2);
+
+        }
         static void ProcessI33()
         {
             var bookKey = 2;

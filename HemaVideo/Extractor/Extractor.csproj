@@ -233,7 +233,7 @@
     <None Include="Old\de Viedma Solo Drill">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Old\Diogo Gomes de Figueyredo">
+    <None Include="Figueyredo\Diogo Gomes de Figueyredo">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Old\Fabian von Auerswald">
@@ -389,100 +389,100 @@
     <None Include="Old\Fabris Plate 9">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Old\Figueyredo Composed Rule 1">
+    <None Include="Figueyredo\Figueyredo Composed Rule 1">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Old\Figueyredo Composed Rule 10">
+    <None Include="Figueyredo\Figueyredo Composed Rule 10">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Old\Figueyredo Composed Rule 11">
+    <None Include="Figueyredo\Figueyredo Composed Rule 11">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Old\Figueyredo Composed Rule 12">
+    <None Include="Figueyredo\Figueyredo Composed Rule 12">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Old\Figueyredo Composed Rule 13">
+    <None Include="Figueyredo\Figueyredo Composed Rule 13">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Old\Figueyredo Composed Rule 14">
+    <None Include="Figueyredo\Figueyredo Composed Rule 14">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Old\Figueyredo Composed Rule 15">
+    <None Include="Figueyredo\Figueyredo Composed Rule 15">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Old\Figueyredo Composed Rule 16">
+    <None Include="Figueyredo\Figueyredo Composed Rule 16">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Old\Figueyredo Composed Rule 2">
+    <None Include="Figueyredo\Figueyredo Composed Rule 2">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Old\Figueyredo Composed Rule 3">
+    <None Include="Figueyredo\Figueyredo Composed Rule 3">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Old\Figueyredo Composed Rule 4">
+    <None Include="Figueyredo\Figueyredo Composed Rule 4">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Old\Figueyredo Composed Rule 5">
+    <None Include="Figueyredo\Figueyredo Composed Rule 5">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Old\Figueyredo Composed Rule 6">
+    <None Include="Figueyredo\Figueyredo Composed Rule 6">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Old\Figueyredo Composed Rule 7">
+    <None Include="Figueyredo\Figueyredo Composed Rule 7">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Old\Figueyredo Composed Rule 8">
+    <None Include="Figueyredo\Figueyredo Composed Rule 8">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Old\Figueyredo Composed Rule 9">
+    <None Include="Figueyredo\Figueyredo Composed Rule 9">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Old\Figueyredo Simple Rule 1">
+    <None Include="Figueyredo\Figueyredo Simple Rule 1">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Old\Figueyredo Simple Rule 10">
+    <None Include="Figueyredo\Figueyredo Simple Rule 10">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Old\Figueyredo Simple Rule 11">
+    <None Include="Figueyredo\Figueyredo Simple Rule 11">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Old\Figueyredo Simple Rule 12">
+    <None Include="Figueyredo\Figueyredo Simple Rule 12">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Old\Figueyredo Simple Rule 13">
+    <None Include="Figueyredo\Figueyredo Simple Rule 13">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Old\Figueyredo Simple Rule 14">
+    <None Include="Figueyredo\Figueyredo Simple Rule 14">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Old\Figueyredo Simple Rule 15">
+    <None Include="Figueyredo\Figueyredo Simple Rule 15">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Old\Figueyredo Simple Rule 16">
+    <None Include="Figueyredo\Figueyredo Simple Rule 16">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Old\Figueyredo Simple Rule 2">
+    <None Include="Figueyredo\Figueyredo Simple Rule 2">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Old\Figueyredo Simple Rule 3">
+    <None Include="Figueyredo\Figueyredo Simple Rule 3">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Old\Figueyredo Simple Rule 4">
+    <None Include="Figueyredo\Figueyredo Simple Rule 4">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Old\Figueyredo Simple Rule 5">
+    <None Include="Figueyredo\Figueyredo Simple Rule 5">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Old\Figueyredo Simple Rule 6">
+    <None Include="Figueyredo\Figueyredo Simple Rule 6">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Old\Figueyredo Simple Rule 7">
+    <None Include="Figueyredo\Figueyredo Simple Rule 7">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Old\Figueyredo Simple Rule 8">
+    <None Include="Figueyredo\Figueyredo Simple Rule 8">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Old\Figueyredo Simple Rule 9">
+    <None Include="Figueyredo\Figueyredo Simple Rule 9">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Old\Fiore de%27i Liberi">

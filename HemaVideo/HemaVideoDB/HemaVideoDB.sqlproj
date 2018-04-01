@@ -97,6 +97,7 @@
     <Build Include="Sources\Tables\AlternateBookName.sql" />
     <None Include="Data\Test.sql" />
     <None Include="Data\Díaz de Viedma.sql" />
+    <None Include="Data\Figueyredo.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Script.PostDeployment.sql" />
