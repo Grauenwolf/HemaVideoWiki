@@ -1,25 +1,16 @@
 ﻿CREATE VIEW Sources.BookWeaponDetail
 AS
 SELECT DISTINCT
-       A.BookKey,
-       A.WeaponKey,
-       A.WeaponName,
-	   b.BookName
-FROM
-(
-    SELECT s.BookKey,
-           w.WeaponKey,
-           w.WeaponName
-    FROM Sources.Section s
-        INNER JOIN Sources.Weapon w
-            ON w.WeaponKey = s.PrimaryWeaponKey
-    UNION
-    SELECT s.BookKey,
-           w.WeaponKey,
-           w.WeaponName
-    FROM Sources.Section s
-        INNER JOIN Sources.Weapon w
-            ON w.WeaponKey = s.SecondaryWeaponKey
-) A
-INNER JOIN Sources.Book b ON b.BookKey = A.BookKey
-;
+       b.BookKey,
+       b.BookName,
+       s.PrimaryWeaponKey,
+       w1.WeaponName AS PrimaryWeaponName,
+       s.SecondaryWeaponKey,
+       w2.WeaponName AS SecondaryWeaponName
+FROM Sources.Section s
+    INNER JOIN Sources.Weapon w1
+        ON w1.WeaponKey = s.PrimaryWeaponKey
+    LEFT JOIN Sources.Weapon w2
+        ON w2.WeaponKey = s.SecondaryWeaponKey
+    INNER JOIN Sources.Book b
+        ON b.BookKey = s.BookKey;

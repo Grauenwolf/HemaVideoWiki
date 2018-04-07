@@ -1,22 +1,33 @@
 ﻿@model HemaVideoLib.Models.BookDetail
 
 @{
-    ViewData["Title"] = Model.BookName;
+	ViewData["Title"] = Model.BookName;
 }
 
 <h1>@Model.BookName</h1>
 <div>@Model.AlternateBookName</div>
-<h2>Author</h2>
+<h2>Authors</h2>
 @foreach (var author in Model.Authors)
 {
-    <div>@author.AuthorName</div>
+	<div>@author.AuthorName</div>
 }
 
+<h2>Weapons</h2>
+@foreach (var weapon in Model.Weapons)
+{
+	if (weapon.SecondaryWeaponKey == null)
+	{
+		<div>@(weapon.PrimaryWeaponName)</div>
+	}
+	else
+	{
+		<div>@(weapon.PrimaryWeaponName) vs. @(weapon.SecondaryWeaponName)</div>
+	}
+}
 
 <h2>Sections</h2>
 
 @foreach (var section in Model.Sections)
 {
-    @Html.Partial("_SectionSummary", section)
+	@Html.Partial("_SectionSummary", section)
 }
-

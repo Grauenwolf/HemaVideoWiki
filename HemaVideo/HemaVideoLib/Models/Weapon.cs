@@ -6,5 +6,3 @@
 		public string WeaponName { get; set; }
 	}
 }
-
-

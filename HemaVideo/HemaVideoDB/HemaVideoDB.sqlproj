@@ -102,6 +102,7 @@
     <Build Include="Sources\Tables\Weapon.sql" />
     <Build Include="Sources\Views\BookWeaponDetail.sql" />
     <Build Include="Sources\Views\SubsectionsFor.sql" />
+    <Build Include="Sources\Views\BookWeaponDetailFlat.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Script.PostDeployment.sql" />

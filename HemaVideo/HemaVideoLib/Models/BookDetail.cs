@@ -6,6 +6,6 @@ namespace HemaVideoLib.Models
 	{
 		public List<Author> Authors { get; } = new List<Author>();
 		public List<SectionSummary> Sections { get; } = new List<SectionSummary>();
-		public List<Weapon> Weapons { get; } = new List<Weapon>();
+		public List<WeaponVersus> Weapons { get; } = new List<WeaponVersus>();
 	}
 }
