@@ -10,6 +10,9 @@ Post-Deployment Script Template
 --------------------------------------------------------------------------------------
 */
 
+
+:r .\Data\Weapon.sql
+
 ----- Video Services
 
 IF NOT EXISTS (SELECT * FROM Interpretations.VideoService)

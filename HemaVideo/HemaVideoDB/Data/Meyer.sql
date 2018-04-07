@@ -338,7 +338,7 @@ VALUES
 (1172, 1872, 'Durchschiessen (Shooting Through)', NULL, 21),
 (1173, 1172, 'Durchschiessen 1', '1.50v.1', 1),
 (1174, 1172, 'Durchschiessen 2', '1.50v.2', 2),
-(1175, 1872, 'Krumphauw (Crooked Strike cont.)', NULL, 22),
+(1175, 1872, 'Krumphauw (Crooked Strike revisted)', NULL, 22),
 (1176, 1175, 'Krumphauw 4', '1.51r.1', 1),
 (1177, 1872, 'Schneller (Flicking)', NULL, 23),
 (1178, 1177, 'Schneller 1', '1.51r.2', 1),
@@ -857,6 +857,7 @@ VALUES
 (1669, 1668, 'Change Through 1', '3.10r.1', 1),
 (1670, 1668, 'Change Through 2', '3.10r.2', 2),
 (1671, 1668, 'Hinder', '3.10r.3', 3),
+
 (1672, 1619, 'Grappling', NULL, 10),
 (1673, 1672, 'Grappling 1', '3.10v.1', 1),
 (1674, 1672, 'Grappling 2', '3.10v.2', 2),
@@ -885,6 +886,8 @@ VALUES
 (1686, 1891, 'Precept 5 Example 3', '3.13v.1', 9),
 
 
+(1894, 1618, 'Wrestling', NULL, 2),
+
 (1687, 1677, 'Wrestling 1', '3.13v.2', 10),
 (1688, 1677, 'Wrestling 2', '3.13v.3', 11),
 (1689, 1677, 'Wrestling 3', '3.13v.4', 12),
@@ -906,12 +909,12 @@ VALUES
 (1704, NULL, 'Book 5 Quarterstaff, Halberd, and Pike', NULL, 5),
 (1705, 1704, 'Quarterstaff', NULL, 1),
 (1706, 1705, 'Postures or Guards', NULL, 1),
-(1707, 1706, 'Oberhut (High Guard)', 'XXX', 1),
-(1708, 1706, 'Underhut (Low Guard)', 'XXX', 2),
-(1709, 1706, 'Nebenhut (Side Guard)', 'XXX', 3),
-(1710, 1706, 'Mittelhut (Middle Guard)', 'XXX', 4),
-(1711, 1706, 'Steurhut (Rudder Guard)', 'XXX', 5),
-(1712, 1706, 'Gerade Versatzung (Straight Parrying)', 'XXX', 6),
+(1707, 1706, 'Oberhut (High Guard)', NULL, 1),
+(1708, 1706, 'Underhut (Low Guard)', NULL, 2),
+(1709, 1706, 'Nebenhut (Side Guard)', NULL, 3),
+(1710, 1706, 'Mittelhut (Middle Guard)',NULL, 4),
+(1711, 1706, 'Steurhut (Rudder Guard)', NULL, 5),
+(1712, 1706, 'Concerning Binding and the Parryings of the Staff and their Classifications', NULL, 6),
 (1713, 1705, 'Devices from the Oberhut (High Guard)', NULL, 2),
 (1714, 1713, 'Oberhut Device 1', '3.18r.1', 1),
 (1715, 1713, 'Oberhut Device 2', '3.18r.2', 2),
@@ -962,26 +965,31 @@ VALUES
 (1760, 1742, 'Driving 1', '3.30v.1', 18),
 (1761, 1742, 'Driving 2', '3.30v.2', 19),
 (1762, 1742, 'Another one in which you go through', '3.31r.1', 20),
-(1763, 1742, 'Cross Cut from Above', '3.32r.1', 21),
-(1764, 1742, 'Cross Cut from Below', '3.32r.2', 22),
-(1765, 1742, 'Driving Diagonally through the opponent', '3.32v.1', 23),
-(1766, 1742, 'Another Driving', '3.32v.2', 24),
-(1767, 1705, 'The Oberhauw (High Cut)', NULL, 7),
+
+
+
+(1892, 1704, 'Halberd', NULL, 2),
+
+(1763, 1892, 'Cross Cut from Above', '3.32r.1', 21),
+(1764, 1892, 'Cross Cut from Below', '3.32r.2', 22),
+(1765, 1892, 'Driving Diagonally through the opponent', '3.32v.1', 23),
+(1766, 1892, 'Another Driving', '3.32v.2', 24),
+(1767, 1892, 'The Oberhauw (High Cut)', NULL, 7),
 (1768, 1767, 'The First Device with the High Cut', '3.33r.1', 1),
 (1769, 1767, 'The Second Device with the High Cut', '3.33r.2', 2),
 (1770, 1767, 'Another with this High Cut', '3.34r.1', 3),
-(1771, 1705, 'The Underhauw (Low Cut)', NULL, 8),
+(1771, 1892, 'The Underhauw (Low Cut)', NULL, 8),
 (1772, 1771, 'With the Low Cut', '3.34r.2', 1),
 (1773, 1771, 'Another', '3.34v.1', 2),
 (1774, 1771, 'A device with the Middle Cut', '3.34v.2', 3),
-(1775, 1705, 'Wrenching/Changing Through', NULL, 9),
+(1775, 1892, 'Wrenching/Changing Through', NULL, 9),
 (1776, 1775, 'Wrenching', '3.35r.1', 1),
 (1777, 1775, 'How you shall conduct yourself with Changing Through...', '3.35r.2', 2),
 (1778, 1775, 'Item, thrust in on one side...', '3.35r.3', 3),
 (1779, 1775, 'Or when are thrusting in...', '3.35r.4', 4),
 (1780, 1775, 'Further note when you have bound...', '3.35r.5', 5),
 (1781, 1775, 'If you stand before an opponent in the middle..', '3.36r.1', 6),
-(1782, 1705, 'How you shall plant your halberd in front on his neck', NULL, 10),
+(1782, 1892, 'How you shall plant your halberd in front on his neck', NULL, 10),
 (1783, 1782, 'Position yourself with your halberd...', '3.36r.2', 1),
 (1784, 1782, 'Or when an opponent thrusts in at your right...', '3.36r.3', 2),
 (1785, 1782, 'In the Onset, see that you catch...', '3.36r.4', 3),
@@ -990,7 +998,7 @@ VALUES
 (1788, 1782, 'Item, again cut a High Round Stroke...', '3.37r.3', 6),
 (1789, 1782, 'Also you shall particularly note...', '3.37r.4', 7),
 (1790, 1782, 'Item, thrust earnestly against his right...', '3.37r.5', 8),
-(1791, 1705, 'Some Counters against the Postures', NULL, 11),
+(1791, 1892, 'Some Counters against the Postures', NULL, 11),
 (1792, 1791, 'Counter 1', '3.38r.1', 1),
 (1793, 1791, 'Counter 2', '3.38r.2', 2),
 (1794, 1791, 'Counter 3', '3.38r.3', 3),
@@ -999,68 +1007,72 @@ VALUES
 (1797, 1791, 'Counter 6', '3.38r.6', 6),
 (1798, 1791, 'Counter 7', '3.38r.6', 7),
 (1799, 1791, 'Counter 8', '3.38v.1', 8),
-(1800, 1705, 'A Wrath Cut', NULL, 12),
+(1800, 1892, 'A Wrath Cut', NULL, 12),
 (1801, 1800, 'Wrath Cut 1', '3.38v.2', 1),
 (1802, 1800, 'Wrath Cut 2', '3.38v.3', 2),
 (1803, 1800, 'Wrath Cut 3', '3.38v.4', 3),
-(1804, 1705, 'Postures or Guards', NULL, 13),
-(1805, 1804, 'Oberhut (High Guard)', 'XXX', 1),
-(1806, 1804, 'Mittelhut (Middle Guard)', 'XXX', 2),
-(1807, 1804, 'Gerade Versatzung (Straight Parrying)', 'XXX', 3),
-(1808, 1804, 'Nebehut (Side Guard)', 'XXX', 4),
-(1809, 1804, 'Wechsel (Change Guard)', 'XXX', 5),
-(1810, 1804, 'Oberhut zum StoB (High Guard for the Thrust)', 'XXX', 6),
-(1811, 1804, 'Underhut (Low Guard)', 'XXX', 7),
-(1812, 1804, 'Dempffhut (Suppressing Guard)', 'XXX', 8),
-(1813, 1705, 'Concerning Thrusts, and how you shall carry them out fluidly in the work', NULL, 14),
+
+
+(1893, 1704, 'Pike', NULL, 3),
+
+(1804, 1893, 'Postures or Guards', NULL, 13),
+(1805, 1804, 'Oberhut (High Guard)', NULL, 1),
+(1806, 1804, 'Mittelhut (Middle Guard)', NULL, 2),
+(1807, 1804, 'Gerade Versatzung (Straight Parrying)', NULL, 3),
+(1808, 1804, 'Nebehut (Side Guard)', NULL, 4),
+(1809, 1804, 'Wechsel (Change Guard)', NULL, 5),
+(1810, 1804, 'Oberhut zum StoB (High Guard for the Thrust)', NULL, 6),
+(1811, 1804, 'Underhut (Low Guard)', NULL, 7),
+(1812, 1804, 'Dempffhut (Suppressing Guard)', NULL, 8),
+(1813, 1893, 'Concerning Thrusts, and how you shall carry them out fluidly in the work', NULL, 14),
 (1814, 1813, 'Device 1', '3.40r.1', 1),
 (1815, 1813, 'Device 2', '3.40v.1', 2),
-(1816, 1705, 'Fighting from the Oberhut (High Guard)', NULL, 15),
+(1816, 1893, 'Fighting from the Oberhut (High Guard)', NULL, 15),
 (1817, 1816, 'Oberhut 1', '3.40v.2', 1),
 (1818, 1816, 'Oberhut 2', '3.41r.1', 2),
-(1819, 1705, 'Fighting from the Underhut (Low Guard)', NULL, 16),
+(1819, 1893, 'Fighting from the Underhut (Low Guard)', NULL, 16),
 (1820, 1819, 'Underhut 1', '3.41r.3', 1),
-(1821, 1705, 'Working in the Before', NULL, 17),
+(1821, 1893, 'Working in the Before', NULL, 17),
 (1822, 1821, 'Device 1', '3.41r.3', 1),
 (1823, 1821, 'Device 2', '3.41r.4', 2),
 (1824, 1821, 'Device 3', '3.41v.2', 3),
-(1825, 1705, 'Mittelhut (Middle Guard)', NULL, 18),
+(1825, 1893, 'Mittelhut (Middle Guard)', NULL, 18),
 (1826, 1825, 'Mittelhut 1', '3.41v.3', 1),
 (1827, 1825, 'Mittelhut 2', '3.41v.4', 2),
 (1828, 1825, 'Mittelhut 3', '3.41v.5', 3),
-(1829, 1705, 'Dempffhut (Suppressing Guard)', NULL, 19),
+(1829, 1893, 'Dempffhut (Suppressing Guard)', NULL, 19),
 (1830, 1829, 'Dempffhut 1', '3.41v.6', 1),
 (1831, 1829, 'Dempffhut 2', '3.42v.1', 2),
 (1832, 1829, 'Dempffhut 3', '3.42v.2', 3),
-(1833, 1705, 'Nebenhut (Side Guard)', NULL, 20),
+(1833, 1893, 'Nebenhut (Side Guard)', NULL, 20),
 (1834, 1833, 'Nebenhut 1', '3.42v.3', 1),
 (1835, 1833, 'Nebenhut 2', '3.42r.1', 2),
 (1836, 1833, 'Nebenhut 3', '3.43r.2', 3),
 (1837, 1833, 'Nebenhut 4', '3.43r.3', 4),
-(1838, 1705, 'Counters for the Postures in the Pike, along with other shrewd devices', NULL, 21),
+(1838, 1893, 'Counters for the Postures in the Pike, along with other shrewd devices', NULL, 21),
 (1839, 1838, 'Device 1', '3.43r.4', 1),
 (1840, 1838, 'Device 2', '3.43v.1', 2),
 (1841, 1838, 'Device 3', '3.43v.2', 3),
 (1842, 1838, 'Device 4', '3.43v.3', 4),
 (1843, 1838, 'Device 5', '3.43v.4', 5),
 (1844, 1838, 'Device 6', '3.43v.5', 6),
-(1845, 1705, 'Precept (3.44v)', NULL, 22),
+(1845, 1893, 'Precept 1', '3.44v', 22),
 (1846, 1845, 'Device 1', '3.44v', 1),
 (1847, 1845, 'Device 2', '3.44v.1', 2),
 (1848, 1845, 'Device 3', '3.44v.2', 3),
 (1849, 1845, 'Device 4', '3.44v.3', 4),
 (1850, 1845, 'Device 5', '3.44v.4', 5),
 (1851, 1845, 'Device 6', '3.45r.1', 6),
-(1852, 1705, 'Precept (3.45r.2)', NULL, 23),
+(1852, 1893, 'Precept 2', '3.45r.2', 23),
 (1853, 1852, 'Device 1', '3.45r.2', 1),
 (1854, 1852, 'Device 2', '3.45r.3', 2),
 (1855, 1852, 'Device 3', '3.45r.4', 3),
 (1856, 1852, 'Device 4', '3.45v.1', 4),
 (1857, 1852, 'Device 5', '3.45v.2', 5),
-(1858, 1705, 'Running In', NULL, 24),
+(1858, 1893, 'Running In', NULL, 24),
 (1859, 1858, 'Running In 1', '3.46r.1', 1),
 (1860, 1858, 'Running In 2', '3.46r.2', 2),
-(1861, 1705, 'A brief lesson in how to use your pike in earnest cases...', NULL, 25),
+(1861, 1893, 'A brief lesson in how to use your pike in earnest cases...', NULL, 25),
 (1862, 1861, 'Device 1', '3.46v.1', 1),
 (1863, 1861, 'Device 2', '3.47r.1', 2),
 (1864, 1861, 'Device 3', '3.47r.2', 3),
@@ -1399,3 +1411,26 @@ WHEN NOT MATCHED THEN
     VALUES
     (s.SectionKey, s.VideoServiceKey, s.VideoServiceVideoId, NULL, StartTime, s.CreatedByUserKey)
 	;
+
+/*** Weapons ****/
+
+UPDATE Sources.Section SET PrimaryWeaponKey = 4 FROM Sources.Section s INNER JOIN Sources.SubsectionsFor(1001) sf ON s.SectionKey = sf.SectionKey
+UPDATE Sources.Section SET PrimaryWeaponKey = 16 FROM Sources.Section s INNER JOIN Sources.SubsectionsFor(1253) sf ON s.SectionKey = sf.SectionKey
+UPDATE Sources.Section SET PrimaryWeaponKey = 2 FROM Sources.Section s INNER JOIN Sources.SubsectionsFor(1424) sf ON s.SectionKey = sf.SectionKey
+
+UPDATE Sources.Section SET PrimaryWeaponKey = 12 FROM Sources.Section s INNER JOIN Sources.SubsectionsFor(1881) sf ON s.SectionKey = sf.SectionKey
+
+UPDATE Sources.Section SET PrimaryWeaponKey = 18 FROM Sources.Section s INNER JOIN Sources.SubsectionsFor(1882) sf ON s.SectionKey = sf.SectionKey
+
+UPDATE Sources.Section SET SecondaryWeaponKey = 19 FROM Sources.Section s INNER JOIN Sources.SubsectionsFor(1883) sf ON s.SectionKey = sf.SectionKey
+
+UPDATE Sources.Section SET PrimaryWeaponKey = 8 FROM Sources.Section s INNER JOIN Sources.SubsectionsFor(1619) sf ON s.SectionKey = sf.SectionKey
+
+UPDATE Sources.Section SET PrimaryWeaponKey = 9 FROM Sources.Section s INNER JOIN Sources.SubsectionsFor(1894) sf ON s.SectionKey = sf.SectionKey
+
+UPDATE Sources.Section SET PrimaryWeaponKey = 15 FROM Sources.Section s INNER JOIN Sources.SubsectionsFor(1705) sf ON s.SectionKey = sf.SectionKey
+
+UPDATE Sources.Section SET PrimaryWeaponKey = 14 FROM Sources.Section s INNER JOIN Sources.SubsectionsFor(1892) sf ON s.SectionKey = sf.SectionKey
+
+UPDATE Sources.Section SET PrimaryWeaponKey = 13 FROM Sources.Section s INNER JOIN Sources.SubsectionsFor(1893) sf ON s.SectionKey = sf.SectionKey
+

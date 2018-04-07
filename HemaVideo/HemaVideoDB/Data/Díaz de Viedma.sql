@@ -1,7 +1,7 @@
 ﻿/***** Book *****/
 
-DECLARE @BookKey INT = 3;
-DECLARE @FirstAuthorKey INT = 3;
+DECLARE @BookKey INT = 4;
+DECLARE @FirstAuthorKey INT = 4;
 
 DECLARE @Book TABLE
 (
@@ -144,10 +144,10 @@ INSERT INTO @Section
     DisplayOrder
 )
 VALUES
-(3900, NULL, 'Extras', NULL, -1),
-(3901, 3900, 'History', NULL, 1),
-(3902, 3900, 'Weapons and Equipment', NULL, 2),
-(3903, 3900, 'General Discussion', NULL, 3);
+(4900, NULL, 'Extras', NULL, -1),
+(4901, 4900, 'History', NULL, 1),
+(4902, 4900, 'Weapons and Equipment', NULL, 2),
+(4903, 4900, 'General Discussion', NULL, 3);
 
 
 INSERT INTO @Section
@@ -159,10 +159,10 @@ INSERT INTO @Section
     DisplayOrder
 )
 VALUES
-(3001, NULL, 'Rules', null, 1),
-(3002, 3001, 'Rule 1', NULL, 1),
-(3003, 3001, 'Rule 2', NULL, 2),
-(3004, 3001, 'Rule 3', NULL, 3);
+(4001, NULL, 'Rules', null, 1),
+(4002, 4001, 'Rule 1', NULL, 1),
+(4003, 4001, 'Rule 2', NULL, 2),
+(4004, 4001, 'Rule 3', NULL, 3);
 
 
 MERGE INTO Sources.Section t
@@ -212,9 +212,9 @@ INSERT INTO @Video
 	StartTime
 )
 VALUES
-(3002, 1, 'u9sNALL77qk', '0:0:05'),
-(3003, 1, 'u9sNALL77qk', '0:0:31'),
-(3004, 1, 'u9sNALL77qk', '0:1:33');
+(4002, 1, 'u9sNALL77qk', '0:0:05'),
+(4003, 1, 'u9sNALL77qk', '0:0:31'),
+(4004, 1, 'u9sNALL77qk', '0:1:33');
 
 MERGE INTO Interpretations.Video t
 USING @Video s
@@ -235,3 +235,7 @@ WHEN NOT MATCHED THEN
     VALUES
     (s.SectionKey, s.VideoServiceKey, s.VideoServiceVideoId, NULL, StartTime, s.CreatedByUserKey)
 	;
+
+/**** WEAPONS *******/
+
+UPDATE Sources.Section SET PrimaryWeaponKey = 20 WHERE BookKey = @BookKey

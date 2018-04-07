@@ -354,3 +354,10 @@ WHEN NOT MATCHED THEN
     VALUES
     (s.SectionKey, s.VideoServiceKey, s.VideoServiceVideoId, NULL, StartTime, s.CreatedByUserKey)
 	;
+
+	
+/**** WEAPONS *******/
+
+UPDATE Sources.Section SET PrimaryWeaponKey = 20 WHERE BookKey = @BookKey
+
+

@@ -73,6 +73,7 @@
     <None Include="Localhost.publish.xml" />
     <None Include="HemaVideoDB.publish.xml" />
     <None Include="Data\Meyer.sql" />
+    <None Include="Data\Weapon.sql" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\AspNetRoles.sql" />
@@ -89,7 +90,7 @@
     <Build Include="Sources\Tables\BookAuthor.sql" />
     <Build Include="Interpretations\Interpretations.sql" />
     <Build Include="Interpretations\Tables\Video.sql" />
-    <Build Include="Sources\Views\BookAuthorView.sql" />
+    <Build Include="Sources\Views\BookAuthorDetail.sql" />
     <Build Include="Interpretations\Views\VideoDetail.sql" />
     <Build Include="Sources\Views\SectionDetail.sql" />
     <Build Include="Interpretations\Tables\VideoService.sql" />
@@ -98,6 +99,9 @@
     <None Include="Data\Test.sql" />
     <None Include="Data\Díaz de Viedma.sql" />
     <None Include="Data\Figueyredo.sql" />
+    <Build Include="Sources\Tables\Weapon.sql" />
+    <Build Include="Sources\Views\BookWeaponDetail.sql" />
+    <Build Include="Sources\Views\SubsectionsFor.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Script.PostDeployment.sql" />
