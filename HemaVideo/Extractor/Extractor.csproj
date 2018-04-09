@@ -50,6 +50,114 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="Manciolino\Antonio Manciolino">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Manciolino\Manciolino Sword &amp; Buckler Assault 1 Embellishment">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Manciolino\Manciolino Sword &amp; Buckler Assault 1 Part 1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Manciolino\Manciolino Sword &amp; Buckler Assault 1 Part 2">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Manciolino\Manciolino Sword &amp; Buckler Assault 1 Part 3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Manciolino\Manciolino Sword &amp; Buckler Assault 1 Part 4">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Manciolino\Manciolino Sword &amp; Buckler Assault 1 Part 5">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Manciolino\Manciolino Sword &amp; Buckler Assault 1 Part 6">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Manciolino\Manciolino Sword &amp; Buckler Assault 2 Part 1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Manciolino\Manciolino Sword &amp; Buckler Assault 2 Part 2">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Manciolino\Manciolino Sword &amp; Buckler Assault 2 Part 3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Manciolino\Manciolino Sword &amp; Buckler Assault 2 Part 4">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Manciolino\Manciolino Sword &amp; Buckler Assault 2 Part 5">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Manciolino\Manciolino Sword &amp; Buckler Guardia Alta 1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Manciolino\Manciolino Sword &amp; Buckler Guardia Alta 2">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Manciolino\Manciolino Sword &amp; Buckler Guardia Alta 3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Manciolino\Manciolino Sword &amp; Buckler Guardia Alta 5">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Manciolino\Manciolino Sword &amp; Buckler Guardia Alta 6">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Manciolino\Manciolino Sword &amp; Buckler Guardia Alta 7">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Manciolino\Manciolino Sword &amp; Buckler Guardia Alta 8">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Manciolino\Manciolino Sword &amp; Buckler Guardia Alta 9">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Manciolino\Manciolino Sword &amp; Buckler Guardia di Testa 2">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Manciolino\Manciolino Sword &amp; Buckler Guardia di Testa 5">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Manciolino\Manciolino Sword &amp; Buckler Porta di Ferro Stretta 5">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Manciolino\Manciolino Sword &amp; Buckler Sotto il Braccio 1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Manciolino\Manciolino Sword &amp; Large Buckler Chapter 1 Part A Counter 1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Manciolino\Manciolino Sword &amp; Large Buckler Chapter 1 Part A Counter 2">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Manciolino\Manciolino Sword 1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Manciolino\Manciolino Sword 2">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Manciolino\Manciolino Sword 3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Manciolino\Manciolino Sword 4">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Manciolino\Manciolino Sword 5">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Manciolino\Manciolino Sword 6">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Manciolino\Manciolino Two Swords Assault Part 1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Manciolino\Manciolino Two Swords Assault Part 2">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Manciolino\Manciolino Two Swords Assault Part 3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Old\Achille Marozzo">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -93,9 +201,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Old\Andre Lignitzer">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Old\Antonio Manciolino">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Old\Caopferro Plate 10">
@@ -726,111 +831,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Old\Mair Wrestling 4">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Old\Manciolino Sword &amp; Buckler Assault 1 Embellishment">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Old\Manciolino Sword &amp; Buckler Assault 1 Part 1">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Old\Manciolino Sword &amp; Buckler Assault 1 Part 2">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Old\Manciolino Sword &amp; Buckler Assault 1 Part 3">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Old\Manciolino Sword &amp; Buckler Assault 1 Part 4">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Old\Manciolino Sword &amp; Buckler Assault 1 Part 5">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Old\Manciolino Sword &amp; Buckler Assault 1 Part 6">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Old\Manciolino Sword &amp; Buckler Assault 2 Part 1">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Old\Manciolino Sword &amp; Buckler Assault 2 Part 2">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Old\Manciolino Sword &amp; Buckler Assault 2 Part 3">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Old\Manciolino Sword &amp; Buckler Assault 2 Part 4">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Old\Manciolino Sword &amp; Buckler Assault 2 Part 5">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Old\Manciolino Sword &amp; Buckler Guardia Alta 1">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Old\Manciolino Sword &amp; Buckler Guardia Alta 2">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Old\Manciolino Sword &amp; Buckler Guardia Alta 3">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Old\Manciolino Sword &amp; Buckler Guardia Alta 5">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Old\Manciolino Sword &amp; Buckler Guardia Alta 6">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Old\Manciolino Sword &amp; Buckler Guardia Alta 7">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Old\Manciolino Sword &amp; Buckler Guardia Alta 8">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Old\Manciolino Sword &amp; Buckler Guardia Alta 9">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Old\Manciolino Sword &amp; Buckler Guardia di Testa 2">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Old\Manciolino Sword &amp; Buckler Guardia di Testa 5">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Old\Manciolino Sword &amp; Buckler Porta di Ferro Stretta 5">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Old\Manciolino Sword &amp; Buckler Sotto il Braccio 1">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Old\Manciolino Sword &amp; Large Buckler Chapter 1 Part A Counter 1">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Old\Manciolino Sword &amp; Large Buckler Chapter 1 Part A Counter 2">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Old\Manciolino Sword 1">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Old\Manciolino Sword 2">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Old\Manciolino Sword 3">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Old\Manciolino Sword 4">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Old\Manciolino Sword 5">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Old\Manciolino Sword 6">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Old\Manciolino Two Swords Assault Part 1">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Old\Manciolino Two Swords Assault Part 2">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Old\Manciolino Two Swords Assault Part 3">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Old\Marozzo Dagger 1">
@@ -2118,5 +2118,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

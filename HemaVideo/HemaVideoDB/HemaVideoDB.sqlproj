@@ -103,6 +103,7 @@
     <Build Include="Sources\Views\BookWeaponDetail.sql" />
     <Build Include="Sources\Views\SubsectionsFor.sql" />
     <Build Include="Sources\Views\BookWeaponDetailFlat.sql" />
+    <None Include="Data\Manciolino.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Script.PostDeployment.sql" />
