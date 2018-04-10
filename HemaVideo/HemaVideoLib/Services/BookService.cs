@@ -52,11 +52,13 @@ namespace HemaVideoLib.Services
 		//    throw new NotImplementedException();
 		//}
 
-		public async Task<SectionDetail> GetSectionDetailAsync(int sectionKey, bool includeWeapons)
+		public async Task<SectionDetail> GetSectionDetailAsync(int sectionKey, bool includeSubsectionWeapons)
 		{
-			var section = await m_DataSource.From("Sources.SectionDetail", new { sectionKey }).ToObject<SectionDetail>().ExecuteAsync();
-			section.Subsections.AddRange(await GetSubsectionsAsync(section.BookKey, section.SectionKey, includeWeapons));
-			section.Videos.AddRange(await m_DataSource.From("Interpretations.Video", new { sectionKey }).ToCollection<Video>().ExecuteAsync());
+			var filter = new { sectionKey };
+			var section = await m_DataSource.From("Sources.SectionDetail", filter).ToObject<SectionDetail>().ExecuteAsync();
+			section.Subsections.AddRange(await GetSubsectionsAsync(section.BookKey, section.SectionKey, includeSubsectionWeapons));
+			section.Videos.AddRange(await m_DataSource.From("Interpretations.Video", filter).ToCollection<Video>().ExecuteAsync());
+			section.Weapons.AddRange(await m_DataSource.From("Sources.SectionWeaponMapDetail", filter).ToCollection<WeaponVersus>().ExecuteAsync());
 			return section;
 		}
 

@@ -45,7 +45,7 @@ namespace HemaVideoWiki.Controllers
 		}
 
 		[HttpGet("")]
-		public Task<List<BookSummary>> GetBooks()
+		public Task<List<BookSummary>> GetAllBooks()
 		{
 			return m_BookService.GetBooksAsync();
 		}
@@ -62,11 +62,11 @@ namespace HemaVideoWiki.Controllers
 			return await m_VideoService.AddVideo(await GetCurrentUserAsync(), video);
 		}
 
-		[HttpGet("whoAmI")]
-		public async Task<ApplicationUser> WhoAmI()
-		{
-			ApplicationUser applicationUser = await GetCurrentUserAsync();
-			return applicationUser;
-		}
+		//[HttpGet("whoAmI")]
+		//public async Task<ApplicationUser> WhoAmI()
+		//{
+		//	ApplicationUser applicationUser = await GetCurrentUserAsync();
+		//	return applicationUser;
+		//}
 	}
 }
