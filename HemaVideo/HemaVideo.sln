@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HemaVideoWiki", "HemaVideoW
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Extractor", "Extractor\Extractor.csproj", "{4F144D87-35FD-4458-9A7E-59E717DAFCA9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HemaVideoLib", "HemaVideoLib\HemaVideoLib.csproj", "{8D370239-2D5E-43AB-A9D1-8027507EF208}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HemaVideoLib", "HemaVideoLib\HemaVideoLib.csproj", "{8D370239-2D5E-43AB-A9D1-8027507EF208}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HemaVideoTools", "HemaVideoTools\HemaVideoTools.csproj", "{9BF3A818-3BB6-48DD-82F7-7184ADFF248B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,6 +37,10 @@ Global
 		{8D370239-2D5E-43AB-A9D1-8027507EF208}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8D370239-2D5E-43AB-A9D1-8027507EF208}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8D370239-2D5E-43AB-A9D1-8027507EF208}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9BF3A818-3BB6-48DD-82F7-7184ADFF248B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9BF3A818-3BB6-48DD-82F7-7184ADFF248B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9BF3A818-3BB6-48DD-82F7-7184ADFF248B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9BF3A818-3BB6-48DD-82F7-7184ADFF248B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
