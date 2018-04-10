@@ -45,7 +45,7 @@ VALUES
 
 
 
-MERGE INTO Sources.Weapon t
+MERGE INTO Tags.Weapon t
 USING @Weapon s
 ON t.WeaponKey = s.WeaponKey
 WHEN NOT MATCHED THEN

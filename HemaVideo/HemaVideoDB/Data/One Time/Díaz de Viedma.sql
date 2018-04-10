@@ -21,8 +21,8 @@ INSERT INTO @Book
 VALUES
 (@BookKey, N'On the Montante', NULL, 'Viedma');
 
-MERGE INTO Sources.Book t
-USING @Book s
+MERGE INTO Sources.Book AS t
+USING @Book AS s
 ON t.BookKey = s.BookKey
 WHEN NOT MATCHED THEN
     INSERT
@@ -58,8 +58,8 @@ DECLARE @AlternateBookName TABLE
 --(@BookKey, N'The Tower Fechtbuch');
 
 
-MERGE INTO Sources.AlternateBookName t
-USING @AlternateBookName s
+MERGE INTO Sources.AlternateBookName AS t
+USING @AlternateBookName AS s
 ON s.BookKey = t.BookKey
    AND s.AlternateBookName = t.AlternateBookName
 WHEN NOT MATCHED THEN
@@ -92,8 +92,8 @@ VALUES
 
 
 
-MERGE INTO Sources.Author t
-USING @Author s
+MERGE INTO Sources.Author AS t
+USING @Author AS s
 ON s.AuthorKey = t.AuthorKey
 WHEN NOT MATCHED THEN
     INSERT
@@ -109,8 +109,8 @@ WHEN MATCHED AND t.AuthorName <> s.AuthorName THEN
                t.AuthorSlug = s.AuthorSlug;
 
 
-MERGE INTO Sources.BookAuthor t
-USING @Author s
+MERGE INTO Sources.BookAuthor AS t
+USING @Author AS s
 ON t.BookKey = @BookKey
    AND s.AuthorKey = t.AuthorKey
 WHEN NOT MATCHED THEN
@@ -144,10 +144,11 @@ INSERT INTO @Section
     DisplayOrder
 )
 VALUES
-(4900, NULL, 'Extras', NULL, -1),
-(4901, 4900, 'History', NULL, 1),
-(4902, 4900, 'Weapons and Equipment', NULL, 2),
-(4903, 4900, 'General Discussion', NULL, 3);
+(@BookKey * 1000 + 900, NULL, 'Extras', NULL, -1),
+(@BookKey * 1000 + 901, @BookKey * 1000 + 900, 'History', NULL, 1),
+(@BookKey * 1000 + 902, @BookKey * 1000 + 900, 'Weapons and Equipment', NULL, 2),
+(@BookKey * 1000 + 903, @BookKey * 1000 + 900, 'General Discussion', NULL, 3),
+(@BookKey * 1000 + 904, @BookKey * 1000 + 900, 'Misc. Drills and Lessons', NULL, 4);
 
 
 INSERT INTO @Section
@@ -159,14 +160,14 @@ INSERT INTO @Section
     DisplayOrder
 )
 VALUES
-(4001, NULL, 'Rules', null, 1),
+(4001, NULL, 'Rules', NULL, 1),
 (4002, 4001, 'Rule 1', NULL, 1),
 (4003, 4001, 'Rule 2', NULL, 2),
 (4004, 4001, 'Rule 3', NULL, 3);
 
 
-MERGE INTO Sources.Section t
-USING @Section s
+MERGE INTO Sources.Section AS t
+USING @Section AS s
 ON t.SectionKey = s.SectionKey
 WHEN NOT MATCHED THEN
     INSERT
@@ -200,7 +201,7 @@ DECLARE @Video TABLE
     VideoServiceVideoId VARCHAR(11) NULL,
     CreatedByUserKey INT NOT NULL
         DEFAULT (-1),
-	StartTime TIME NULL
+    StartTime TIME NULL
 );
 
 
@@ -209,19 +210,27 @@ INSERT INTO @Video
     SectionKey,
     VideoServiceKey,
     VideoServiceVideoId,
-	StartTime
+    StartTime
 )
 VALUES
 (4002, 1, 'u9sNALL77qk', '0:0:05'),
 (4003, 1, 'u9sNALL77qk', '0:0:31'),
 (4004, 1, 'u9sNALL77qk', '0:1:33');
 
-MERGE INTO Interpretations.Video t
-USING @Video s
+MERGE INTO Interpretations.Video AS t
+USING @Video AS s
 ON s.SectionKey = t.SectionKey
    AND s.VideoServiceKey = t.VideoServiceKey
    AND s.VideoServiceVideoId = t.VideoServiceVideoId
-   AND (s.StartTime = t.StartTime OR (s.StartTime IS NULL AND t.StartTime IS NULL))
+   AND
+   (
+       s.StartTime = t.StartTime
+       OR
+       (
+           s.StartTime IS NULL
+           AND t.StartTime IS NULL
+       )
+   )
 WHEN NOT MATCHED THEN
     INSERT
     (
@@ -233,9 +242,9 @@ WHEN NOT MATCHED THEN
         CreatedByUserKey
     )
     VALUES
-    (s.SectionKey, s.VideoServiceKey, s.VideoServiceVideoId, NULL, StartTime, s.CreatedByUserKey)
-	;
+    (s.SectionKey, s.VideoServiceKey, s.VideoServiceVideoId, NULL, s.StartTime, s.CreatedByUserKey);
 
 /**** WEAPONS *******/
 
-UPDATE Sources.Section SET PrimaryWeaponKey = 20 WHERE BookKey = @BookKey
+EXEC Sources.AddWeaponsForSection 4001, 20;
+

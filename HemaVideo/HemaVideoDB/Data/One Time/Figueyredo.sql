@@ -142,10 +142,12 @@ INSERT INTO @Section
     DisplayOrder
 )
 VALUES
-(3900, NULL, 'Extras', NULL, -1),
-(3901, 3900, 'History', NULL, 1),
-(3902, 3900, 'Weapons and Equipment', NULL, 2),
-(3903, 3900, 'General Discussion', NULL, 3);
+(@BookKey * 1000 + 900, NULL, 'Extras', NULL, -1),
+(@BookKey * 1000 + 901, @BookKey * 1000 + 900, 'History', NULL, 1),
+(@BookKey * 1000 + 902, @BookKey * 1000 + 900, 'Weapons and Equipment', NULL, 2),
+(@BookKey * 1000 + 903, @BookKey * 1000 + 900, 'General Discussion', NULL, 3),
+(@BookKey * 1000 + 904, @BookKey * 1000 + 900, 'Misc. Drills and Lessons', NULL, 4);
+
 
 
 INSERT INTO @Section
@@ -358,6 +360,5 @@ WHEN NOT MATCHED THEN
 	
 /**** WEAPONS *******/
 
-UPDATE Sources.Section SET PrimaryWeaponKey = 20 WHERE BookKey = @BookKey
-
+EXEC Sources.AddWeaponsForSection 3001, 20;
 

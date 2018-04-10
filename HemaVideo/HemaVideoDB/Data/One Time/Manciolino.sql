@@ -144,10 +144,12 @@ INSERT INTO @Section
     DisplayOrder
 )
 VALUES
-(5900, NULL, 'Extras', NULL, -1),
-(5901, 5900, 'History', NULL, 1),
-(5902, 5900, 'Weapons and Equipment', NULL, 2),
-(5903, 5900, 'General Discussion', NULL, 3);
+(@BookKey * 1000 + 900, NULL, 'Extras', NULL, -1),
+(@BookKey * 1000 + 901, @BookKey * 1000 + 900, 'History', NULL, 1),
+(@BookKey * 1000 + 902, @BookKey * 1000 + 900, 'Weapons and Equipment', NULL, 2),
+(@BookKey * 1000 + 903, @BookKey * 1000 + 900, 'General Discussion', NULL, 3),
+(@BookKey * 1000 + 904, @BookKey * 1000 + 900, 'Misc. Drills and Lessons', NULL, 4);
+
 
 
 INSERT INTO @Section
@@ -575,10 +577,19 @@ WHEN NOT MATCHED THEN
 
 /**** WEAPONS *******/
 
-UPDATE Sources.Section SET PrimaryWeaponKey = 6 FROM Sources.Section s INNER JOIN Sources.SubsectionsFor(5001) sf ON s.SectionKey = sf.SectionKey
+EXEC Sources.AddWeaponsForSection 5001, 6;
+EXEC Sources.AddWeaponsForSection 5089, 6;
+EXEC Sources.AddWeaponsForSection 5115, 6;
+EXEC Sources.AddWeaponsForSection 5153, 30;
+EXEC Sources.AddWeaponsForSection 5205, 31;
+EXEC Sources.AddWeaponsForSection 5209, 2;
+EXEC Sources.AddWeaponsForSection 5217, 18;
+EXEC Sources.AddWeaponsForSection 5236, 12;
+EXEC Sources.AddWeaponsForSection 5241, 21;
+EXEC Sources.AddWeaponsForSection 5246, 23;
+EXEC Sources.AddWeaponsForSection 5252, 23;
+EXEC Sources.AddWeaponsForSection 5256, 19;
+EXEC Sources.AddWeaponsForSection 5261, 24;
+EXEC Sources.AddWeaponsForSection 5264, 25;
+EXEC Sources.AddWeaponsForSection 5269, 26;
 
-UPDATE Sources.Section SET PrimaryWeaponKey = 6 FROM Sources.Section s INNER JOIN Sources.SubsectionsFor(5089) sf ON s.SectionKey = sf.SectionKey
-
-UPDATE Sources.Section SET PrimaryWeaponKey = 6 FROM Sources.Section s INNER JOIN Sources.SubsectionsFor(5115) sf ON s.SectionKey = sf.SectionKey
-
-UPDATE Sources.Section SET PrimaryWeaponKey = 6 FROM Sources.Section s INNER JOIN Sources.SubsectionsFor(5115) sf ON s.SectionKey = sf.SectionKey

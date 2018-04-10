@@ -142,10 +142,12 @@ INSERT INTO @Section
     DisplayOrder
 )
 VALUES
-(1900, NULL, 'Extras', NULL, -1),
-(1901, 1900, 'History', NULL, 1),
-(1902, 1900, 'Weapons and Equipment', NULL, 2),
-(1903, 1900, 'General Discussion', NULL, 3);
+(@BookKey * 1000 + 900, NULL, 'Extras', NULL, -1),
+(@BookKey * 1000 + 901, @BookKey * 1000 + 900, 'History', NULL, 1),
+(@BookKey * 1000 + 902, @BookKey * 1000 + 900, 'Weapons and Equipment', NULL, 2),
+(@BookKey * 1000 + 903, @BookKey * 1000 + 900, 'General Discussion', NULL, 3),
+(@BookKey * 1000 + 904, @BookKey * 1000 + 900, 'Misc. Drills and Lessons', NULL, 4);
+
 
 INSERT INTO @Section
 (
@@ -888,23 +890,23 @@ VALUES
 
 (1894, 1618, 'Wrestling', NULL, 2),
 
-(1687, 1677, 'Wrestling 1', '3.13v.2', 10),
-(1688, 1677, 'Wrestling 2', '3.13v.3', 11),
-(1689, 1677, 'Wrestling 3', '3.13v.4', 12),
-(1690, 1677, 'Wrestling 4', '3.13v.5', 13),
-(1691, 1677, 'Wrestling 5', '3.14r.1', 14),
-(1692, 1677, 'Wrestling 6', '3.14r.2', 15),
-(1693, 1677, 'Wrestling 7', '3.14r.3', 16),
-(1694, 1677, 'Wrestling 8', '3.14r.4', 17),
-(1695, 1677, 'Wrestling 9', '3.14r.5', 18),
-(1696, 1677, 'Wrestling 10', '3.14r.6', 19),
-(1697, 1677, 'Wrestling 11', '3.14r.7', 20),
-(1698, 1677, 'Wrestling 12', '3.14v.1', 21),
-(1699, 1677, 'Wrestling 13', '3.14v.2', 22),
-(1700, 1677, 'Wrestling 14', '3.14v.3', 23),
-(1701, 1677, 'Wrestling 15', '3.14v.4', 24),
-(1702, 1677, 'Wrestling 16', '3.14v.5', 25),
-(1703, 1677, 'Wrestling 17', '3.15v.1', 26),
+(1687, 1894, 'Wrestling 1', '3.13v.2', 10),
+(1688, 1894, 'Wrestling 2', '3.13v.3', 11),
+(1689, 1894, 'Wrestling 3', '3.13v.4', 12),
+(1690, 1894, 'Wrestling 4', '3.13v.5', 13),
+(1691, 1894, 'Wrestling 5', '3.14r.1', 14),
+(1692, 1894, 'Wrestling 6', '3.14r.2', 15),
+(1693, 1894, 'Wrestling 7', '3.14r.3', 16),
+(1694, 1894, 'Wrestling 8', '3.14r.4', 17),
+(1695, 1894, 'Wrestling 9', '3.14r.5', 18),
+(1696, 1894, 'Wrestling 10', '3.14r.6', 19),
+(1697, 1894, 'Wrestling 11', '3.14r.7', 20),
+(1698, 1894, 'Wrestling 12', '3.14v.1', 21),
+(1699, 1894, 'Wrestling 13', '3.14v.2', 22),
+(1700, 1894, 'Wrestling 14', '3.14v.3', 23),
+(1701, 1894, 'Wrestling 15', '3.14v.4', 24),
+(1702, 1894, 'Wrestling 16', '3.14v.5', 25),
+(1703, 1894, 'Wrestling 17', '3.15v.1', 26),
 
 (1704, NULL, 'Book 5 Quarterstaff, Halberd, and Pike', NULL, 5),
 (1705, 1704, 'Quarterstaff', NULL, 1),
@@ -1414,23 +1416,14 @@ WHEN NOT MATCHED THEN
 
 /*** Weapons ****/
 
-UPDATE Sources.Section SET PrimaryWeaponKey = 4 FROM Sources.Section s INNER JOIN Sources.SubsectionsFor(1001) sf ON s.SectionKey = sf.SectionKey
-UPDATE Sources.Section SET PrimaryWeaponKey = 16 FROM Sources.Section s INNER JOIN Sources.SubsectionsFor(1253) sf ON s.SectionKey = sf.SectionKey
-UPDATE Sources.Section SET PrimaryWeaponKey = 2 FROM Sources.Section s INNER JOIN Sources.SubsectionsFor(1424) sf ON s.SectionKey = sf.SectionKey
-
-UPDATE Sources.Section SET PrimaryWeaponKey = 12 FROM Sources.Section s INNER JOIN Sources.SubsectionsFor(1881) sf ON s.SectionKey = sf.SectionKey
-
-UPDATE Sources.Section SET PrimaryWeaponKey = 18 FROM Sources.Section s INNER JOIN Sources.SubsectionsFor(1882) sf ON s.SectionKey = sf.SectionKey
-
-UPDATE Sources.Section SET SecondaryWeaponKey = 19 FROM Sources.Section s INNER JOIN Sources.SubsectionsFor(1883) sf ON s.SectionKey = sf.SectionKey
-
-UPDATE Sources.Section SET PrimaryWeaponKey = 8 FROM Sources.Section s INNER JOIN Sources.SubsectionsFor(1619) sf ON s.SectionKey = sf.SectionKey
-
-UPDATE Sources.Section SET PrimaryWeaponKey = 9 FROM Sources.Section s INNER JOIN Sources.SubsectionsFor(1894) sf ON s.SectionKey = sf.SectionKey
-
-UPDATE Sources.Section SET PrimaryWeaponKey = 15 FROM Sources.Section s INNER JOIN Sources.SubsectionsFor(1705) sf ON s.SectionKey = sf.SectionKey
-
-UPDATE Sources.Section SET PrimaryWeaponKey = 14 FROM Sources.Section s INNER JOIN Sources.SubsectionsFor(1892) sf ON s.SectionKey = sf.SectionKey
-
-UPDATE Sources.Section SET PrimaryWeaponKey = 13 FROM Sources.Section s INNER JOIN Sources.SubsectionsFor(1893) sf ON s.SectionKey = sf.SectionKey
-
+EXEC Sources.AddWeaponsForSection 1001, 4;
+EXEC Sources.AddWeaponsForSection 1253, 16;
+EXEC Sources.AddWeaponsForSection 1424, 2;
+EXEC Sources.AddWeaponsForSection 1881, 12;
+EXEC Sources.AddWeaponsForSection 1882, 18;
+EXEC Sources.AddWeaponsForSection 1883, 2, 19;
+EXEC Sources.AddWeaponsForSection 1619, 8;
+EXEC Sources.AddWeaponsForSection 1894, 9;
+EXEC Sources.AddWeaponsForSection 1705, 15;
+EXEC Sources.AddWeaponsForSection 1892, 14;
+EXEC Sources.AddWeaponsForSection 1893, 13;

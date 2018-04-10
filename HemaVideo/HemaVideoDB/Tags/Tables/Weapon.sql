@@ -1,4 +1,4 @@
-﻿CREATE TABLE Sources.Weapon
+﻿CREATE TABLE Tags.Weapon
 (
     WeaponKey INT NOT NULL
         CONSTRAINT PK_Weapon PRIMARY KEY,

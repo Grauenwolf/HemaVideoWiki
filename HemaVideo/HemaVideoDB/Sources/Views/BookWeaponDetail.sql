@@ -3,14 +3,15 @@ AS
 SELECT DISTINCT
        b.BookKey,
        b.BookName,
-       s.PrimaryWeaponKey,
+       swm.PrimaryWeaponKey,
        w1.WeaponName AS PrimaryWeaponName,
-       s.SecondaryWeaponKey,
+       swm.SecondaryWeaponKey,
        w2.WeaponName AS SecondaryWeaponName
 FROM Sources.Section s
-    INNER JOIN Sources.Weapon w1
-        ON w1.WeaponKey = s.PrimaryWeaponKey
-    LEFT JOIN Sources.Weapon w2
-        ON w2.WeaponKey = s.SecondaryWeaponKey
+	INNER JOIN Sources.SectionWeaponMap swm ON s.SectionKey = swm.SectionKey
+    INNER JOIN Tags.Weapon w1
+        ON w1.WeaponKey = swm.PrimaryWeaponKey
+    LEFT JOIN Tags.Weapon w2
+        ON w2.WeaponKey = swm.SecondaryWeaponKey
     INNER JOIN Sources.Book b
         ON b.BookKey = s.BookKey;

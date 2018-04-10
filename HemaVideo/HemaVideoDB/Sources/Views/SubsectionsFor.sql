@@ -5,7 +5,7 @@
 RETURNS TABLE
 AS
 RETURN WITH Subsections (BookKey, RootSectionKey, SectionKey, SectionName, Level, ParentSectionKey, DisplayOrder,
-                         PageReference, PrimaryWeaponKey, SecondaryWeaponKey
+                         PageReference
                         )
        AS (
           --ANCHOR
@@ -16,9 +16,7 @@ RETURN WITH Subsections (BookKey, RootSectionKey, SectionKey, SectionName, Level
                  1,
                  s.ParentSectionKey,
                  s.DisplayOrder,
-                 s.PageReference,
-                 s.PrimaryWeaponKey,
-                 s.SecondaryWeaponKey
+                 s.PageReference
           FROM Sources.Section s
           UNION ALL
           --RECURSIVE
@@ -29,9 +27,7 @@ RETURN WITH Subsections (BookKey, RootSectionKey, SectionKey, SectionName, Level
                  cte.Level + 1,
                  s.ParentSectionKey,
                  s.DisplayOrder,
-                 s.PageReference,
-                 s.PrimaryWeaponKey,
-                 s.SecondaryWeaponKey
+                 s.PageReference
           FROM Sources.Section s
               INNER JOIN Subsections cte
                   ON s.ParentSectionKey = cte.SectionKey)
@@ -41,8 +37,6 @@ SELECT s.BookKey,
        s.Level,
        s.ParentSectionKey,
        s.DisplayOrder,
-       s.PageReference,
-       s.PrimaryWeaponKey,
-       s.SecondaryWeaponKey
+       s.PageReference
 FROM Subsections s
 WHERE s.RootSectionKey = @RootSection;

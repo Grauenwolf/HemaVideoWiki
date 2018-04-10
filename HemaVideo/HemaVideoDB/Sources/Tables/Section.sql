@@ -10,9 +10,7 @@
         REFERENCES Sources.Section (SectionKey),
     SectionName NVARCHAR(250) NOT NULL,
 	PageReference NVARCHAR(50) NULL,
-	DisplayOrder FLOAT NOT NULL,
-	PrimaryWeaponKey INT NULL CONSTRAINT FK_Section_PrimaryWeapon REFERENCES Sources.Weapon(WeaponKey),
-	SecondaryWeaponKey INT NULL CONSTRAINT FK_Section_SecondaryWeapon REFERENCES Sources.Weapon(WeaponKey)
+	DisplayOrder FLOAT NOT NULL
 );
 
 GO

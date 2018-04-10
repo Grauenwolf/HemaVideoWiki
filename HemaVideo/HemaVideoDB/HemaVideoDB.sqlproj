@@ -68,11 +68,14 @@
     <Folder Include="Interpretations\Tables" />
     <Folder Include="Sources\Views" />
     <Folder Include="Interpretations\Views" />
+    <Folder Include="Tags" />
+    <Folder Include="Tags\Tables" />
+    <Folder Include="Data\One Time" />
+    <Folder Include="Sources\Programability" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Localhost.publish.xml" />
     <None Include="HemaVideoDB.publish.xml" />
-    <None Include="Data\Meyer.sql" />
     <None Include="Data\Weapon.sql" />
   </ItemGroup>
   <ItemGroup>
@@ -86,7 +89,6 @@
     <Build Include="Sources\Tables\Author.sql" />
     <Build Include="Sources\Tables\Book.sql" />
     <Build Include="Sources\Tables\Section.sql" />
-    <Build Include="Sources\Tables\Sources.sql" />
     <Build Include="Sources\Tables\BookAuthor.sql" />
     <Build Include="Interpretations\Interpretations.sql" />
     <Build Include="Interpretations\Tables\Video.sql" />
@@ -94,16 +96,30 @@
     <Build Include="Interpretations\Views\VideoDetail.sql" />
     <Build Include="Sources\Views\SectionDetail.sql" />
     <Build Include="Interpretations\Tables\VideoService.sql" />
-    <None Include="Data\I.33.sql" />
     <Build Include="Sources\Tables\AlternateBookName.sql" />
     <None Include="Data\Test.sql" />
-    <None Include="Data\Díaz de Viedma.sql" />
-    <None Include="Data\Figueyredo.sql" />
-    <Build Include="Sources\Tables\Weapon.sql" />
     <Build Include="Sources\Views\BookWeaponDetail.sql" />
     <Build Include="Sources\Views\SubsectionsFor.sql" />
     <Build Include="Sources\Views\BookWeaponDetailFlat.sql" />
-    <None Include="Data\Manciolino.sql" />
+    <Build Include="Sources\Tables\SectionWeaponMap.sql" />
+    <Build Include="Sources\Sources.sql" />
+    <Build Include="Interpretations\Tables\Play.sql" />
+    <Build Include="Tags\Sources.sql" />
+    <Build Include="Tags\Tables\Weapon.sql" />
+    <None Include="Data\One Time\Meyer.sql" />
+    <None Include="Data\One Time\Díaz de Viedma.sql" />
+    <None Include="Data\One Time\Figueyredo.sql" />
+    <None Include="Data\One Time\I.33.sql" />
+    <None Include="Data\One Time\Manciolino.sql" />
+    <Build Include="Tags\Tables\Guard.sql" />
+    <Build Include="Tags\Tables\Technique.sql" />
+    <Build Include="Sources\Programability\AddWeaponsForSection.sql" />
+    <Build Include="Tags\Tables\GuardModifier.sql" />
+    <Build Include="Tags\Tables\Measure.sql" />
+    <Build Include="Tags\Tables\Target.sql" />
+    <Build Include="Interpretations\Tables\PlayStep.sql" />
+    <Build Include="Tags\Tables\Footwork.sql" />
+    <Build Include="Sources\Views\SectionWeaponMapDetail.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Script.PostDeployment.sql" />

@@ -15,14 +15,18 @@
 <h2>Weapons</h2>
 @foreach (var weapon in Model.Weapons)
 {
-	if (weapon.SecondaryWeaponKey == null)
-	{
-		<div>@(weapon.PrimaryWeaponName)</div>
-	}
-	else
-	{
-		<div>@(weapon.PrimaryWeaponName) vs. @(weapon.SecondaryWeaponName)</div>
-	}
+	<div>
+		@if (weapon.SecondaryWeaponKey == null)
+		{
+			<a href="~/demo/book/@Model.BookKey?weaponKey=@(weapon.PrimaryWeaponKey)">@(weapon.PrimaryWeaponName)</a>
+		}
+		else
+		{
+			<a href="~/demo/book/@Model.BookKey?weaponKey=@(weapon.PrimaryWeaponKey)&secondaryWeaponKey=@(weapon.SecondaryWeaponKey)">
+				@(weapon.PrimaryWeaponName) vs. @(weapon.SecondaryWeaponName)
+			</a>
+		}
+	</div>
 }
 
 <h2>Sections</h2>

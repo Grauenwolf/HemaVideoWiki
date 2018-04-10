@@ -3,27 +3,28 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Tortuga.Anchor;
 using Tortuga.Chain;
 
 namespace HemaVideoLib.Services
 {
 	public class BookService
 	{
-		readonly SqlServerDataSource m_DataSource;
+		private readonly SqlServerDataSource m_DataSource;
 
 		public BookService(SqlServerDataSource dataSource)
 		{
 			m_DataSource = dataSource ?? throw new ArgumentNullException(nameof(dataSource));
 		}
 
-		public async Task<BookDetail> GetBookDetailAsync(int bookKey)
+		public async Task<BookDetail> GetBookDetailAsync(int bookKey, bool includeWeaponsBySection)
 		{
 			var filter = new { bookKey };
 			var book = await m_DataSource.From("Sources.Book", filter).ToObject<BookDetail>().ExecuteAsync();
 
 			book.Authors.AddRange(await m_DataSource.From("Sources.BookAuthorDetail", filter).ToCollection<Author>().ExecuteAsync());
 
-			book.Sections.AddRange(await GetSectionsAsync(bookKey));
+			book.Sections.AddRange(await GetSectionsAsync(bookKey, includeWeaponsBySection));
 
 			book.Weapons.AddRange(await m_DataSource.From("Sources.BookWeaponDetail", filter).WithSorting("PrimaryWeaponName").ToCollection<WeaponVersus>().ExecuteAsync());
 
@@ -51,20 +52,28 @@ namespace HemaVideoLib.Services
 		//    throw new NotImplementedException();
 		//}
 
-		public async Task<SectionDetail> GetSectionDetailAsync(int sectionKey)
+		public async Task<SectionDetail> GetSectionDetailAsync(int sectionKey, bool includeWeapons)
 		{
 			var section = await m_DataSource.From("Sources.SectionDetail", new { sectionKey }).ToObject<SectionDetail>().ExecuteAsync();
-			section.Subsections.AddRange(await GetSubsectionsAsync(section.BookKey, section.SectionKey));
+			section.Subsections.AddRange(await GetSubsectionsAsync(section.BookKey, section.SectionKey, includeWeapons));
 			section.Videos.AddRange(await m_DataSource.From("Interpretations.Video", new { sectionKey }).ToCollection<Video>().ExecuteAsync());
 			return section;
 		}
 
-		async Task<List<SectionSummary>> GetSectionsAsync(int bookKey)
+		private async Task<List<SectionSummary>> GetSectionsAsync(int bookKey, bool includeWeapons)
 		{
 			var filter = new { bookKey };
 			var sections = await m_DataSource.From("Sources.SectionDetail", filter).WithSorting("DisplayOrder").ToCollection<SectionSummary>().ExecuteAsync();
+
 			foreach (var section in sections)
 				section.Subsections.AddRange(sections.Where(x => x.ParentSectionKey == section.SectionKey));
+
+			if (includeWeapons)
+			{
+				var weapons = await m_DataSource.From("Sources.SectionWeaponMapDetail", filter).ToCollection<WeaponVersusSummary>().ExecuteAsync();
+				foreach (var section in sections)
+					section.Weapons.AddRange(weapons.Where(x => x.SectionKey == section.SectionKey));
+			}
 
 			var result = sections.Where(x => x.ParentSectionKey == null).ToList();
 			foreach (var section in result)
@@ -72,7 +81,7 @@ namespace HemaVideoLib.Services
 			return result;
 		}
 
-		async Task<List<SectionSummary>> GetSubsectionsAsync(int bookKey, int sectionKey)
+		private async Task<List<SectionSummary>> GetSubsectionsAsync(int bookKey, int sectionKey, bool includeWeapons)
 		{
 			//This could be more efficient using a recursive CTE
 
@@ -80,6 +89,13 @@ namespace HemaVideoLib.Services
 			var sections = await m_DataSource.From("Sources.SectionDetail", filter).WithSorting("DisplayOrder").ToCollection<SectionSummary>().ExecuteAsync();
 			foreach (var section in sections)
 				section.Subsections.AddRange(sections.Where(x => x.ParentSectionKey == section.SectionKey));
+
+			if (includeWeapons)
+			{
+				var weapons = await m_DataSource.From("Sources.SectionWeaponMapDetail", filter).ToCollection<WeaponVersusSummary>().ExecuteAsync();
+				foreach (var section in sections)
+					section.Weapons.AddRange(weapons.Where(x => x.SectionKey == section.SectionKey));
+			}
 
 			List<SectionSummary> result = sections.Where(x => x.ParentSectionKey == sectionKey).ToList();
 
