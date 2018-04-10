@@ -10,6 +10,11 @@
     CreatedDate DATETIME2(7) NOT NULL
         CONSTRAINT D_Play_CreatedDate
             DEFAULT (GETUTCDATE()),
+    ModifiedByUserKey INT NOT NULL
+        REFERENCES dbo.AspNetUsers (UserKey),
+    ModifiedDate DATETIME2(7) NOT NULL
+        CONSTRAINT D_Play_ModifiedDate
+            DEFAULT (GETUTCDATE()),
     AGuardKey INT NULL
         CONSTRAINT FK_Play_AGuard
         REFERENCES Tags.Guard (GuardKey),

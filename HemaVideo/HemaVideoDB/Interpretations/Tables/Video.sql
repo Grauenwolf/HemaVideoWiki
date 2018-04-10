@@ -15,6 +15,11 @@
     CreatedDate DATETIME2(7) NOT NULL
         CONSTRAINT D_Video_CreateDate
             DEFAULT (GETUTCDATE()),
+    ModifiedByUserKey INT NULL
+        REFERENCES dbo.AspNetUsers (UserKey),
+    ModifiedDate DATETIME2(7) NOT NULL
+        CONSTRAINT D_Video_ModifiedDate
+            DEFAULT (GETUTCDATE()),
     Author NVARCHAR(250) NULL
         CONSTRAINT C_Video_Author CHECK (LEN(Author) > 0),
     Description NVARCHAR(250) NULL
@@ -35,19 +40,17 @@ EXEC sys.sp_addextendedproperty @name = N'MS_Description',
 GO
 
 CREATE UNIQUE NONCLUSTERED INDEX UX_Video_NoDup
-ON Interpretations.Video
-(
-    SectionKey,
-    VideoServiceKey,
-    VideoServiceVideoId
-)
+ON Interpretations.Video (
+                             SectionKey,
+                             VideoServiceKey,
+                             VideoServiceVideoId
+                         )
 WHERE StartTime IS NULL;
 GO
 CREATE UNIQUE NONCLUSTERED INDEX UX_Video_NoDup2
-ON Interpretations.Video
-(
-    SectionKey,
-    VideoServiceKey,
-    VideoServiceVideoId,
-    StartTime
-);
+ON Interpretations.Video (
+                             SectionKey,
+                             VideoServiceKey,
+                             VideoServiceVideoId,
+                             StartTime
+                         );
