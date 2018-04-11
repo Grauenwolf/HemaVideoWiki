@@ -1,5 +1,6 @@
 ﻿using HemaVideoTools.Services;
 using System;
+using System.Net.Http;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Tortuga.Sails;
@@ -8,14 +9,10 @@ namespace HemaVideoTools
 {
 	public class LoginViewModel : ViewModelBase
 	{
-		private readonly Client m_ApiClient;
-
-		public LoginViewModel(Client apiClient)
-		{
-			m_ApiClient = apiClient;
-		}
+		public Client ApiClient { get => Get<Client>(); set => Set(value); }
 
 		public string EmailAddress { get => Get<String>(); set => Set(value); }
+		public string Url { get => Get<String>(); set => Set(value); }
 		public string Password { get => Get<String>(); set => Set(value); }
 		public bool IsLoggedIn { get => Get<bool>(); set => Set(value); }
 
@@ -23,10 +20,12 @@ namespace HemaVideoTools
 
 		public async Task Login(LoginDialog dialog)
 		{
-			var result = await m_ApiClient.ApiAccountLoginPostAsync(EmailAddress, Password, false);
+			var apiClient = new Client(Url, new HttpClient());
+			var result = await apiClient.ApiAccountLoginPostAsync(EmailAddress, Password, false);
 			if (result)
 			{
 				IsLoggedIn = true;
+				ApiClient = apiClient;
 				dialog.Close();
 			}
 		}

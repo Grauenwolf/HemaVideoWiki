@@ -1,6 +1,4 @@
-﻿using HemaVideoTools.Services;
-using System.Net.Http;
-using System.Windows;
+﻿using System.Windows;
 
 namespace HemaVideoTools
 {
@@ -13,19 +11,17 @@ namespace HemaVideoTools
 		{
 			base.OnStartup(e);
 
-			var client = new Client("http://hemavideos.azurewebsites.net", new HttpClient());
-
-			LoginViewModel loginViewModel = new LoginViewModel(client);
+			LoginViewModel loginViewModel = new LoginViewModel() { Url = "http://hemavideos.azurewebsites.net" };
 			var dialog = new LoginDialog() { DataContext = loginViewModel };
 
 			dialog.ShowDialog();
 
 			if (!loginViewModel.IsLoggedIn)
 			{
-				this.Shutdown();
+				Shutdown();
 				return;
 			}
-			var window = new MainWindow() { DataContext = new MainViewModel(client) };
+			var window = new MainWindow() { DataContext = new MainViewModel(loginViewModel.ApiClient) };
 			window.Show();
 		}
 	}

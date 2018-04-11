@@ -9,6 +9,10 @@
         Title="Login to HEMA Video Wiki" Height="150" Width="400">
 	<StackPanel>
 		<StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+			<Label Content="Base Url" />
+			<TextBox Text="{Binding Url}" Width="250" />
+		</StackPanel>
+		<StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
 			<Label Content="Email Address" />
 			<TextBox Text="{Binding EmailAddress}" Width="150" />
 		</StackPanel>
