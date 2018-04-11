@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Extractor
 {
-	class Program
+	internal class Program
 	{
 		public static void Main(string[] args)
 		{
@@ -14,11 +14,12 @@ namespace Extractor
 			ProcessI33();
 			ProcessFigueyredo();
 			ProcessManciolino();
+			ProcessDallAgocchie();
 		}
 
-		static string Escape(string value) => value == null ? "NULL" : "'" + value.Replace("'", "''") + "'";
+		private static string Escape(string value) => value == null ? "NULL" : "'" + value.Replace("'", "''") + "'";
 
-		static void GenerateSql(IList<Section> sections, string fileName1, string fileName2, bool includePageReferences = true)
+		private static void GenerateSql(IList<Section> sections, string fileName1, string fileName2, bool includePageReferences = true)
 		{
 			Console.WriteLine();
 			Console.WriteLine();
@@ -51,7 +52,7 @@ namespace Extractor
 			}
 		}
 
-		static string OrNull(int? value) => value.HasValue ? value.ToString() : "NULL";
+		private static string OrNull(int? value) => value.HasValue ? value.ToString() : "NULL";
 
 		/*
 *
@@ -66,7 +67,7 @@ N'', -- PageReference - nvarchar(50)
 *
 * */
 
-		static void ProcessFigueyredo()
+		private static void ProcessFigueyredo()
 		{
 			var bookKey = 3;
 			var sections = new SectionCollection(bookKey);
@@ -85,7 +86,7 @@ N'', -- PageReference - nvarchar(50)
 			GenerateSql(sections, fileName1, fileName2);
 		}
 
-		static void ProcessFiles(IList<Section> sections, string folder)
+		private static void ProcessFiles(IList<Section> sections, string folder)
 		{
 			foreach (var section in sections.Where(x => x.FileName != null))
 			{
@@ -140,7 +141,7 @@ N'', -- PageReference - nvarchar(50)
 			}
 		}
 
-		static void ProcessI33()
+		private static void ProcessI33()
 		{
 			var bookKey = 2;
 			var sections = new SectionCollection(bookKey);
@@ -159,7 +160,26 @@ N'', -- PageReference - nvarchar(50)
 			GenerateSql(sections, fileName1, fileName2);
 		}
 
-		static void ProcessManciolino()
+		private static void ProcessDallAgocchie()
+		{
+			var bookKey = 6;
+			var sections = new SectionCollection(bookKey);
+
+			var indexFileName = $@"dall\Giovanni dall'Agocchie";
+			var lines = File.ReadAllLines(indexFileName);
+			var currentLineIndex = 0;
+
+			ProcessSection(lines, ref currentLineIndex, bookKey, null, 1, sections);
+
+			ProcessFiles(sections, "dall");
+
+			var fileName1 = "dall'Agocchie-1.sql";
+			var fileName2 = "dall'Agocchie-2.sql";
+
+			GenerateSql(sections, fileName1, fileName2, false);
+		}
+
+		private static void ProcessManciolino()
 		{
 			var bookKey = 5;
 			var sections = new SectionCollection(bookKey);
@@ -178,7 +198,7 @@ N'', -- PageReference - nvarchar(50)
 			GenerateSql(sections, fileName1, fileName2, false);
 		}
 
-		static void ProcessMeyer()
+		private static void ProcessMeyer()
 		{
 			var bookKey = 1;
 			var sections = new SectionCollection(bookKey);
@@ -229,7 +249,7 @@ N'', -- PageReference - nvarchar(50)
 		/// <param name="parentSectionKey">The SectionKey for the section currently being processed.</param>
 		/// <param name="depth">The depth of the section currently being processed.</param>
 		/// <param name="sections">The sections.</param>
-		static void ProcessSection(string[] lines, ref int currentLineIndex, int bookKey, Section currentSection, int depth, SectionCollection sections)
+		private static void ProcessSection(string[] lines, ref int currentLineIndex, int bookKey, Section currentSection, int depth, SectionCollection sections)
 		{
 			const string playHeader = "[[";
 			const string playFooter = "]]";

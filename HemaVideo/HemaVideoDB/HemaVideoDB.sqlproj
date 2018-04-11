@@ -126,6 +126,7 @@
     <None Include="Data\GuardModifier.sql" />
     <None Include="Data\Target.sql" />
     <None Include="Data\Technique.sql" />
+    <None Include="Data\One Time\dall'Agocchie.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Script.PostDeployment.sql" />

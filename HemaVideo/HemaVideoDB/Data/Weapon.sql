@@ -1,4 +1,5 @@
-﻿DECLARE @Weapon TABLE
+﻿
+DECLARE @Weapon TABLE
 (
     WeaponKey INT NOT NULL PRIMARY KEY,
     WeaponName NVARCHAR(100) NOT NULL
