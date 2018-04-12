@@ -22,25 +22,25 @@
     TechniqueKey3 INT NULL
         CONSTRAINT FK_PlayStep_TechniqueKey3
         REFERENCES Tags.Technique (TechniqueKey),
-    Target1 INT NOT NULL
+    TargetKey1 INT NULL
         CONSTRAINT FK_PlayStep_Target1
         REFERENCES Tags.Target (TargetKey),
-    Target2 INT NOT NULL
+    TargetKey2 INT NULL
         CONSTRAINT FK_PlayStep_Target2
         REFERENCES Tags.Target (TargetKey),
-    Target3 INT NOT NULL
+    TargetKey3 INT NULL
         CONSTRAINT FK_PlayStep_Target3
         REFERENCES Tags.Target (TargetKey),
-    GuardKey INT NOT NULL
+    GuardKey INT NULL
         CONSTRAINT FK_PlayStep_Guard
         REFERENCES Tags.Guard (GuardKey),
-    GuardModifierKey INT NOT NULL
+    GuardModifierKey INT NULL
         CONSTRAINT FK_PlayStep_GuardModifier
         REFERENCES Tags.GuardModifier (GuardModifierKey),
-    IntermediateGuardKey INT NOT NULL
+    IntermediateGuardKey INT NULL
         CONSTRAINT FK_PlayStep_IntermediateGuard
         REFERENCES Tags.Guard (GuardKey),
-    IntermediateGuardModifierKey INT NOT NULL
+    IntermediateGuardModifierKey INT NULL
         CONSTRAINT FK_PlayStep_IntermediateGuardModifier
         REFERENCES Tags.GuardModifier (GuardModifierKey),
     Notes NVARCHAR(MAX) NULL

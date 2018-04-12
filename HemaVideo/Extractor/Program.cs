@@ -10,11 +10,12 @@ namespace Extractor
 	{
 		public static void Main(string[] args)
 		{
-			ProcessMeyer();
-			ProcessI33();
-			ProcessFigueyredo();
-			ProcessManciolino();
+			//ProcessMeyer();
+			//ProcessI33();
+			//ProcessFigueyredo();
+			//ProcessManciolino();
 			ProcessDallAgocchie();
+			ProcessFabris();
 		}
 
 		private static string Escape(string value) => value == null ? "NULL" : "'" + value.Replace("'", "''") + "'";
@@ -175,6 +176,25 @@ N'', -- PageReference - nvarchar(50)
 
 			var fileName1 = "dall'Agocchie-1.sql";
 			var fileName2 = "dall'Agocchie-2.sql";
+
+			GenerateSql(sections, fileName1, fileName2, false);
+		}
+
+		private static void ProcessFabris()
+		{
+			var bookKey = 7;
+			var sections = new SectionCollection(bookKey);
+
+			var indexFileName = $@"Fabris\Salvator Fabris";
+			var lines = File.ReadAllLines(indexFileName);
+			var currentLineIndex = 0;
+
+			ProcessSection(lines, ref currentLineIndex, bookKey, null, 1, sections);
+
+			ProcessFiles(sections, "Fabris");
+
+			var fileName1 = "Fabris-1.sql";
+			var fileName2 = "Fabris-2.sql";
 
 			GenerateSql(sections, fileName1, fileName2, false);
 		}

@@ -5,5 +5,5 @@
     GuardName NVARCHAR(100) NOT NULL
         CONSTRAINT UX_Guard_GuardName
         UNIQUE,
-    AlternateGuardName NVARCHAR(100) NOT NULL
+    AlternateGuardName NVARCHAR(100) NULL
 );

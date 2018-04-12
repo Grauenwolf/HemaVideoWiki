@@ -72,6 +72,7 @@
     <Folder Include="Tags\Tables" />
     <Folder Include="Data\One Time" />
     <Folder Include="Sources\Programability" />
+    <Folder Include="dbo\Views" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Localhost.publish.xml" />
@@ -127,6 +128,9 @@
     <None Include="Data\Target.sql" />
     <None Include="Data\Technique.sql" />
     <None Include="Data\One Time\dall'Agocchie.sql" />
+    <None Include="Data\One Time\Fabris.sql" />
+    <Build Include="dbo\Tables\BookEditor.sql" />
+    <Build Include="dbo\Views\BookEditorDetail.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Script.PostDeployment.sql" />
