@@ -6,43 +6,40 @@ using Tortuga.Chain;
 
 namespace HemaVideoLib.Services
 {
-	public class TagsService
+	public class TagsService : ServiceBase
 	{
-		private readonly SqlServerDataSource m_DataSource;
-
-		public TagsService(SqlServerDataSource dataSource)
+		public TagsService(SqlServerDataSource dataSource) : base(dataSource)
 		{
-			m_DataSource = dataSource ?? throw new ArgumentNullException(nameof(dataSource));
 		}
 
-		public Task<List<Weapon>> GetWeaponsAsync()
+		public Task<List<Weapon>> GetWeaponsAsync(IUser currentUser)
 		{
-			return m_DataSource.From("Tags.Weapon").ToCollection<Weapon>().ExecuteAsync();
+			return DataSource(currentUser).From("Tags.Weapon").ToCollection<Weapon>().ExecuteAsync();
 		}
 
-		public Task<List<Technique>> GetTechniquesAsync()
+		public Task<List<Technique>> GetTechniquesAsync(IUser currentUser)
 		{
-			return m_DataSource.From("Tags.Technique").ToCollection<Technique>().ExecuteAsync();
+			return DataSource(currentUser).From("Tags.Technique").ToCollection<Technique>().ExecuteAsync();
 		}
 
-		public Task<List<Target>> GetTargetsAsync()
+		public Task<List<Target>> GetTargetsAsync(IUser currentUser)
 		{
-			return m_DataSource.From("Tags.Target").ToCollection<Target>().ExecuteAsync();
+			return DataSource(currentUser).From("Tags.Target").ToCollection<Target>().ExecuteAsync();
 		}
 
-		public Task<List<Guard>> GetGuardsAsync()
+		public Task<List<Guard>> GetGuardsAsync(IUser currentUser)
 		{
-			return m_DataSource.From("Tags.Guard").ToCollection<Guard>().ExecuteAsync();
+			return DataSource(currentUser).From("Tags.Guard").ToCollection<Guard>().ExecuteAsync();
 		}
 
-		public Task<List<GuardModifer>> GetGuardModifersAsync()
+		public Task<List<GuardModifer>> GetGuardModifersAsync(IUser currentUser)
 		{
-			return m_DataSource.From("Tags.GuardModifer").ToCollection<GuardModifer>().ExecuteAsync();
+			return DataSource(currentUser).From("Tags.GuardModifer").ToCollection<GuardModifer>().ExecuteAsync();
 		}
 
-		public Task<List<Footwork>> GetFootworkAsync()
+		public Task<List<Footwork>> GetFootworkAsync(IUser currentUser)
 		{
-			return m_DataSource.From("Tags.Footwork").ToCollection<Footwork>().ExecuteAsync();
+			return DataSource(currentUser).From("Tags.Footwork").ToCollection<Footwork>().ExecuteAsync();
 		}
 	}
 }

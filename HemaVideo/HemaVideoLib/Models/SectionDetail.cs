@@ -14,5 +14,7 @@ namespace HemaVideoLib.Models
 		public int VideoCount { get; set; }
 		public List<Video> Videos { get; } = new List<Video>();
 		public List<WeaponVersus> Weapons { get; } = new List<WeaponVersus>();
+
+		public List<PlayDetail> Plays { get; } = new List<PlayDetail>();
 	}
 }

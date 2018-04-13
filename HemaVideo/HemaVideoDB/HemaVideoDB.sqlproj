@@ -131,6 +131,11 @@
     <None Include="Data\One Time\Fabris.sql" />
     <Build Include="dbo\Tables\BookEditor.sql" />
     <Build Include="dbo\Views\BookEditorDetail.sql" />
+    <Build Include="Interpretations\Views\PlayDetail.sql" />
+    <Build Include="Interpretations\Views\PlayStepDetail.sql" />
+    <Build Include="dbo\Views\SectionEditor.sql" />
+    <Build Include="dbo\Views\VideoEditor.sql" />
+    <Build Include="dbo\Views\PlayEditor.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Script.PostDeployment.sql" />

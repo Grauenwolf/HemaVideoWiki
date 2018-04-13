@@ -13,7 +13,17 @@ VALUES
 (1, 'Head'),
 (2, 'Hands'),
 (3, 'Rigth arm'),
-(4, 'Left arm');
+(4, 'Left arm'),
+(5, 'Legs'),
+(14, 'Left Leg'),
+(6, 'Right Leg'),
+(7, 'Arms'),
+(8, 'Chest'),
+(9, 'Face'),
+(10, 'Left Ear'),
+(11, 'Right Ear'),
+(12, 'Left Thigh'),
+(13, 'Right Thigh');
 
 MERGE INTO Tags.Target t
 USING @Target s

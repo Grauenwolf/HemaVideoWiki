@@ -59,6 +59,7 @@ namespace HemaVideoWiki
 					)
 				);
 			services.AddSingleton<BookService>();
+			services.AddSingleton<PlayService>();
 			services.AddSingleton<TagsService>();
 			services.AddSingleton<VideoService>();
 		}

@@ -1,5 +1,7 @@
 ﻿using HemaVideoLib.Models;
 using HemaVideoLib.Services;
+using HemaVideoWiki.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -9,49 +11,49 @@ namespace HemaVideoWiki.Controllers
 {
 	[Produces("application/json")]
 	[Route("api/tag")]
-	public class TagApiController : Controller
+	public class TagApiController : SecureController
 	{
 		private readonly TagsService m_TagsService;
 
-		public TagApiController(TagsService tagsService)
+		public TagApiController(TagsService tagsService, UserManager<ApplicationUser> userManager) : base(userManager)
 		{
 			m_TagsService = tagsService ?? throw new ArgumentNullException(nameof(tagsService));
 		}
 
 		[HttpGet("weapon")]
-		public Task<List<Weapon>> GetWeaponsAsync()
+		public async Task<List<Weapon>> GetWeaponsAsync()
 		{
-			return m_TagsService.GetWeaponsAsync();
+			return await m_TagsService.GetWeaponsAsync(await GetCurrentUserAsync());
 		}
 
 		[HttpGet("technique")]
-		public Task<List<Technique>> GetTechniquesAsync()
+		public async Task<List<Technique>> GetTechniquesAsync()
 		{
-			return m_TagsService.GetTechniquesAsync();
+			return await m_TagsService.GetTechniquesAsync(await GetCurrentUserAsync());
 		}
 
 		[HttpGet("target")]
-		public Task<List<Target>> GetTargetsAsync()
+		public async Task<List<Target>> GetTargetsAsync()
 		{
-			return m_TagsService.GetTargetsAsync();
+			return await m_TagsService.GetTargetsAsync(await GetCurrentUserAsync());
 		}
 
 		[HttpGet("guard")]
-		public Task<List<Guard>> GetGuardsAsync()
+		public async Task<List<Guard>> GetGuardsAsync()
 		{
-			return m_TagsService.GetGuardsAsync();
+			return await m_TagsService.GetGuardsAsync(await GetCurrentUserAsync());
 		}
 
 		[HttpGet("guardModifier")]
-		public Task<List<GuardModifer>> GetGuardModifersAsync()
+		public async Task<List<GuardModifer>> GetGuardModifersAsync()
 		{
-			return m_TagsService.GetGuardModifersAsync();
+			return await m_TagsService.GetGuardModifersAsync(await GetCurrentUserAsync());
 		}
 
 		[HttpGet("footwork")]
-		public Task<List<Footwork>> GetFootworkAsync()
+		public async Task<List<Footwork>> GetFootworkAsync()
 		{
-			return m_TagsService.GetFootworkAsync();
+			return await m_TagsService.GetFootworkAsync(await GetCurrentUserAsync());
 		}
 	}
 }

@@ -15,6 +15,59 @@
 	}
 </div>
 
+@if (Model.Plays.Count > 0)
+{
+	<h2>Plays</h2>
+
+	@foreach (var play in Model.Plays)
+	{
+		<h3>@(play.VariantName ?? "Basic Play")</h3>
+
+		<table>
+			<tr><th>Agent</th><th>Patient</th><th>Measure</th></tr>
+			<tr><td>@play.AGuardFullName</td><td>@play.PGuardFullName</td><td>@play.MeasureName</td></tr>
+		</table>
+		<table>
+			<tr>
+				<th>Tempo</th>
+				<th>Footwork</th>
+				<th>Technique</th>
+				<th>Target</th>
+				<th>Guard</th>
+			</tr>
+			@foreach (var step in play.Steps)
+			{
+				<tr>
+					<td>@step.ActorName @step.TempoNumber</td>
+					<td>@step.FootworkName</td>
+					<td>@step.TechniqueFullName</td>
+					@if (step.TargetKey1.HasValue)
+					{
+						<td>at @step.TargetFull</td>
+					}
+					else
+					{
+						<td></td>
+					}
+					@if (step.IntermediateGuardKey.HasValue)
+					{
+						<td>thru @step.IntermediateGuardFullName into @step.GuardFullName</td>
+					}
+					else if (step.GuardKey.HasValue)
+					{
+						<td>into @step.GuardFullName</td>
+					}
+					else
+					{
+						<td></td>
+					}
+				</tr>
+			}
+		</table>
+	}
+
+}
+
 <h2>Videos</h2>
 @foreach (var video in Model.Videos)
 {

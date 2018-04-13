@@ -3,7 +3,13 @@
 	public class PlayStepDetail
 	{
 		public char Actor { get; set; }
-		public string ActorName { get; set; }
+		public string ActorName => Actor == 'A' ? "Agent" : "Patient";
+		public string AlternateFootworkName { get; set; }
+		public string AlternateGuardName { get; set; }
+		public string AlternateIntermediateGuardName { get; set; }
+		public string AlternateTechniqueName1 { get; set; }
+		public string AlternateTechniqueName2 { get; set; }
+		public string AlternateTechniqueName3 { get; set; }
 		public int? FootworkKey { get; set; }
 		public string FootworkName { get; set; }
 		public int? GuardKey { get; set; }
@@ -29,5 +35,15 @@
 		public string TechniqueName2 { get; set; }
 		public string TechniqueName3 { get; set; }
 		public int TempoNumber { get; set; }
+
+		public string GuardFullName => Formatter.MultiPart(GuardName, AlternateGuardName, GuardModifierName);
+		public string IntermediateGuardFullName => Formatter.MultiPart(IntermediateGuardName, AlternateIntermediateGuardName, IntermediateGuardModifierName);
+
+		public string TargetFull => Formatter.Join("or", TargetName1, TargetName2, TargetName3);
+
+		public string TechniqueFullName1 => Formatter.MultiPart(TechniqueName1, AlternateTechniqueName1);
+		public string TechniqueFullName2 => Formatter.MultiPart(TechniqueName2, AlternateTechniqueName2);
+		public string TechniqueFullName3 => Formatter.MultiPart(TechniqueName3, AlternateTechniqueName3);
+		public string TechniqueFullName => Formatter.Join("and", TechniqueFullName1, TechniqueFullName2, TechniqueFullName3);
 	}
 }

@@ -1,4 +1,4 @@
-﻿CREATE TABLE dbo.PlayStep
+﻿CREATE TABLE Interpretations.PlayStep
 (
     PlayKey INT NOT NULL,
     TempoNumber INT NOT NULL,

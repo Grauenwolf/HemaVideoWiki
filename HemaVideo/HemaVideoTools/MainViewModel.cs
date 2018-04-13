@@ -25,6 +25,14 @@ namespace HemaVideoTools
 		{
 			BookList.Clear();
 			BookList.AddRange(await m_ApiClient.ApiBookGetAsync());
+
+			var techniques = await m_ApiClient.ApiTagTechniqueGetAsync();
+			var guards = await m_ApiClient.ApiTagGuardGetAsync();
+			var footwork = await m_ApiClient.ApiTagFootworkGetAsync();
+			var targets = await m_ApiClient.ApiTagTargetGetAsync();
+			var guardModifiers = await m_ApiClient.ApiTagGuardModifierGetAsync();
+
+			var tag = new Tags(footwork, techniques, targets, guards, guardModifiers);
 		}
 
 		private async void MainViewModel_PropertyChanged(object sender, PropertyChangedEventArgs e)

@@ -4,7 +4,7 @@
         CONSTRAINT PK_Play PRIMARY KEY,
     SectionKey INT NOT NULL
         REFERENCES Sources.Section (SectionKey),
-    VariantName NVARCHAR(200) NULL,
+    VariantName NVARCHAR(200) NULL CONSTRAINT C_Play_VariantName CHECK (LEN(VariantName) >0),
     CreatedByUserKey INT NOT NULL
         REFERENCES dbo.AspNetUsers (UserKey),
     CreatedDate DATETIME2(7) NOT NULL

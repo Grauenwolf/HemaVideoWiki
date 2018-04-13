@@ -13,7 +13,7 @@ namespace HemaVideoWiki.Controllers
 {
 	[Produces("application/json")]
 	[Route("api/account")]
-	public class AccountApiController : Controller
+	public class AccountApiController : SecureController
 	{
 		private readonly UserManager<ApplicationUser> m_UserManager;
 		private readonly UserManager<ApplicationUser> _userManager;
@@ -24,18 +24,13 @@ namespace HemaVideoWiki.Controllers
 		public AccountApiController(UserManager<ApplicationUser> userManager,
 			SignInManager<ApplicationUser> signInManager,
 			IEmailSender emailSender,
-			ILogger<AccountController> logger)
+			ILogger<AccountController> logger) : base(userManager)
 		{
 			m_UserManager = userManager ?? throw new ArgumentNullException(nameof(userManager));
 			_userManager = userManager;
 			_signInManager = signInManager;
 			_emailSender = emailSender;
 			_logger = logger;
-		}
-
-		private async Task<ApplicationUser> GetCurrentUserAsync()
-		{
-			return await m_UserManager.GetUserAsync(HttpContext.User);
 		}
 
 		[HttpPost("logout")]

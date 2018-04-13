@@ -33,16 +33,19 @@
 				<TextBlock Text="TODO: Book Details" />
 			</TabItem>
 			<TabItem Header="Videos">
-				<DataGrid ItemsSource="{Binding SectionDetail.Videos}" AutoGenerateColumns="True" />
+				<!-- TODO: Make the StartTime column editable and add a Save button. -->
+				<DataGrid ItemsSource="{Binding SectionDetail.Videos}" AutoGenerateColumns="True" IsReadOnly="True" />
 			</TabItem>
 			<TabItem Header="Plays">
-				<DataGrid ItemsSource="{Binding SectionDetail.Plays}" AutoGenerateColumns="True" />
+				<!-- TODO: Add "New" button. -->
+				<!-- TODO: Add row level "Edit" and "Copy" buttons. -->
+				<DataGrid ItemsSource="{Binding SectionDetail.Plays}" AutoGenerateColumns="True"  IsReadOnly="True" />
 			</TabItem>
 			<TabItem Header="Weapons">
-				<DataGrid ItemsSource="{Binding SectionDetail.Weapons}" AutoGenerateColumns="True" />
+				<DataGrid ItemsSource="{Binding SectionDetail.Weapons}" AutoGenerateColumns="True"  IsReadOnly="True" />
 			</TabItem>
 			<TabItem Header="Authors">
-				<DataGrid ItemsSource="{Binding BookDetail.Authors}" AutoGenerateColumns="True" />
+				<DataGrid ItemsSource="{Binding BookDetail.Authors}" AutoGenerateColumns="True"  IsReadOnly="True" />
 			</TabItem>
 		</TabControl>
 	</DockPanel>

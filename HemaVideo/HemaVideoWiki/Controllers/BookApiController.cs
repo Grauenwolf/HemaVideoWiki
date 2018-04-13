@@ -1,7 +1,6 @@
 ﻿using HemaVideoLib.Models;
 using HemaVideoLib.Services;
 using HemaVideoWiki.Models;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -12,61 +11,59 @@ namespace HemaVideoWiki.Controllers
 {
 	[Produces("application/json")]
 	[Route("api/book")]
-	public class BookApiController : Controller
+	public class BookApiController : SecureController
 	{
 		private readonly BookService m_BookService;
 		private readonly VideoService m_VideoService;
+		private readonly PlayService m_PlayService;
 
-		//readonly IHttpContextAccessor m_ContextAccessor;
-		private readonly UserManager<ApplicationUser> m_UserManager;
-
-		public BookApiController(BookService bookService, VideoService videoService, UserManager<ApplicationUser> userManager)
+		public BookApiController(BookService bookService, VideoService videoService, PlayService playService, UserManager<ApplicationUser> userManager) : base(userManager)
 		{
-			m_UserManager = userManager ?? throw new ArgumentNullException(nameof(userManager));
 			m_VideoService = videoService ?? throw new ArgumentNullException(nameof(videoService));
 			m_BookService = bookService ?? throw new ArgumentNullException(nameof(bookService));
-		}
-
-		private async Task<ApplicationUser> GetCurrentUserAsync()
-		{
-			return await m_UserManager.GetUserAsync(HttpContext.User);
+			m_PlayService = playService ?? throw new ArgumentNullException(nameof(playService));
 		}
 
 		[HttpGet("{bookKey}")]
-		public Task<BookSummary> GetBook([FromRoute] int bookKey)
+		public async Task<BookSummary> GetBook([FromRoute] int bookKey)
 		{
-			return m_BookService.GetBookSummaryAsync(bookKey);
+			return await m_BookService.GetBookSummaryAsync(bookKey, await GetCurrentUserAsync());
 		}
 
 		[HttpGet("{bookKey}/detail")]
-		public Task<BookDetail> GetBookDetail([FromRoute] int bookKey)
+		public async Task<BookDetail> GetBookDetailAsync([FromRoute] int bookKey)
 		{
-			return m_BookService.GetBookDetailAsync(bookKey, false);
+			return await m_BookService.GetBookDetailAsync(bookKey, false, await GetCurrentUserAsync());
 		}
 
 		[HttpGet("")]
-		public Task<List<BookSummary>> GetAllBooks()
+		public async Task<List<BookSummary>> GetAllBooksAsync()
 		{
-			return m_BookService.GetBooksAsync();
+			return await m_BookService.GetBooksAsync(await GetCurrentUserAsync());
 		}
 
 		[HttpGet("{BookKey}/{SectionKey}")]
-		public Task<SectionDetail> GetSectionDetail([FromRoute] int SectionKey)
+		public async Task<SectionDetail> GetSectionDetail([FromRoute] int SectionKey)
 		{
-			return m_BookService.GetSectionDetailAsync(SectionKey, false);
+			return await m_BookService.GetSectionDetailAsync(SectionKey, false, await GetCurrentUserAsync());
 		}
 
 		[HttpPost("addVideo")]
 		public async Task<int> AddVideo([FromBody] NewVideo video)
 		{
-			return await m_VideoService.AddVideo(await GetCurrentUserAsync(), video);
+			return await m_VideoService.AddVideo(video, await GetCurrentUserAsync());
 		}
 
-		//[HttpGet("whoAmI")]
-		//public async Task<ApplicationUser> WhoAmI()
-		//{
-		//	ApplicationUser applicationUser = await GetCurrentUserAsync();
-		//	return applicationUser;
-		//}
+		[HttpPost("updateVideo")]
+		public async Task UpdateVideo([FromBody] UpdatedVideo video)
+		{
+			await m_VideoService.UpdateVideoAsync(video, await GetCurrentUserAsync());
+		}
+
+		[HttpPost("updatePlay")]
+		public async Task<int> UpdatePlay([FromBody] Play play)
+		{
+			return await m_PlayService.UpdatePlayAsync(play, await GetCurrentUserAsync());
+		}
 	}
 }

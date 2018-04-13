@@ -1,0 +1,63 @@
+﻿<Window x:Class="HemaVideoTools.PlayEditor"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HemaVideoTools"
+        mc:Ignorable="d"
+		x:Name="Root"
+        Title="PlayEditor" Height="450" Width="800">
+	<DockPanel>
+		<GroupBox Header="Play Info" DockPanel.Dock="Top">
+			<StackPanel Orientation="Horizontal">
+				<Label Content="Section" />
+				<TextBox IsReadOnly="True" Text="{Binding SectionName}" />
+				<Label Content="Variant Name" />
+				<TextBox Text="{Binding Play.VariantName}" Width="250" />
+				<Button Content="Save" Command="{Binding SaveCommand}" />
+			</StackPanel>
+		</GroupBox>
+		<GroupBox Header="Steps">
+			<GroupBox.Header>
+				<StackPanel Orientation="Horizontal">
+					<TextBlock Text="Steps" />
+					<Button HorizontalAlignment="Right" Content="Add Step" Command="{Binding AddStepCommand}" />
+				</StackPanel>
+			</GroupBox.Header>
+			<ItemsControl ItemsSource="{Binding Play.Steps}">
+				<ItemsControl.ItemTemplate>
+					<DataTemplate>
+						<StackPanel Orientation="Horizontal">
+
+							<StackPanel Orientation="Vertical">
+								<Button Content="Up" Command="{Binding MoveUpCommand}" />
+								<StackPanel Orientation="Horizontal">
+									<RadioButton Content="Agent" />
+									<RadioButton Content="Patient" />
+									<TextBox IsReadOnly="True" Text="{Binding TempoNumber}" />
+								</StackPanel>
+								<Button Content="Up" Command="{Binding MoveDownCommand}" />
+							</StackPanel>
+
+							<StackPanel>
+								<Label Content="Footwork" />
+								<ComboBox ItemsSource="{Binding DataContext.Tags.Footwork, ElementName=Root}" SelectedValuePath="FootworkKey" SelectedValue="{Binding FootworkKey}" />
+							</StackPanel>
+
+							<StackPanel>
+								<Label Content="Techniques" />
+								<ComboBox ItemsSource="{Binding DataContext.Tags.Techniques, ElementName=Root}" SelectedValuePath="TechniqueKey" SelectedValue="{Binding TechniqueKey1}" />
+								<ComboBox ItemsSource="{Binding DataContext.Tags.Techniques, ElementName=Root}" SelectedValuePath="TechniqueKey" SelectedValue="{Binding TechniqueKey2}" />
+								<ComboBox ItemsSource="{Binding DataContext.Tags.Techniques, ElementName=Root}" SelectedValuePath="TechniqueKey" SelectedValue="{Binding TechniqueKey3}" />
+							</StackPanel>
+
+							<!-- Targets -->
+							<!-- Guards -->
+							<!-- Notes -->
+						</StackPanel>
+					</DataTemplate>
+				</ItemsControl.ItemTemplate>
+			</ItemsControl>
+		</GroupBox>
+	</DockPanel>
+</Window>
