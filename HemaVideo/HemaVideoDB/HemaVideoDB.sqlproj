@@ -73,6 +73,7 @@
     <Folder Include="Data\One Time" />
     <Folder Include="Sources\Programability" />
     <Folder Include="dbo\Views" />
+    <Folder Include="Security" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Localhost.publish.xml" />
@@ -106,7 +107,7 @@
     <Build Include="Sources\Tables\SectionWeaponMap.sql" />
     <Build Include="Sources\Sources.sql" />
     <Build Include="Interpretations\Tables\Play.sql" />
-    <Build Include="Tags\Sources.sql" />
+    <Build Include="Tags\Tags.sql" />
     <Build Include="Tags\Tables\Weapon.sql" />
     <None Include="Data\One Time\Meyer.sql" />
     <None Include="Data\One Time\Díaz de Viedma.sql" />
@@ -136,6 +137,8 @@
     <Build Include="dbo\Views\SectionEditor.sql" />
     <Build Include="dbo\Views\VideoEditor.sql" />
     <Build Include="dbo\Views\PlayEditor.sql" />
+    <Build Include="Security\HemaWeb.sql" />
+    <Build Include="dbo\dbo.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Script.PostDeployment.sql" />

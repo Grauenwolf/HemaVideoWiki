@@ -31,3 +31,5 @@ FROM Interpretations.Play p
     LEFT JOIN Tags.Measure m
         ON m.MeasureKey = p.MeasureKey;
 
+GO
+GRANT SELECT ON Interpretations.PlayDetail TO HemaWeb;

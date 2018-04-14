@@ -10,7 +10,8 @@
     SysEndTime DATETIME2 GENERATED ALWAYS AS ROW END NOT NULL,
     PERIOD FOR SYSTEM_TIME(SysStartTime, SysEndTime)
 )
-WITH (SYSTEM_VERSIONING = ON (HISTORY_TABLE = Tags.Footwork_History) );
-
+WITH (SYSTEM_VERSIONING = ON (HISTORY_TABLE = Tags.Footwork_History));
+GO
+GRANT SELECT ON Tags.Footwork TO HemaWeb;
 
 

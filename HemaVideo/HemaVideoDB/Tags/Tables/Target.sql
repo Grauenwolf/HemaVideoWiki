@@ -10,3 +10,5 @@
     PERIOD FOR SYSTEM_TIME(SysStartTime, SysEndTime)
 )
 WITH (SYSTEM_VERSIONING = ON (HISTORY_TABLE = Tags.Target_History) );
+GO
+GRANT SELECT ON Tags.Target TO HemaWeb;

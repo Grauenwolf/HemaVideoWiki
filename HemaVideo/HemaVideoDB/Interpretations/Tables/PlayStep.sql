@@ -49,3 +49,5 @@
     PERIOD FOR SYSTEM_TIME(SysStartTime, SysEndTime)
 )
 WITH (SYSTEM_VERSIONING = ON (HISTORY_TABLE = Interpretations.PlayStep_History));
+GO
+GRANT SELECT, INSERT, UPDATE, DELETE ON Interpretations.PlayStep TO HemaWeb;

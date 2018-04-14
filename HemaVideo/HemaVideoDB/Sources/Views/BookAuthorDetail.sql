@@ -12,3 +12,5 @@ FROM Sources.BookAuthor ba
         ON ba.AuthorKey = a.AuthorKey
     INNER JOIN Sources.Book b
         ON b.BookKey = ba.BookKey;
+GO
+GRANT SELECT ON Sources.BookAuthorDetail TO HemaWeb;

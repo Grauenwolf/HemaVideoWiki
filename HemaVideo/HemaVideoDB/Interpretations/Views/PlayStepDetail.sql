@@ -54,4 +54,6 @@ FROM Interpretations.PlayStep ps
         ON ig.GuardKey = ps.IntermediateGuardKey;
 
 
+GO
+GRANT SELECT ON Interpretations.PlayStepDetail TO HemaWeb;
 

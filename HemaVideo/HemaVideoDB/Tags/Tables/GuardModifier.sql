@@ -10,4 +10,6 @@
     PERIOD FOR SYSTEM_TIME(SysStartTime, SysEndTime)
 )
 WITH (SYSTEM_VERSIONING = ON (HISTORY_TABLE = Tags.GuardModifier_History) );
+GO
+GRANT SELECT ON Tags.GuardModifier TO HemaWeb;
 

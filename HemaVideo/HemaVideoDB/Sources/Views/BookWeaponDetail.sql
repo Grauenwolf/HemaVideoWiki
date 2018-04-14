@@ -15,3 +15,5 @@ FROM Sources.Section s
         ON w2.WeaponKey = swm.SecondaryWeaponKey
     INNER JOIN Sources.Book b
         ON b.BookKey = s.BookKey;
+GO
+GRANT SELECT ON Sources.BookWeaponDetail TO HemaWeb;

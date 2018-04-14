@@ -18,3 +18,5 @@ FROM Sources.SectionWeaponMap swm
 
 
 
+GO
+GRANT SELECT ON Sources.SectionWeaponMapDetail TO HemaWeb;

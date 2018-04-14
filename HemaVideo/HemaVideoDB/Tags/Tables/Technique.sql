@@ -12,3 +12,5 @@
 
 )
 WITH (SYSTEM_VERSIONING = ON (HISTORY_TABLE = Tags.Technique_History) );
+GO
+GRANT SELECT ON Tags.Technique TO HemaWeb;

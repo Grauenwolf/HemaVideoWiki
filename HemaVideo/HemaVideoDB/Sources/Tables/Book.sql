@@ -14,3 +14,5 @@
     PERIOD FOR SYSTEM_TIME(SysStartTime, SysEndTime)
 )
 WITH (SYSTEM_VERSIONING = ON (HISTORY_TABLE = Sources.Book_History) );
+GO
+GRANT SELECT ON Sources.Book TO HemaWeb;

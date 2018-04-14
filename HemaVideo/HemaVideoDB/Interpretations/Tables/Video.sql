@@ -60,3 +60,6 @@ ON Interpretations.Video
     VideoServiceVideoId,
     StartTime
 );
+
+GO
+GRANT SELECT, INSERT, UPDATE ON Interpretations.Video TO HemaWeb;

@@ -15,3 +15,5 @@ SELECT s.SectionKey,
 FROM Sources.Section s
     INNER JOIN Sources.Book b
         ON b.BookKey = s.BookKey;
+GO
+GRANT SELECT ON Sources.SectionDetail TO HemaWeb;
