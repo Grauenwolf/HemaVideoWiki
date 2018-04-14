@@ -10,8 +10,12 @@
         REFERENCES Sources.Section (SectionKey),
     SectionName NVARCHAR(250) NOT NULL,
 	PageReference NVARCHAR(50) NULL,
-	DisplayOrder FLOAT NOT NULL
-);
+	DisplayOrder FLOAT NOT NULL,
+    SysStartTime DATETIME2 GENERATED ALWAYS AS ROW START NOT NULL,
+    SysEndTime DATETIME2 GENERATED ALWAYS AS ROW END NOT NULL,
+    PERIOD FOR SYSTEM_TIME(SysStartTime, SysEndTime)
+)
+WITH (SYSTEM_VERSIONING = ON (HISTORY_TABLE = Sources.Section_History) );
 
 GO
 

@@ -43,5 +43,9 @@
     IntermediateGuardModifierKey INT NULL
         CONSTRAINT FK_PlayStep_IntermediateGuardModifier
         REFERENCES Tags.GuardModifier (GuardModifierKey),
-    Notes NVARCHAR(MAX) NULL
-);
+    Notes NVARCHAR(MAX) NULL,
+    SysStartTime DATETIME2 GENERATED ALWAYS AS ROW START NOT NULL,
+    SysEndTime DATETIME2 GENERATED ALWAYS AS ROW END NOT NULL,
+    PERIOD FOR SYSTEM_TIME(SysStartTime, SysEndTime)
+)
+WITH (SYSTEM_VERSIONING = ON (HISTORY_TABLE = Interpretations.PlayStep_History));

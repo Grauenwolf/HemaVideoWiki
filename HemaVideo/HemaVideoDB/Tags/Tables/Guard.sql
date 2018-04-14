@@ -5,5 +5,10 @@
     GuardName NVARCHAR(100) NOT NULL
         CONSTRAINT UX_Guard_GuardName
         UNIQUE,
-    AlternateGuardName NVARCHAR(100) NULL
-);
+    AlternateGuardName NVARCHAR(100) NULL,
+    SysStartTime DATETIME2 GENERATED ALWAYS AS ROW START NOT NULL,
+    SysEndTime DATETIME2 GENERATED ALWAYS AS ROW END NOT NULL,
+    PERIOD FOR SYSTEM_TIME(SysStartTime, SysEndTime)
+)
+WITH (SYSTEM_VERSIONING = ON (HISTORY_TABLE = Tags.Guard_History) );
+

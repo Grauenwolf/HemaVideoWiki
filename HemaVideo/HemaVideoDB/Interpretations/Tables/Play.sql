@@ -30,4 +30,9 @@
     MeasureKey INT NULL
         CONSTRAINT FK_Play_Measure
         REFERENCES Tags.Measure (MeasureKey),
-);
+	Notes NVARCHAR(max) NULL,
+    SysStartTime DATETIME2 GENERATED ALWAYS AS ROW START NOT NULL,
+    SysEndTime DATETIME2 GENERATED ALWAYS AS ROW END NOT NULL,
+    PERIOD FOR SYSTEM_TIME(SysStartTime, SysEndTime)
+)
+WITH (SYSTEM_VERSIONING = ON (HISTORY_TABLE = Interpretations.Play_History));

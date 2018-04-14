@@ -17,7 +17,7 @@
 				<Button Content="Save" Command="{Binding SaveCommand}" />
 			</StackPanel>
 		</GroupBox>
-		<GroupBox Header="Steps">
+		<GroupBox>
 			<GroupBox.Header>
 				<StackPanel Orientation="Horizontal">
 					<TextBlock Text="Steps" />

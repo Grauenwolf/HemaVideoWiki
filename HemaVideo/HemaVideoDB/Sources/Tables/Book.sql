@@ -8,5 +8,9 @@
     AlternateBookName NVARCHAR(500) NULL,
     BookSlug CHAR(50) NOT NULL
         CONSTRAINT UX_Book_BookSlug
-        UNIQUE
-);
+        UNIQUE,
+    SysStartTime DATETIME2 GENERATED ALWAYS AS ROW START NOT NULL,
+    SysEndTime DATETIME2 GENERATED ALWAYS AS ROW END NOT NULL,
+    PERIOD FOR SYSTEM_TIME(SysStartTime, SysEndTime)
+)
+WITH (SYSTEM_VERSIONING = ON (HISTORY_TABLE = Sources.Book_History) );
