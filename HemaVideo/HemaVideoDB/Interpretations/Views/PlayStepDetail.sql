@@ -1,7 +1,7 @@
 ﻿CREATE VIEW Interpretations.PlayStepDetail
 AS
 SELECT p.SectionKey,
-	   ps.PlayKey,
+       ps.PlayKey,
        ps.TempoNumber,
        ps.Actor,
        ps.FootworkKey,
@@ -30,7 +30,9 @@ SELECT p.SectionKey,
        g.GuardName,
        g.AlternateGuardName,
        ig.GuardName AS IntermediateGuardName,
-       ig.AlternateGuardName AS IntermediateAlternateGuardName
+       ig.AlternateGuardName AS IntermediateAlternateGuardName,
+       gm.GuardModifierName,
+       igm.GuardModifierName AS IntermediateGuardModifierName
 FROM Interpretations.PlayStep ps
     INNER JOIN Interpretations.Play p
         ON p.PlayKey = ps.PlayKey
@@ -51,7 +53,11 @@ FROM Interpretations.PlayStep ps
     LEFT JOIN Tags.Guard g
         ON g.GuardKey = ps.GuardKey
     LEFT JOIN Tags.Guard ig
-        ON ig.GuardKey = ps.IntermediateGuardKey;
+        ON ig.GuardKey = ps.IntermediateGuardKey
+    LEFT JOIN Tags.GuardModifier gm
+        ON gm.GuardModifierKey = ps.GuardModifierKey
+    LEFT JOIN Tags.GuardModifier igm
+        ON igm.GuardModifierKey = ps.IntermediateGuardModifierKey;
 
 
 GO

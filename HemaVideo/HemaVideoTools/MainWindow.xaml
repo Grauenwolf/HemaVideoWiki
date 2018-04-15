@@ -12,6 +12,7 @@
 	mc:Ignorable="d"
 	Closed="Window_Closed"
 	Loaded="Window_Loaded"
+	WindowState="{Binding WindowState}"
 	Title="MainWindow">
 
 	<DockPanel>

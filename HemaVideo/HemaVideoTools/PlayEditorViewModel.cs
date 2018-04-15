@@ -1,6 +1,7 @@
 ﻿using HemaVideoTools.Services;
 using System;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
@@ -12,6 +13,7 @@ namespace HemaVideoTools
 	{
 		readonly Client m_ApiClient;
 		readonly Func<Task> m_OnSave;
+		int m_BookKey;
 
 		public PlayEditorViewModel(Client apiClient, Tags tags, SectionDetail section, Func<Task> onSave)
 		{
@@ -23,6 +25,7 @@ namespace HemaVideoTools
 			Play.Steps = new ObservableCollection<PlayStep>();
 			foreach (var step in Play.Steps)
 				step.PropertyChanged += Step_PropertyChanged;
+			m_BookKey = section.BookKey.Value;
 		}
 
 		public PlayEditorViewModel(Client apiClient, Tags tags, SectionDetail section, Func<Task> onSave, PlayDetail play, bool isCopy) : this(apiClient, tags, section, onSave)
@@ -75,6 +78,13 @@ namespace HemaVideoTools
 		public Play Play => GetNew<Play>();
 
 		public ICommand SaveCommand => GetCommand(async () => await SaveAsync());
+
+		void ShowInBrowser()
+		{
+			Process.Start($"http://hemavideos.azurewebsites.net/demo/book/{m_BookKey}/section/{Play.SectionKey}#Play{Play.PlayKey}");
+		}
+
+		public ICommand ShowInBrowserCommand => GetCommand(ShowInBrowser);
 
 		public string SectionName { get; }
 		public Tags Tags { get; }

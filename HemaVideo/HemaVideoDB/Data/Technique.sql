@@ -453,7 +453,10 @@ VALUES
 (500,'Feint Riverso', NULL),
 (501,'Buckler defends head', NULL),
 (502,'Attack', NULL),
-(503,'Feint Stramazone', NULL)
+(503,'Feint Stramazone', NULL),
+(504,'Void', NULL),
+(505,'Sword under Buckler', NULL),
+(506,'Half Mandritto', NULL)
 ;
 
 

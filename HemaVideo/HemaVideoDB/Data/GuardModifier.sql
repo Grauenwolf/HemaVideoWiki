@@ -16,7 +16,9 @@ VALUES
 (4, 'Wide stance'),
 (5, 'Inside'),
 (6, 'Outside'),
-(7, 'Below');
+(7, 'Below'),
+(8, 'Strained'),
+(9, 'Perpendicular');
 
 
 MERGE INTO Tags.GuardModifier t

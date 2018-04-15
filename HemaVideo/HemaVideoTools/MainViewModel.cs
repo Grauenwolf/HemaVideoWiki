@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 using Tortuga.Anchor.Collections;
 
@@ -19,6 +20,7 @@ namespace HemaVideoTools
 
 		public ICommand AddPlayCommand => GetCommand(AddPlay);
 		public BookSummary Book { get => Get<BookSummary>(); set => Set(value); }
+		public WindowState WindowState { get => Get<WindowState>(); set => Set(value); }
 		public BookDetail BookDetail { get => Get<BookDetail>(); set => Set(value); }
 		public ObservableCollectionExtended<BookSummary> BookList => GetNew<ObservableCollectionExtended<BookSummary>>();
 		public ICommand CopyMarkedPlayCommand => GetCommand(CopyMarkedPlay);
@@ -61,28 +63,32 @@ namespace HemaVideoTools
 		void AddPlay()
 		{
 			var vm = new PlayEditorViewModel(m_ApiClient, Tags, SectionDetail, RefreshSectionDetailAsync);
-			var window = new PlayEditor() { DataContext = vm };
-			window.Show();
+			ShowPlayEditor(vm);
 		}
 
 		void CopyMarkedPlay()
 		{
 			var vm = new PlayEditorViewModel(m_ApiClient, Tags, SectionDetail, RefreshSectionDetailAsync, MarkedPlay, true);
-			var window = new PlayEditor() { DataContext = vm };
-			window.Show();
+			ShowPlayEditor(vm);
 		}
 
 		void CopyPlay(PlayDetail play)
 		{
 			var vm = new PlayEditorViewModel(m_ApiClient, Tags, SectionDetail, RefreshSectionDetailAsync, play, true);
-			var window = new PlayEditor() { DataContext = vm };
-			window.Show();
+			ShowPlayEditor(vm);
 		}
 
 		void EditPlay(PlayDetail play)
 		{
 			var vm = new PlayEditorViewModel(m_ApiClient, Tags, SectionDetail, RefreshSectionDetailAsync, play, false);
+			ShowPlayEditor(vm);
+		}
+
+		private void ShowPlayEditor(PlayEditorViewModel vm)
+		{
 			var window = new PlayEditor() { DataContext = vm };
+			if (WindowState == WindowState.Maximized)
+				window.WindowState = WindowState.Maximized;
 			window.Show();
 		}
 
