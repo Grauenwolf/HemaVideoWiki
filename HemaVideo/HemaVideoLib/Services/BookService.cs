@@ -46,11 +46,12 @@ namespace HemaVideoLib.Services
 			return DataSource(currentUser).From("Sources.Book", filter).ToObject<BookSummary>().ExecuteAsync();
 		}
 
-		public async Task<SectionDetail> GetSectionDetailAsync(int sectionKey, bool includeSubsectionWeapons, IUser currentUser)
+		public async Task<SectionDetail> GetSectionDetailAsync(int sectionKey, bool includeSubsectionWeapons, bool includeSubsectionPlays, IUser currentUser)
 		{
 			var filter = new { sectionKey };
 			var section = await DataSource(currentUser).From("Sources.SectionDetail", filter).ToObject<SectionDetail>().ExecuteAsync();
-			section.Subsections.AddRange(await GetSubsectionsAsync(section.BookKey, section.SectionKey, includeSubsectionWeapons, currentUser));
+			section.Subsections.AddRange(await GetSubsectionsAsync(section.BookKey, section.SectionKey, includeSubsectionWeapons, includeSubsectionPlays, currentUser));
+
 			section.Videos.AddRange(await DataSource(currentUser).From("Interpretations.Video", filter).ToCollection<Video>().ExecuteAsync());
 			section.Weapons.AddRange(await DataSource(currentUser).From("Sources.SectionWeaponMapDetail", filter).ToCollection<WeaponVersus>().ExecuteAsync());
 
@@ -80,7 +81,7 @@ namespace HemaVideoLib.Services
 			return result;
 		}
 
-		async Task<List<SectionSummary>> GetSubsectionsAsync(int bookKey, int sectionKey, bool includeWeapons, IUser currentUser)
+		async Task<List<SectionSummary>> GetSubsectionsAsync(int bookKey, int sectionKey, bool includeWeapons, bool includePlays, IUser currentUser)
 		{
 			//This could be more efficient using a recursive CTE
 
@@ -94,6 +95,13 @@ namespace HemaVideoLib.Services
 				var weapons = await DataSource(currentUser).From("Sources.SectionWeaponMapDetail", filter).ToCollection<WeaponVersusSummary>().ExecuteAsync();
 				foreach (var section in sections)
 					section.Weapons.AddRange(weapons.Where(x => x.SectionKey == section.SectionKey));
+			}
+
+			if (includePlays)
+			{
+				var plays = await DataSource(currentUser).From("Interpretations.PlayDetail", filter).ToCollection<PlaySummary>().ExecuteAsync();
+				foreach (var section in sections)
+					section.Plays.AddRange(plays.Where(x => x.SectionKey == section.SectionKey));
 			}
 
 			List<SectionSummary> result = sections.Where(x => x.ParentSectionKey == sectionKey).ToList();

@@ -11,7 +11,12 @@ SELECT s.SectionKey,
            SELECT COUNT(*)
            FROM Interpretations.Video v
            WHERE v.SectionKey = s.SectionKey
-       ) AS VideoCount
+       ) AS VideoCount,
+       (
+           SELECT COUNT(*)
+           FROM Interpretations.Play p
+           WHERE p.SectionKey = s.SectionKey
+       ) AS PlayCount
 FROM Sources.Section s
     INNER JOIN Sources.Book b
         ON b.BookKey = s.BookKey;

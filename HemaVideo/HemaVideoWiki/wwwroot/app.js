@@ -29,4 +29,7 @@ function addVideo(sectionKey, url, description, author, startTime) {
         }
     });
 }
+function search(bookKey, guardKey, techniqueKey, footworkKey, targetKey) {
+    window.location.href = "/demo/search?bookKey=" + bookKey + "&guardKey=" + guardKey + "&techniqueKey=" + techniqueKey + "&footworkKey=" + footworkKey + "&targetKey=" + targetKey;
+}
 //# sourceMappingURL=app.js.map

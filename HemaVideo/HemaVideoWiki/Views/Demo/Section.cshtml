@@ -15,14 +15,13 @@
 	}
 </div>
 
-@if (Model.Plays.Count > 0)
+@if (Model.TotalPlayCount > 0)
 {
 	<h2>Plays</h2>
-	<h4>Warning: This is just a summary of the play. See the original text or translation for details.</h4>
 
 	@foreach (var play in Model.Plays)
 	{
-		<h3>@(play.VariantName ?? "Basic Play")</h3>
+		<h3 id="@("Play" + play.PlayKey)">@(play.VariantName ?? "Basic Play")</h3>
 
 		<table class="gridtable">
 			<tr><th>Agent</th><th>Patient</th><th>Measure</th></tr>
@@ -67,7 +66,23 @@
 			}
 		</table>
 	}
+	@if (Model.Plays.Count > 0)
+	{
+		<h5>Warning: This is just a summary of each play. See the original text or translation for details.</h5>
+	}
 
+	@foreach (var play in Model.Subsections.ChildPlays())
+	{
+		<div>
+			<a href="~/demo/book/@Model.BookKey/section/@(play.SectionKey)#Play@(play.PlayKey)">
+				@play.SectionName
+				@if (!string.IsNullOrEmpty(play.VariantName))
+				{
+					@( " (" + play.VariantName + ")" )
+				}
+			</a>
+		</div>
+	}
 }
 
 <h2>Videos</h2>

@@ -139,6 +139,10 @@
     <Build Include="dbo\Views\PlayEditor.sql" />
     <Build Include="Security\HemaWeb.sql" />
     <Build Include="dbo\dbo.sql" />
+    <Build Include="Interpretations\Views\TechniquesByBook.sql" />
+    <Build Include="Interpretations\Views\TargetsByBook.sql" />
+    <Build Include="Interpretations\Views\FootworkByBook.sql" />
+    <Build Include="Interpretations\Views\GuardsByBook.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Script.PostDeployment.sql" />

@@ -1,4 +1,5 @@
-﻿using HemaVideoLib.Services;
+﻿using HemaVideoLib.Models;
+using HemaVideoLib.Services;
 using HemaVideoWiki.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -12,16 +13,41 @@ namespace HemaVideoWiki.Controllers
 	public class DemoController : SecureController
 	{
 		private readonly BookService m_BookService;
+		private readonly PlayService m_PlayService;
 
-		public DemoController(BookService bookService, UserManager<ApplicationUser> userManager) : base(userManager)
+		public DemoController(BookService bookService, PlayService playService, UserManager<ApplicationUser> userManager) : base(userManager)
 		{
 			m_BookService = bookService ?? throw new ArgumentNullException(nameof(bookService));
+			m_PlayService = playService ?? throw new ArgumentNullException(nameof(playService));
 		}
 
 		public async Task<IActionResult> Index()
 		{
 			var model = await m_BookService.GetBooksAndAuthorsAsync(await GetCurrentUserAsync());
 			return View(model);
+		}
+
+		[HttpGet("book/{bookKey}/play/search")]
+		public async Task<IActionResult> Search([FromRoute] int bookKey, [FromQuery] int? guardKey = null, [FromQuery] int? techniqueKey = null, [FromQuery] int? footworkKey = null, [FromQuery]  int? targetKey = null)
+		{
+			//bookKey: number, guardKey: number, techniqueKey: number, footworkKey: number, targetKey: number
+
+			var searchCriteria = new PlaySearchCriteria()
+			{
+				BookKey = bookKey,
+				GuardKey = guardKey,
+				TechniqueKey = techniqueKey,
+				FootworkKey = footworkKey,
+				TargetKey = targetKey
+			};
+
+			//if (searchCriteria.IsEmpty) //do we really want to support an empty search page?
+			//	return View(new List<PlaySummary>());
+			//else
+			//{
+			var model = await m_PlayService.PlaySearchAsync(searchCriteria, await GetCurrentUserAsync());
+			return View(model);
+			//}
 		}
 
 		[HttpGet("book/{bookKey}")]
@@ -34,13 +60,15 @@ namespace HemaVideoWiki.Controllers
 				model.Sections.FilterSectionsByWeapon(weaponKey.Value, secondaryWeaponKey);
 			}
 
+			model.Stats = await m_PlayService.GetStats(bookKey, await GetCurrentUserAsync());
+
 			return View(model);
 		}
 
 		[HttpGet("book/{bookKey}/section/{sectionKey}")]
 		public async Task<IActionResult> Section([FromRoute]int bookKey, [FromRoute] int sectionKey, [FromQuery] int? weaponKey = null, [FromQuery] int? secondaryWeaponKey = null)
 		{
-			var model = await m_BookService.GetSectionDetailAsync(sectionKey, weaponKey.HasValue, await GetCurrentUserAsync());
+			var model = await m_BookService.GetSectionDetailAsync(sectionKey, weaponKey.HasValue, true, await GetCurrentUserAsync());
 
 			if (weaponKey.HasValue)
 			{

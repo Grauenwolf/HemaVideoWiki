@@ -27,9 +27,12 @@ namespace HemaVideoLib.Models
 		public string SectionName { get; set; }
 		public SectionSummaryCollection Subsections { get; } = new SectionSummaryCollection();
 		public int TotalVideoCount => VideoCount + Subsections.Sum(x => x.TotalVideoCount);
+		public int TotalPlayCount => PlayCount + Subsections.Sum(x => x.TotalPlayCount);
 		public int VideoCount { get; set; }
+		public int PlayCount { get; set; }
 
 		public List<WeaponVersusSummary> Weapons { get; } = new List<WeaponVersusSummary>();
+		public List<PlaySummary> Plays { get; } = new List<PlaySummary>();
 
 		/// <summary>
 		/// Determines whether thsi section contains the specified weapon.
@@ -50,6 +53,56 @@ namespace HemaVideoLib.Models
 					return true;
 			}
 			return Subsections.Any(x => x.ContainsWeapon(weaponKey, secondaryWeaponKey));
+		}
+
+		public string VideoPlayCount(int maxDepth)
+		{
+			var parts = new List<string>();
+			if (Depth <= maxDepth) //only show the local
+			{
+				if (PlayCount > 1)
+				{
+					parts.Add(PlayCount + " plays");
+				}
+				else if (PlayCount == 1)
+				{
+					parts.Add("1 play");
+				}
+
+				if (VideoCount > 1)
+				{
+					parts.Add(VideoCount + " videos");
+				}
+				else if (VideoCount == 1)
+				{
+					parts.Add("1 video");
+				}
+			}
+			else
+			{
+				if (TotalPlayCount > 1)
+				{
+					parts.Add(TotalPlayCount + " plays");
+				}
+				else if (TotalPlayCount == 1)
+				{
+					parts.Add("1 play");
+				}
+
+				if (TotalVideoCount > 1)
+				{
+					parts.Add(TotalVideoCount + " videos");
+				}
+				else if (TotalVideoCount == 1)
+				{
+					parts.Add("1 video");
+				}
+			}
+
+			if (parts.Count > 0)
+				return " [" + string.Join(", ", parts) + "]";
+			else
+				return "";
 		}
 	}
 }

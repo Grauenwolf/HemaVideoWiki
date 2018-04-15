@@ -1,0 +1,20 @@
+﻿@model HemaVideoLib.Models.PlaySearchResults
+
+@{
+	ViewData["Title"] = "Search";
+}
+
+<h2>Plays in @(Model.Book?.BookName) containing @(string.Join(", ", Model.SearchTerms))</h2>
+
+@foreach (var play in Model.Plays)
+{
+	<div>
+		<a href="~/demo/book/@Model.SearchCriteria.BookKey/section/@(play.SectionKey)#Play@(play.PlayKey)">
+			@play.SectionName
+			@if (!string.IsNullOrEmpty(play.VariantName))
+			{
+				@( " (" + play.VariantName + ")" )
+			}
+		</a>
+	</div>
+}

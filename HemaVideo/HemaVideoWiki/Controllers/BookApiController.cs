@@ -45,7 +45,7 @@ namespace HemaVideoWiki.Controllers
 		[HttpGet("{BookKey}/{SectionKey}")]
 		public async Task<SectionDetail> GetSectionDetail([FromRoute] int SectionKey)
 		{
-			return await m_BookService.GetSectionDetailAsync(SectionKey, false, await GetCurrentUserAsync());
+			return await m_BookService.GetSectionDetailAsync(SectionKey, false, false, await GetCurrentUserAsync());
 		}
 
 		[HttpPost("addVideo")]

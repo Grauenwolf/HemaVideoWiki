@@ -31,5 +31,17 @@ namespace HemaVideoLib.Models
 
 			IsFilteredByWeapon = true;
 		}
+
+		public IEnumerable<PlaySummary> ChildPlays()
+		{
+			foreach (var section in this)
+			{
+				foreach (var play in section.Plays)
+					yield return play;
+
+				foreach (var play in section.Subsections.ChildPlays())
+					yield return play;
+			}
+		}
 	}
 }

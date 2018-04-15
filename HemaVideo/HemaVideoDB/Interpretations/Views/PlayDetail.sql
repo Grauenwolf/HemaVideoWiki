@@ -18,7 +18,9 @@ SELECT p.PlayKey,
        gmP.GuardModifierName AS PGuardModifierName,
        m.MeasureName,
        gA.AlternateGuardName AS AAlternateGuardName,
-       gP.AlternateGuardName AS PAlternateGuardName
+       gP.AlternateGuardName AS PAlternateGuardName,
+	   s.BookKey,
+	   S.SectionName
 FROM Interpretations.Play p
     LEFT JOIN Tags.Guard gA
         ON gA.GuardKey = p.AGuardKey
@@ -29,7 +31,8 @@ FROM Interpretations.Play p
     LEFT JOIN Tags.GuardModifier gmP
         ON gmP.GuardModifierKey = p.PGuardModifierKey
     LEFT JOIN Tags.Measure m
-        ON m.MeasureKey = p.MeasureKey;
+        ON m.MeasureKey = p.MeasureKey
+		INNER JOIN Sources.Section s ON s.SectionKey=p.SectionKey
 
 GO
 GRANT SELECT ON Interpretations.PlayDetail TO HemaWeb;

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace HemaVideoLib.Models
 {
@@ -16,5 +17,7 @@ namespace HemaVideoLib.Models
 		public List<WeaponVersus> Weapons { get; } = new List<WeaponVersus>();
 
 		public List<PlayDetail> Plays { get; } = new List<PlayDetail>();
+
+		public int TotalPlayCount => Plays.Count + Subsections.Sum(x => x.TotalPlayCount);
 	}
 }

@@ -35,3 +35,77 @@
 {
 	@Html.Partial("_SectionSummary", section)
 }
+
+<h2 id="SearchBy">Search by </h2>
+
+<h3>Guard</h3>
+
+@foreach (var tag in Model.Stats.Guards)
+{
+	<div>
+
+		@if (tag.AlternateName == null)
+		{
+			<a href="~/demo/book/@Model.BookKey/play/search?guardKey=@(tag.Key)">@(tag.Name)</a>
+		}
+		else
+		{
+			<a href="~/demo/book/@Model.BookKey/play/search?guardKey=@(tag.Key)">@(tag.Name) (@tag.AlternateName)</a>
+		}
+		(@tag.PlayCount plays)
+	</div>
+}
+
+<h3>Technique</h3>
+
+@foreach (var tag in Model.Stats.Techniques)
+{
+	<div>
+
+		@if (tag.AlternateName == null)
+		{
+			<a href="~/demo/book/@Model.BookKey/play/search?techniqueKey=@(tag.Key)">@(tag.Name)</a>
+		}
+		else
+		{
+			<a href="~/demo/book/@Model.BookKey/play/search?techniqueKey=@(tag.Key)">@(tag.Name) (@tag.AlternateName)</a>
+		}
+		(@tag.PlayCount plays)
+	</div>
+}
+
+<h3>Target</h3>
+
+@foreach (var tag in Model.Stats.Targets)
+{
+	<div>
+
+		@if (tag.AlternateName == null)
+		{
+			<a href="~/demo/book/@Model.BookKey/play/search?targetKey=@(tag.Key)">@(tag.Name)</a>
+		}
+		else
+		{
+			<a href="~/demo/book/@Model.BookKey/play/search?targetKey=@(tag.Key)">@(tag.Name) (@tag.AlternateName)</a>
+		}
+		(@tag.PlayCount plays)
+	</div>
+}
+
+<h3>Footwork</h3>
+
+@foreach (var tag in Model.Stats.Footwork)
+{
+	<div>
+
+		@if (tag.AlternateName == null)
+		{
+			<a href="~/demo/book/@Model.BookKey/play/search?footworkKey=@(tag.Key)">@(tag.Name)</a>
+		}
+		else
+		{
+			<a href="~/demo/book/@Model.BookKey/play/search?footworkKey=@(tag.Key)">@(tag.Name) (@tag.AlternateName)</a>
+		}
+		(@tag.PlayCount plays)
+	</div>
+}
