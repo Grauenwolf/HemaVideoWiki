@@ -33,7 +33,8 @@
 	Notes NVARCHAR(max) NULL,
     SysStartTime DATETIME2 GENERATED ALWAYS AS ROW START NOT NULL,
     SysEndTime DATETIME2 GENERATED ALWAYS AS ROW END NOT NULL,
-    PERIOD FOR SYSTEM_TIME(SysStartTime, SysEndTime)
+    PERIOD FOR SYSTEM_TIME(SysStartTime, SysEndTime),
+	CONSTRAINT UX_Play_VariantName UNIQUE (SectionKey, VariantName)
 )
 WITH (SYSTEM_VERSIONING = ON (HISTORY_TABLE = Interpretations.Play_History));
 GO

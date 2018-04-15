@@ -118,8 +118,14 @@ VALUES
 (129, 'Pass left foot backward', NULL),
 (130, 'Pass right foot backward', NULL),
 (131, 'Step forward with right foot', NULL),
-(132, 'Step forward with left foot', NULL);
-
+(132, 'Step forward with left foot', NULL),
+(133, 'Transverse Step', NULL),
+(134, 'Pass to his body', NULL),
+(135, 'Girata', NULL),
+(136, 'Girata of the right foot', NULL),
+(137, 'Girata of the left foot', NULL),
+(138, 'Lunge with the right foot', NULL),
+(139, 'Lunge with the left foot', NULL);
 
 MERGE INTO Tags.Footwork t
 USING @Footwork s

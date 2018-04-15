@@ -106,7 +106,7 @@
 									</StackPanel>
 									<StackPanel Orientation="Horizontal">
 										<Label Content="Notes" />
-										<TextBox Text="{Binding Notes}" />
+										<TextBox Text="{Binding Notes}" MinWidth="300" />
 									</StackPanel>
 								</StackPanel>
 							</Border>

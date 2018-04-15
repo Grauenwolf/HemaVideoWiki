@@ -456,7 +456,8 @@ VALUES
 (503,'Feint Stramazone', NULL),
 (504,'Void', NULL),
 (505,'Sword under Buckler', NULL),
-(506,'Half Mandritto', NULL)
+(506,'Half Mandritto', NULL),
+(507,'Off-hand Parry', NULL)
 ;
 
 

@@ -29,7 +29,8 @@ VALUES
 (17, 'Thigh'),
 (18, 'Right Side'),
 (19, 'Left Side'),
-(20, 'Flank');
+(20, 'Flank'),
+(21, 'Sword');
 
 MERGE INTO Tags.Target t
 USING @Target s

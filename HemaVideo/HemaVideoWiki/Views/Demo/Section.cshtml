@@ -60,11 +60,11 @@
 					{
 						<td style=@rowStyle></td>
 					}
-					@if (step.IntermediateGuardKey.HasValue)
+					@if (step.IntermediateGuardKey.HasValue || step.IntermediateGuardModifierKey.HasValue)
 					{
 						<td style=@rowStyle>thru @step.IntermediateGuardFullName into @step.GuardFullName</td>
 					}
-					else if (step.GuardKey.HasValue)
+					else if (step.GuardKey.HasValue || step.GuardModifierKey.HasValue)
 					{
 						<td style=@rowStyle>into @step.GuardFullName</td>
 					}

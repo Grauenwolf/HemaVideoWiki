@@ -29,7 +29,8 @@ VALUES
 (16 ,'Narrow Measure', NULL),
 (17 ,'Retta Linea', NULL),
 (18 ,'Strettissma Misura', 'Narrowest Measure'),
-(19 ,'Wide Measure', NULL);
+(19 ,'Wide Measure', NULL),
+(20 ,'Outside Measure', NULL);
 
 
 MERGE INTO Tags.Measure t
