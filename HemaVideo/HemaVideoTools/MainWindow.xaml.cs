@@ -23,6 +23,7 @@ namespace HemaVideoTools
 		private async void Window_Loaded(object sender, RoutedEventArgs e)
 		{
 			await ((MainViewModel)DataContext).LoadBooksAsync();
+			await ((MainViewModel)DataContext).LoadTagsAsync();
 		}
 
 		private void TreeView_SelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)

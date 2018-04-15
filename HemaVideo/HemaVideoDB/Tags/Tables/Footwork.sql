@@ -2,10 +2,10 @@
 (
     FootworkKey INT NOT NULL
         CONSTRAINT PK_Footwork PRIMARY KEY,
-    FootworkName NVARCHAR(50) NOT NULL
+    FootworkName NVARCHAR(100) NOT NULL
         CONSTRAINT UK_Measure_FootworkName
         UNIQUE,
-    AlternateFootworkName NVARCHAR(50) NULL,
+    AlternateFootworkName NVARCHAR(100) NULL,
     SysStartTime DATETIME2 GENERATED ALWAYS AS ROW START NOT NULL,
     SysEndTime DATETIME2 GENERATED ALWAYS AS ROW END NOT NULL,
     PERIOD FOR SYSTEM_TIME(SysStartTime, SysEndTime)

@@ -79,7 +79,8 @@
       <DependentUpon>PlayEditor.xaml</DependentUpon>
     </Compile>
     <Compile Include="PlayEditorViewModel.cs" />
-    <Compile Include="Services\Class1.cs" />
+    <Compile Include="Services\Client.cs" />
+    <Compile Include="Services\PlayStep.cs" />
     <Compile Include="Tags.cs" />
     <Page Include="Blue.xaml">
       <Generator>MSBuild:Compile</Generator>

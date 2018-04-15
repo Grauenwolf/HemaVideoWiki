@@ -1,5 +1,4 @@
 ﻿using HemaVideoLib.Models;
-using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Tortuga.Chain;
@@ -32,14 +31,19 @@ namespace HemaVideoLib.Services
 			return DataSource(currentUser).From("Tags.Guard").ToCollection<Guard>().ExecuteAsync();
 		}
 
-		public Task<List<GuardModifer>> GetGuardModifersAsync(IUser currentUser)
+		public Task<List<GuardModifier>> GetGuardModifiersAsync(IUser currentUser)
 		{
-			return DataSource(currentUser).From("Tags.GuardModifer").ToCollection<GuardModifer>().ExecuteAsync();
+			return DataSource(currentUser).From("Tags.GuardModifier").ToCollection<GuardModifier>().ExecuteAsync();
 		}
 
 		public Task<List<Footwork>> GetFootworkAsync(IUser currentUser)
 		{
 			return DataSource(currentUser).From("Tags.Footwork").ToCollection<Footwork>().ExecuteAsync();
+		}
+
+		public Task<List<Measure>> GetMeasureAsync(IUser currentUser)
+		{
+			return DataSource(currentUser).From("Tags.Measure").ToCollection<Measure>().ExecuteAsync();
 		}
 	}
 }

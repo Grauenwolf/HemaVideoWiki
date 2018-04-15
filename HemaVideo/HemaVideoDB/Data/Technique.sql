@@ -12,6 +12,7 @@ INSERT INTO @Technique
     AlternateTechniqueName
 )
 VALUES
+(1, 'Feint',NULL),
 (10, 'Affondo', 'Thrust'),
 (11, 'Allongiren', 'Lunge'),
 (12, 'Allungo', 'Extension'),
@@ -445,7 +446,15 @@ VALUES
 (493,'Zwerch', 'Thwart'),
 (494,'Zwerchlini', 'Thwart Line'),
 (495,'Zwingerhau', 'Constraining Stroke'),
-(496,'Zwingerhauw', 'Constrainer Cut');
+(496,'Zwingerhauw', 'Constrainer Cut'),
+(497,'Lateral Falso', NULL),
+(498,'Feint Montante', NULL),
+(499,'Feint Mandritto', NULL),
+(500,'Feint Riverso', NULL),
+(501,'Buckler defends head', NULL),
+(502,'Attack', NULL),
+(503,'Feint Stramazone', NULL)
+;
 
 
 MERGE INTO Tags.Technique t

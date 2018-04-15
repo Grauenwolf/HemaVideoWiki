@@ -18,16 +18,18 @@
 @if (Model.Plays.Count > 0)
 {
 	<h2>Plays</h2>
+	<h4>Warning: This is just a summary of the play. See the original text or translation for details.</h4>
 
 	@foreach (var play in Model.Plays)
 	{
 		<h3>@(play.VariantName ?? "Basic Play")</h3>
 
-		<table>
+		<table class="gridtable">
 			<tr><th>Agent</th><th>Patient</th><th>Measure</th></tr>
 			<tr><td>@play.AGuardFullName</td><td>@play.PGuardFullName</td><td>@play.MeasureName</td></tr>
 		</table>
-		<table>
+		<div />
+		<table class="gridtable">
 			<tr>
 				<th>Tempo</th>
 				<th>Footwork</th>

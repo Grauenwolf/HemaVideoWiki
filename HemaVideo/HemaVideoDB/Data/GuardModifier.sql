@@ -15,7 +15,8 @@ VALUES
 (3, 'Narrow stance'),
 (4, 'Wide stance'),
 (5, 'Inside'),
-(6, 'Outside');
+(6, 'Outside'),
+(7, 'Below');
 
 
 MERGE INTO Tags.GuardModifier t

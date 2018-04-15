@@ -1,8 +1,8 @@
 ﻿DECLARE @Footwork TABLE
 (
     FootworkKey INT NOT NULL,
-    FootworkName NVARCHAR(50) NOT NULL,
-	AlternateFootworkName NVARCHAR(50) NULL
+    FootworkName NVARCHAR(100) NOT NULL,
+	AlternateFootworkName NVARCHAR(100) NULL
 );
 
 INSERT INTO @Footwork
@@ -108,7 +108,17 @@ VALUES
 (118,'Treading Foot', NULL),
 (120,'Volte, Left or Outside', NULL),
 (121,'Volte, Right or Inside', NULL),
-(122,'Yin-Yang Foot', NULL);
+(122,'Yin-Yang Foot', NULL),
+(123, 'Pass left foot to his right', NULL),
+(124, 'Pass right foot to his left', NULL),
+(125, 'Pass left foot to his left', NULL),
+(126, 'Pass right foot to his right', NULL),
+(127, 'Pass left foot to his right with right foot following behind', NULL),
+(128, 'Pass right foot to his left with left foot following behind', NULL),
+(129, 'Pass left foot backward', NULL),
+(130, 'Pass right foot backward', NULL),
+(131, 'Step forward with right foot', NULL),
+(132, 'Step forward with left foot', NULL);
 
 
 MERGE INTO Tags.Footwork t

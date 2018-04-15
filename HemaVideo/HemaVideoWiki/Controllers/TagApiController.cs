@@ -45,15 +45,21 @@ namespace HemaVideoWiki.Controllers
 		}
 
 		[HttpGet("guardModifier")]
-		public async Task<List<GuardModifer>> GetGuardModifersAsync()
+		public async Task<List<GuardModifier>> GetGuardModifiersAsync()
 		{
-			return await m_TagsService.GetGuardModifersAsync(await GetCurrentUserAsync());
+			return await m_TagsService.GetGuardModifiersAsync(await GetCurrentUserAsync());
 		}
 
 		[HttpGet("footwork")]
 		public async Task<List<Footwork>> GetFootworkAsync()
 		{
 			return await m_TagsService.GetFootworkAsync(await GetCurrentUserAsync());
+		}
+
+		[HttpGet("measure")]
+		public async Task<List<Measure>> GetMeasureAsync()
+		{
+			return await m_TagsService.GetMeasureAsync(await GetCurrentUserAsync());
 		}
 	}
 }

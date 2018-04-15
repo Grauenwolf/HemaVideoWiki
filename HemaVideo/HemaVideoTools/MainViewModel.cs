@@ -1,6 +1,8 @@
 ﻿using HemaVideoTools.Services;
 using System.ComponentModel;
+using System.Linq;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using Tortuga.Anchor.Collections;
 
 namespace HemaVideoTools
@@ -15,24 +17,73 @@ namespace HemaVideoTools
 			PropertyChanged += MainViewModel_PropertyChanged;
 		}
 
+		public ICommand AddPlayCommand => GetCommand(AddPlay);
 		public BookSummary Book { get => Get<BookSummary>(); set => Set(value); }
 		public BookDetail BookDetail { get => Get<BookDetail>(); set => Set(value); }
 		public ObservableCollectionExtended<BookSummary> BookList => GetNew<ObservableCollectionExtended<BookSummary>>();
+		public ICommand CopyMarkedPlayCommand => GetCommand(CopyMarkedPlay);
+		public ICommand CopyPlayCommand => GetCommand<PlayDetail>(CopyPlay);
+		public ICommand EditPlayCommand => GetCommand<PlayDetail>(EditPlay);
+		public ICommand LoadTagsCommand => GetCommand(async () => await LoadTagsAsync());
+		public PlayDetail MarkedPlay { get => Get<PlayDetail>(); set => Set(value); }
+		public bool TagsLoading { get => Get<bool>(); set => Set(value); }
+		public ICommand MarkPlayCommand => GetCommand<PlayDetail>(MarkPlay);
 		public SectionSummary Section { get => Get<SectionSummary>(); set => Set(value); }
 		public SectionDetail SectionDetail { get => Get<SectionDetail>(); set => Set(value); }
+		public Tags Tags { get => Get<Tags>(); set => Set(value); }
 
 		public async Task LoadBooksAsync()
 		{
 			BookList.Clear();
 			BookList.AddRange(await m_ApiClient.ApiBookGetAsync());
+		}
 
-			var techniques = await m_ApiClient.ApiTagTechniqueGetAsync();
-			var guards = await m_ApiClient.ApiTagGuardGetAsync();
-			var footwork = await m_ApiClient.ApiTagFootworkGetAsync();
-			var targets = await m_ApiClient.ApiTagTargetGetAsync();
-			var guardModifiers = await m_ApiClient.ApiTagGuardModifierGetAsync();
+		public async Task LoadTagsAsync()
+		{
+			TagsLoading = true;
+			var techniques = (await m_ApiClient.ApiTagTechniqueGetAsync()).OrderBy(x => x.TechniqueName);
+			var guards = (await m_ApiClient.ApiTagGuardGetAsync()).OrderBy(x => x.GuardName);
+			var footwork = (await m_ApiClient.ApiTagFootworkGetAsync()).OrderBy(x => x.FootworkName);
+			var targets = (await m_ApiClient.ApiTagTargetGetAsync()).OrderBy(x => x.TargetName);
+			var guardModifiers = (await m_ApiClient.ApiTagGuardModifierGetAsync()).OrderBy(x => x.GuardModifierName);
+			var measures = (await m_ApiClient.ApiTagMeasureGetAsync()).OrderBy(x => x.MeasureName);
 
-			var tag = new Tags(footwork, techniques, targets, guards, guardModifiers);
+			Tags = new Tags(footwork, techniques, targets, guards, guardModifiers, measures);
+			TagsLoading = false;
+		}
+
+		public async Task RefreshSectionDetailAsync()
+		{
+			if (Section?.SectionKey != null)
+				SectionDetail = await m_ApiClient.ApiBookByBookKeyBySectionKeyGetAsync(Section.SectionKey.Value, Section.BookKey.ToString());
+		}
+
+		void AddPlay()
+		{
+			var vm = new PlayEditorViewModel(m_ApiClient, Tags, SectionDetail, RefreshSectionDetailAsync);
+			var window = new PlayEditor() { DataContext = vm };
+			window.Show();
+		}
+
+		void CopyMarkedPlay()
+		{
+			var vm = new PlayEditorViewModel(m_ApiClient, Tags, SectionDetail, RefreshSectionDetailAsync, MarkedPlay, true);
+			var window = new PlayEditor() { DataContext = vm };
+			window.Show();
+		}
+
+		void CopyPlay(PlayDetail play)
+		{
+			var vm = new PlayEditorViewModel(m_ApiClient, Tags, SectionDetail, RefreshSectionDetailAsync, play, true);
+			var window = new PlayEditor() { DataContext = vm };
+			window.Show();
+		}
+
+		void EditPlay(PlayDetail play)
+		{
+			var vm = new PlayEditorViewModel(m_ApiClient, Tags, SectionDetail, RefreshSectionDetailAsync, play, false);
+			var window = new PlayEditor() { DataContext = vm };
+			window.Show();
 		}
 
 		private async void MainViewModel_PropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -53,6 +104,11 @@ namespace HemaVideoTools
 				else
 					SectionDetail = null;
 			}
+		}
+
+		void MarkPlay(PlayDetail play)
+		{
+			MarkedPlay = play;
 		}
 	}
 }

@@ -9,12 +9,34 @@
         Title="PlayEditor" Height="450" Width="800">
 	<DockPanel>
 		<GroupBox Header="Play Info" DockPanel.Dock="Top">
-			<StackPanel Orientation="Horizontal">
-				<Label Content="Section" />
-				<TextBox IsReadOnly="True" Text="{Binding SectionName}" />
-				<Label Content="Variant Name" />
-				<TextBox Text="{Binding Play.VariantName}" Width="250" />
-				<Button Content="Save" Command="{Binding SaveCommand}" />
+			<StackPanel>
+				<StackPanel Orientation="Horizontal">
+					<Label Content="Section" />
+					<TextBox IsReadOnly="True" Text="{Binding SectionName, Mode=OneWay}" />
+					<Label Content="Variant Name" />
+					<TextBox Text="{Binding Play.VariantName}" Width="250" />
+					<Button Content="Save" Command="{Binding SaveCommand}" />
+				</StackPanel>
+
+				<StackPanel Orientation="Horizontal">
+
+					<StackPanel>
+						<Label Content="Agent Guard" />
+						<ComboBox ItemsSource="{Binding Tags.Guards}" SelectedValuePath="GuardKey" SelectedValue="{Binding Play.AGuardKey}" DisplayMemberPath="GuardName" />
+						<ComboBox ItemsSource="{Binding Tags.GuardModifiers}" SelectedValuePath="GuardModifierKey" SelectedValue="{Binding Play.AGuardModifierKey}" DisplayMemberPath="GuardModifierName" />
+					</StackPanel>
+
+					<StackPanel>
+						<Label Content="Patient Guard" />
+						<ComboBox ItemsSource="{Binding Tags.Guards}" SelectedValuePath="GuardKey" SelectedValue="{Binding Play.PGuardKey}" DisplayMemberPath="GuardName" />
+						<ComboBox ItemsSource="{Binding Tags.GuardModifiers}" SelectedValuePath="GuardModifierKey" SelectedValue="{Binding Play.PGuardModifierKey}" DisplayMemberPath="GuardModifierName" />
+					</StackPanel>
+
+					<StackPanel>
+						<Label Content="Measure" />
+						<ComboBox ItemsSource="{Binding Tags.Measures}" SelectedValuePath="MeasureKey" SelectedValue="{Binding Play.MeasureKey}" DisplayMemberPath="MeasureName" />
+					</StackPanel>
+				</StackPanel>
 			</StackPanel>
 		</GroupBox>
 		<GroupBox>
@@ -24,40 +46,67 @@
 					<Button HorizontalAlignment="Right" Content="Add Step" Command="{Binding AddStepCommand}" />
 				</StackPanel>
 			</GroupBox.Header>
-			<ItemsControl ItemsSource="{Binding Play.Steps}">
-				<ItemsControl.ItemTemplate>
-					<DataTemplate>
-						<StackPanel Orientation="Horizontal">
-
-							<StackPanel Orientation="Vertical">
-								<Button Content="Up" Command="{Binding MoveUpCommand}" />
+			<ScrollViewer>
+				<ItemsControl ItemsSource="{Binding Play.Steps}">
+					<ItemsControl.ItemTemplate>
+						<DataTemplate>
+							<Border BorderBrush="Blue" BorderThickness="3">
 								<StackPanel Orientation="Horizontal">
-									<RadioButton Content="Agent" />
-									<RadioButton Content="Patient" />
-									<TextBox IsReadOnly="True" Text="{Binding TempoNumber}" />
+
+									<StackPanel Orientation="Vertical">
+										<Button Content="Up" Command="{Binding DataContext.MoveUpCommand, ElementName=Root}" CommandParameter="{Binding}" />
+										<StackPanel Orientation="Horizontal">
+											<RadioButton Content="Agent"  IsChecked="{Binding IsAgent}" />
+											<RadioButton Content="Patient" />
+											<TextBox IsReadOnly="True" Text="{Binding TempoNumber}" />
+										</StackPanel>
+										<Button Content="Down" Command="{Binding DataContext.MoveDownCommand, ElementName=Root}" CommandParameter="{Binding}" />
+									</StackPanel>
+
+									<StackPanel>
+										<Label Content="Footwork" />
+										<ComboBox ItemsSource="{Binding DataContext.Tags.Footwork, ElementName=Root}" SelectedValuePath="FootworkKey" SelectedValue="{Binding FootworkKey}"
+											  DisplayMemberPath="FootworkName" />
+									</StackPanel>
+
+									<StackPanel>
+										<Label Content="Techniques" />
+										<ComboBox ItemsSource="{Binding DataContext.Tags.Techniques, ElementName=Root}" SelectedValuePath="TechniqueKey" SelectedValue="{Binding TechniqueKey1}"
+											  DisplayMemberPath="TechniqueName" />
+										<ComboBox ItemsSource="{Binding DataContext.Tags.Techniques, ElementName=Root}" SelectedValuePath="TechniqueKey" SelectedValue="{Binding TechniqueKey2}" DisplayMemberPath="TechniqueName" />
+										<ComboBox ItemsSource="{Binding DataContext.Tags.Techniques, ElementName=Root}" SelectedValuePath="TechniqueKey" SelectedValue="{Binding TechniqueKey3}" DisplayMemberPath="TechniqueName" />
+									</StackPanel>
+
+									<StackPanel>
+										<Label Content="Targets" />
+										<ComboBox ItemsSource="{Binding DataContext.Tags.Targets, ElementName=Root}" SelectedValuePath="TargetKey" SelectedValue="{Binding TargetKey1}"
+											  DisplayMemberPath="TargetName" />
+										<ComboBox ItemsSource="{Binding DataContext.Tags.Targets, ElementName=Root}" SelectedValuePath="TargetKey" SelectedValue="{Binding TargetKey2}" DisplayMemberPath="TargetName" />
+										<ComboBox ItemsSource="{Binding DataContext.Tags.Targets, ElementName=Root}" SelectedValuePath="TargetKey" SelectedValue="{Binding TargetKey3}" DisplayMemberPath="TargetName" />
+									</StackPanel>
+
+									<StackPanel>
+										<Label Content="Final Guard" />
+										<ComboBox ItemsSource="{Binding DataContext.Tags.Guards, ElementName=Root}" SelectedValuePath="GuardKey" SelectedValue="{Binding GuardKey}"
+											  DisplayMemberPath="GuardName" />
+										<ComboBox ItemsSource="{Binding DataContext.Tags.GuardModifiers, ElementName=Root}" SelectedValuePath="GuardModifierKey" SelectedValue="{Binding GuardModifierKey}" DisplayMemberPath="GuardModifierName" />
+									</StackPanel>
+
+									<StackPanel>
+										<Label Content="Intermediate Guard" />
+										<ComboBox ItemsSource="{Binding DataContext.Tags.Guards, ElementName=Root}" SelectedValuePath="GuardKey" SelectedValue="{Binding IntermediateGuardKey}"
+											  DisplayMemberPath="GuardName" />
+										<ComboBox ItemsSource="{Binding DataContext.Tags.GuardModifiers, ElementName=Root}" SelectedValuePath="GuardModifierKey" SelectedValue="{Binding IntermediateGuardModifierKey}" DisplayMemberPath="GuardModifierName" />
+									</StackPanel>
+									<StackPanel>
+										<Button Content="Delete" Command="{Binding DataContext.DeleteStepCommand, ElementName=Root}" CommandParameter="{Binding}" />
+									</StackPanel>
 								</StackPanel>
-								<Button Content="Up" Command="{Binding MoveDownCommand}" />
-							</StackPanel>
-
-							<StackPanel>
-								<Label Content="Footwork" />
-								<ComboBox ItemsSource="{Binding DataContext.Tags.Footwork, ElementName=Root}" SelectedValuePath="FootworkKey" SelectedValue="{Binding FootworkKey}" />
-							</StackPanel>
-
-							<StackPanel>
-								<Label Content="Techniques" />
-								<ComboBox ItemsSource="{Binding DataContext.Tags.Techniques, ElementName=Root}" SelectedValuePath="TechniqueKey" SelectedValue="{Binding TechniqueKey1}" />
-								<ComboBox ItemsSource="{Binding DataContext.Tags.Techniques, ElementName=Root}" SelectedValuePath="TechniqueKey" SelectedValue="{Binding TechniqueKey2}" />
-								<ComboBox ItemsSource="{Binding DataContext.Tags.Techniques, ElementName=Root}" SelectedValuePath="TechniqueKey" SelectedValue="{Binding TechniqueKey3}" />
-							</StackPanel>
-
-							<!-- Targets -->
-							<!-- Guards -->
-							<!-- Notes -->
-						</StackPanel>
-					</DataTemplate>
-				</ItemsControl.ItemTemplate>
-			</ItemsControl>
+							</Border>
+						</DataTemplate>
+					</ItemsControl.ItemTemplate>
+				</ItemsControl>
+			</ScrollViewer>
 		</GroupBox>
 	</DockPanel>
 </Window>

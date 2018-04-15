@@ -31,7 +31,7 @@ namespace HemaVideoLib.Models
 			if (modifier != null)
 				result += " " + modifier;
 
-			return result.Trim(); ;
+			return result?.Trim(); ;
 		}
 	}
 }

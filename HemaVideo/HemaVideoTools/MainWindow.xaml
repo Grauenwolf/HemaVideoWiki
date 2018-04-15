@@ -8,6 +8,7 @@
 	xmlns:services="clr-namespace:HemaVideoTools.Services"
 	Width="800"
 	Height="450"
+	x:Name="Root"
 	mc:Ignorable="d"
 	Closed="Window_Closed"
 	Loaded="Window_Loaded"
@@ -20,8 +21,9 @@
 				DisplayMemberPath="BookName"
 				ItemsSource="{Binding BookList}"
 				SelectedItem="{Binding Book}" />
+			<Button Content="Reload Tags" Command="{Binding LoadTagsCommand}" IsEnabled="{Binding TagsLoading, Converter={StaticResource NotConverter}}" />
 		</StackPanel>
-		<TreeView  ItemsSource="{Binding BookDetail.Sections}" DockPanel.Dock="Left" SelectedItemChanged="TreeView_SelectedItemChanged">
+		<TreeView  ItemsSource="{Binding BookDetail.Sections}" DockPanel.Dock="Left" SelectedItemChanged="TreeView_SelectedItemChanged" MinWidth="150">
 			<TreeView.ItemTemplate>
 				<HierarchicalDataTemplate DataType="{x:Type services:SectionSummary}" ItemsSource="{Binding Subsections}">
 					<TextBlock Text="{Binding SectionName}" />
@@ -29,22 +31,45 @@
 			</TreeView.ItemTemplate>
 		</TreeView>
 		<TabControl>
-			<TabItem Header="Book">
+			<TabItem Header="Book" Visibility="{Binding BookDetail, Converter={StaticResource NotNullToVisibleConverter}}">
 				<TextBlock Text="TODO: Book Details" />
 			</TabItem>
-			<TabItem Header="Videos">
+			<TabItem Header="Videos" Visibility="{Binding SectionDetail, Converter={StaticResource NotNullToVisibleConverter}}">
 				<!-- TODO: Make the StartTime column editable and add a Save button. -->
 				<DataGrid ItemsSource="{Binding SectionDetail.Videos}" AutoGenerateColumns="True" IsReadOnly="True" />
 			</TabItem>
-			<TabItem Header="Plays">
-				<!-- TODO: Add "New" button. -->
-				<!-- TODO: Add row level "Edit" and "Copy" buttons. -->
-				<DataGrid ItemsSource="{Binding SectionDetail.Plays}" AutoGenerateColumns="True"  IsReadOnly="True" />
+			<TabItem Header="Plays" Visibility="{Binding SectionDetail, Converter={StaticResource NotNullToVisibleConverter}}">
+				<StackPanel>
+					<StackPanel Orientation="Horizontal">
+
+						<Button Content="Add Play" Command="{Binding AddPlayCommand}" />
+						<Button Content="Copy Marked Play" Command="{Binding CopyMarkedPlayCommand}" IsEnabled="{Binding MarkedPlay, Converter={StaticResource NotNullToTrueConverter}}" />
+					</StackPanel>
+					<DataGrid ItemsSource="{Binding SectionDetail.Plays}" AutoGenerateColumns="False"   IsReadOnly="True">
+						<DataGrid.Columns>
+							<DataGridTextColumn Binding="{Binding PlayKey}" Header="PlayKey" />
+							<DataGridTextColumn Binding="{Binding VariantName}" Header="Variant" />
+							<DataGridTextColumn Binding="{Binding Steps.Count}" Header="Steps" />
+							<DataGridTemplateColumn>
+								<DataGridTemplateColumn.CellTemplate>
+									<DataTemplate>
+										<StackPanel Orientation="Horizontal">
+											<Button Content="Edit" Command="{Binding DataContext.EditPlayCommand, ElementName=Root}" CommandParameter="{Binding}" />
+											<Button Content="Copy" Command="{Binding DataContext.CopyPlayCommand, ElementName=Root}" CommandParameter="{Binding}" />
+											<Button Content="Mark" Command="{Binding DataContext.MarkPlayCommand, ElementName=Root}" CommandParameter="{Binding}" />
+										</StackPanel>
+									</DataTemplate>
+								</DataGridTemplateColumn.CellTemplate>
+							</DataGridTemplateColumn>
+						</DataGrid.Columns>
+					</DataGrid>
+					<!-- TODO: Add row level "Edit" and "Copy" buttons. -->
+				</StackPanel>
 			</TabItem>
-			<TabItem Header="Weapons">
+			<TabItem Header="Weapons" Visibility="{Binding BookDetail, Converter={StaticResource NotNullToVisibleConverter}}">
 				<DataGrid ItemsSource="{Binding SectionDetail.Weapons}" AutoGenerateColumns="True"  IsReadOnly="True" />
 			</TabItem>
-			<TabItem Header="Authors">
+			<TabItem Header="Authors" Visibility="{Binding BookDetail, Converter={StaticResource NotNullToVisibleConverter}}">
 				<DataGrid ItemsSource="{Binding BookDetail.Authors}" AutoGenerateColumns="True"  IsReadOnly="True" />
 			</TabItem>
 		</TabControl>

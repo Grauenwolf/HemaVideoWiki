@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using HemaVideoTools.Properties;
+using System.Windows;
 
 namespace HemaVideoTools
 {
@@ -11,7 +12,12 @@ namespace HemaVideoTools
 		{
 			base.OnStartup(e);
 
-			LoginViewModel loginViewModel = new LoginViewModel() { Url = "http://hemavideos.azurewebsites.net" };
+			LoginViewModel loginViewModel = new LoginViewModel()
+			{
+				Url = "http://hemavideos.azurewebsites.net",
+				EmailAddress = Settings.Default.EmailAddress,
+				Password = Settings.Default.Password
+			};
 			var dialog = new LoginDialog() { DataContext = loginViewModel };
 
 			dialog.ShowDialog();
@@ -21,6 +27,11 @@ namespace HemaVideoTools
 				Shutdown();
 				return;
 			}
+
+			Settings.Default.EmailAddress = loginViewModel.EmailAddress;
+			Settings.Default.Password = loginViewModel.Password;
+			Settings.Default.Save();
+
 			var window = new MainWindow() { DataContext = new MainViewModel(loginViewModel.ApiClient) };
 			window.Show();
 		}

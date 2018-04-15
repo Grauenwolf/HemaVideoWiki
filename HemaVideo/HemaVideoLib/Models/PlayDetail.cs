@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 
 namespace HemaVideoLib.Models
 {
@@ -21,7 +20,7 @@ namespace HemaVideoLib.Models
 		public string PGuardName { get; set; }
 		public int PlayKey { get; set; }
 		public int SectionKey { get; set; }
-		public List<PlayStepDetail> Steps => new List<PlayStepDetail>();
+		public List<PlayStepDetail> Steps { get; } = new List<PlayStepDetail>();
 		public string VariantName { get; set; }
 	}
 }

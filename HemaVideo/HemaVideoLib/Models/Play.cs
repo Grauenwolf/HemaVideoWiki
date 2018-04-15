@@ -11,7 +11,7 @@ namespace HemaVideoLib.Models
 		public int? PGuardModifierKey { get; set; }
 		public int? PlayKey { get; set; }
 		public int SectionKey { get; set; }
-		public List<PlayStep> Steps => new List<PlayStep>();
+		public List<PlayStep> Steps { get; } = new List<PlayStep>();
 		public string VariantName { get; set; }
 	}
 }

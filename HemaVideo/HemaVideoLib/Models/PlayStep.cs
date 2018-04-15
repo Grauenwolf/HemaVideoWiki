@@ -10,9 +10,9 @@
 		public int? IntermediateGuardModifierKey { get; set; }
 		public string Notes { get; set; }
 		public int? PlayKey { get; set; }
-		public int? Target1 { get; set; }
-		public int? Target2 { get; set; }
-		public int? Target3 { get; set; }
+		public int? TargetKey1 { get; set; }
+		public int? TargetKey2 { get; set; }
+		public int? TargetKey3 { get; set; }
 		public int? TechniqueKey1 { get; set; }
 		public int? TechniqueKey2 { get; set; }
 		public int? TechniqueKey3 { get; set; }

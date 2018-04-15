@@ -12,18 +12,23 @@ INSERT INTO @Target
 VALUES
 (1, 'Head'),
 (2, 'Hands'),
-(3, 'Rigth arm'),
-(4, 'Left arm'),
-(5, 'Legs'),
-(14, 'Left Leg'),
-(6, 'Right Leg'),
-(7, 'Arms'),
-(8, 'Chest'),
-(9, 'Face'),
-(10, 'Left Ear'),
-(11, 'Right Ear'),
-(12, 'Left Thigh'),
-(13, 'Right Thigh');
+(3, 'Rigth Arm'),
+(4, 'Left Arm'),
+(5, 'Leg'),
+(6, 'Left Leg'),
+(7, 'Right Leg'),
+(8, 'Arms'),
+(9, 'Chest'),
+(10, 'Face'),
+(11, 'Left Ear'),
+(12, 'Right Ear'),
+(13, 'Left Thigh'),
+(14, 'Right Thigh'),
+(15, 'Right Hand'),
+(16, 'Left Hand'),
+(17, 'Thigh'),
+(18, 'Right Side'),
+(19, 'Left Side');
 
 MERGE INTO Tags.Target t
 USING @Target s

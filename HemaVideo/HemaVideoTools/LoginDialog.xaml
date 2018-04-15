@@ -6,21 +6,23 @@
         xmlns:local="clr-namespace:HemaVideoTools"
         mc:Ignorable="d"
 		x:Name="Root"
-        Title="Login to HEMA Video Wiki" Height="150" Width="400">
-	<StackPanel>
-		<StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-			<Label Content="Base Url" />
-			<TextBox Text="{Binding Url}" Width="250" />
-		</StackPanel>
-		<StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-			<Label Content="Email Address" />
-			<TextBox Text="{Binding EmailAddress}" Width="150" />
-		</StackPanel>
+        Title="HEMA Video Wiki" Height="200" Width="400">
+	<GroupBox Header="Login to HEMA Video Wiki">
+		<StackPanel>
+			<StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+				<Label Content="Base Url" />
+				<TextBox Text="{Binding Url}" Width="250" />
+			</StackPanel>
+			<StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+				<Label Content="Email Address" />
+				<TextBox Text="{Binding EmailAddress}" Width="150" />
+			</StackPanel>
 
-		<StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-			<Label Content="Password" />
-			<PasswordBox PasswordChanged="PasswordBox_PasswordChanged" Width="150" />
+			<StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+				<Label Content="Password" />
+				<PasswordBox PasswordChanged="PasswordBox_PasswordChanged" Width="150" />
+			</StackPanel>
+			<Button Content="Login" Command="{Binding LoginCommand}" CommandParameter="{Binding ElementName=Root}" Width="100" HorizontalAlignment="Center" />
 		</StackPanel>
-		<Button Content="Login" Command="{Binding LoginCommand}" CommandParameter="{Binding ElementName=Root}" Width="100" HorizontalAlignment="Center" />
-	</StackPanel>
+	</GroupBox>
 </Window>

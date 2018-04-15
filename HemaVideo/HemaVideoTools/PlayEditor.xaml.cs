@@ -1,16 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using HemaVideoTools.Services;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace HemaVideoTools
 {
@@ -22,6 +12,13 @@ namespace HemaVideoTools
 		public PlayEditor()
 		{
 			InitializeComponent();
+		}
+
+		private void RadioButton_Checked(object sender, RoutedEventArgs e)
+		{
+			var radioButton = (RadioButton)sender;
+			var dc = (PlayStep)radioButton.DataContext;
+			dc.Actor = (string)radioButton.Tag;
 		}
 	}
 }
