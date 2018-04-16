@@ -16,6 +16,7 @@ namespace Extractor
 			//ProcessManciolino();
 			ProcessDallAgocchie();
 			ProcessFabris();
+			ProcessMarozzo();
 		}
 
 		private static string Escape(string value) => value == null ? "NULL" : "'" + value.Replace("'", "''") + "'";
@@ -195,6 +196,25 @@ N'', -- PageReference - nvarchar(50)
 
 			var fileName1 = "Fabris-1.sql";
 			var fileName2 = "Fabris-2.sql";
+
+			GenerateSql(sections, fileName1, fileName2, false);
+		}
+
+		private static void ProcessMarozzo()
+		{
+			var bookKey = 8;
+			var sections = new SectionCollection(bookKey);
+
+			var indexFileName = $@"Marozzo\Achille Marozzo";
+			var lines = File.ReadAllLines(indexFileName);
+			var currentLineIndex = 0;
+
+			ProcessSection(lines, ref currentLineIndex, bookKey, null, 1, sections);
+
+			ProcessFiles(sections, "Marozzo");
+
+			var fileName1 = "Marozzo-1.sql";
+			var fileName2 = "Marozzo-2.sql";
 
 			GenerateSql(sections, fileName1, fileName2, false);
 		}

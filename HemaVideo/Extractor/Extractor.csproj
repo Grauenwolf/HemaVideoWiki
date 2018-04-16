@@ -158,7 +158,7 @@
     <None Include="Manciolino\Manciolino Two Swords Assault Part 3">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Old\Achille Marozzo">
+    <None Include="Marozzo\Achille Marozzo">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Old\Alfieri Chapter 1">
@@ -833,169 +833,169 @@
     <None Include="Old\Mair Wrestling 4">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Old\Marozzo Dagger 1">
+    <None Include="Marozzo\Marozzo Dagger 1">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Old\Marozzo Greatsword Assault 1 Part 1">
+    <None Include="Marozzo\Marozzo Greatsword Assault 1 Part 1">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Old\Marozzo Greatsword Assault 1 Part 10">
+    <None Include="Marozzo\Marozzo Greatsword Assault 1 Part 10">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Old\Marozzo Greatsword Assault 1 Part 2">
+    <None Include="Marozzo\Marozzo Greatsword Assault 1 Part 2">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Old\Marozzo Greatsword Assault 1 Part 3">
+    <None Include="Marozzo\Marozzo Greatsword Assault 1 Part 3">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Old\Marozzo Greatsword Assault 1 Part 4">
+    <None Include="Marozzo\Marozzo Greatsword Assault 1 Part 4">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Old\Marozzo Greatsword Assault 1 Part 5">
+    <None Include="Marozzo\Marozzo Greatsword Assault 1 Part 5">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Old\Marozzo Greatsword Assault 1 Part 6">
+    <None Include="Marozzo\Marozzo Greatsword Assault 1 Part 6">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Old\Marozzo Greatsword Assault 1 Part 7">
+    <None Include="Marozzo\Marozzo Greatsword Assault 1 Part 7">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Old\Marozzo Greatsword Assault 1 Part 8">
+    <None Include="Marozzo\Marozzo Greatsword Assault 1 Part 8">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Old\Marozzo Greatsword Assault 1 Part 9">
+    <None Include="Marozzo\Marozzo Greatsword Assault 1 Part 9">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Old\Marozzo Greatsword True Stretta 1">
+    <None Include="Marozzo\Marozzo Greatsword True Stretta 1">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Old\Marozzo Greatsword True Stretta 2">
+    <None Include="Marozzo\Marozzo Greatsword True Stretta 2">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Old\Marozzo Greatsword True Stretta 3">
+    <None Include="Marozzo\Marozzo Greatsword True Stretta 3">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Old\Marozzo Greatsword True Stretta 4">
+    <None Include="Marozzo\Marozzo Greatsword True Stretta 4">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Old\Marozzo Greatsword True Stretta 5">
+    <None Include="Marozzo\Marozzo Greatsword True Stretta 5">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Old\Marozzo Greatsword True Stretta 6">
+    <None Include="Marozzo\Marozzo Greatsword True Stretta 6">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Old\Marozzo Greatsword True Stretta 7">
+    <None Include="Marozzo\Marozzo Greatsword True Stretta 7">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Old\Marozzo Greatsword True Stretta 8">
+    <None Include="Marozzo\Marozzo Greatsword True Stretta 8">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Old\Marozzo Sword &amp; Buckler Assault 1 Part 1">
+    <None Include="Marozzo\Marozzo Sword &amp; Buckler Assault 1 Part 1">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Old\Marozzo Sword &amp; Buckler Assault 1 Part 2">
+    <None Include="Marozzo\Marozzo Sword &amp; Buckler Assault 1 Part 2">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Old\Marozzo Sword &amp; Buckler Assault 1 Part 3">
+    <None Include="Marozzo\Marozzo Sword &amp; Buckler Assault 1 Part 3">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Old\Marozzo Sword &amp; Buckler Assault 1 Part 4">
+    <None Include="Marozzo\Marozzo Sword &amp; Buckler Assault 1 Part 4">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Old\Marozzo Sword &amp; Buckler Assault 1 Part 5">
+    <None Include="Marozzo\Marozzo Sword &amp; Buckler Assault 1 Part 5">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Old\Marozzo Sword &amp; Buckler Assault 1 Part 6">
+    <None Include="Marozzo\Marozzo Sword &amp; Buckler Assault 1 Part 6">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Old\Marozzo Sword &amp; Buckler Assault 1 Part 7">
+    <None Include="Marozzo\Marozzo Sword &amp; Buckler Assault 1 Part 7">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Old\Marozzo Sword &amp; Buckler Assault 2 Part 1">
+    <None Include="Marozzo\Marozzo Sword &amp; Buckler Assault 2 Part 1">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Old\Marozzo Sword &amp; Buckler Assault 2 Part 2">
+    <None Include="Marozzo\Marozzo Sword &amp; Buckler Assault 2 Part 2">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Old\Marozzo Sword &amp; Buckler Assault 2 Part 3">
+    <None Include="Marozzo\Marozzo Sword &amp; Buckler Assault 2 Part 3">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Old\Marozzo Sword &amp; Dagger 11">
+    <None Include="Marozzo\Marozzo Sword &amp; Dagger 11">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Old\Marozzo Sword 3">
+    <None Include="Marozzo\Marozzo Sword 3">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Old\Marozzo Two Swords 1">
+    <None Include="Marozzo\Marozzo Two Swords 1">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Old\Marozzo Two Swords 2">
+    <None Include="Marozzo\Marozzo Two Swords 2">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Old\Marozzo Wrestling 1">
+    <None Include="Marozzo\Marozzo Wrestling 1">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Old\Marozzo Wrestling 10">
+    <None Include="Marozzo\Marozzo Wrestling 10">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Old\Marozzo Wrestling 11">
+    <None Include="Marozzo\Marozzo Wrestling 11">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Old\Marozzo Wrestling 12">
+    <None Include="Marozzo\Marozzo Wrestling 12">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Old\Marozzo Wrestling 13">
+    <None Include="Marozzo\Marozzo Wrestling 13">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Old\Marozzo Wrestling 14">
+    <None Include="Marozzo\Marozzo Wrestling 14">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Old\Marozzo Wrestling 15">
+    <None Include="Marozzo\Marozzo Wrestling 15">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Old\Marozzo Wrestling 16">
+    <None Include="Marozzo\Marozzo Wrestling 16">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Old\Marozzo Wrestling 17">
+    <None Include="Marozzo\Marozzo Wrestling 17">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Old\Marozzo Wrestling 18">
+    <None Include="Marozzo\Marozzo Wrestling 18">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Old\Marozzo Wrestling 19">
+    <None Include="Marozzo\Marozzo Wrestling 19">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Old\Marozzo Wrestling 2">
+    <None Include="Marozzo\Marozzo Wrestling 2">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Old\Marozzo Wrestling 20">
+    <None Include="Marozzo\Marozzo Wrestling 20">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Old\Marozzo Wrestling 21">
+    <None Include="Marozzo\Marozzo Wrestling 21">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Old\Marozzo Wrestling 22">
+    <None Include="Marozzo\Marozzo Wrestling 22">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Old\Marozzo Wrestling 3">
+    <None Include="Marozzo\Marozzo Wrestling 3">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Old\Marozzo Wrestling 4">
+    <None Include="Marozzo\Marozzo Wrestling 4">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Old\Marozzo Wrestling 5">
+    <None Include="Marozzo\Marozzo Wrestling 5">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Old\Marozzo Wrestling 6">
+    <None Include="Marozzo\Marozzo Wrestling 6">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Old\Marozzo Wrestling 7">
+    <None Include="Marozzo\Marozzo Wrestling 7">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Old\Marozzo Wrestling 8">
+    <None Include="Marozzo\Marozzo Wrestling 8">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Old\Marozzo Wrestling 9">
+    <None Include="Marozzo\Marozzo Wrestling 9">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Meyer\Meyer 1570 Book 1">

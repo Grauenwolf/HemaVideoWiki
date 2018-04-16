@@ -143,6 +143,8 @@
     <Build Include="Interpretations\Views\TargetsByBook.sql" />
     <Build Include="Interpretations\Views\FootworkByBook.sql" />
     <Build Include="Interpretations\Views\GuardsByBook.sql" />
+    <None Include="Data\One Time\Marozzo.sql" />
+    <Build Include="Interpretations\Views\MeasureByBook.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Script.PostDeployment.sql" />

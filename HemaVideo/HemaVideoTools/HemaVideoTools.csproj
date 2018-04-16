@@ -80,6 +80,7 @@
     </Compile>
     <Compile Include="PlayEditorViewModel.cs" />
     <Compile Include="Services\Client.cs" />
+    <Compile Include="Services\Formatter.cs" />
     <Compile Include="Services\PlayStep.cs" />
     <Compile Include="Tags.cs" />
     <Page Include="Blue.xaml">

@@ -81,7 +81,7 @@ namespace HemaVideoTools
 
 		void ShowInBrowser()
 		{
-			Process.Start($"http://hemavideos.azurewebsites.net/demo/book/{m_BookKey}/section/{Play.SectionKey}#Play{Play.PlayKey}");
+			Process.Start($"{m_ApiClient.BaseUrl}/demo/book/{m_BookKey}/section/{Play.SectionKey}#Play{Play.PlayKey}");
 		}
 
 		public ICommand ShowInBrowserCommand => GetCommand(ShowInBrowser);

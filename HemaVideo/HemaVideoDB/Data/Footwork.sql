@@ -125,7 +125,8 @@ VALUES
 (136, 'Girata of the right foot', NULL),
 (137, 'Girata of the left foot', NULL),
 (138, 'Lunge with the right foot', NULL),
-(139, 'Lunge with the left foot', NULL);
+(139, 'Lunge with the left foot', NULL),
+(140, 'Step', NULL);
 
 MERGE INTO Tags.Footwork t
 USING @Footwork s

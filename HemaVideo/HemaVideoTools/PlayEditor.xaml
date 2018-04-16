@@ -23,13 +23,13 @@
 
 					<StackPanel>
 						<Label Content="Agent Guard" />
-						<ComboBox ItemsSource="{Binding Tags.Guards}" SelectedValuePath="GuardKey" SelectedValue="{Binding Play.AGuardKey}" DisplayMemberPath="GuardName" />
+						<ComboBox ItemsSource="{Binding Tags.Guards}" SelectedValuePath="GuardKey" SelectedValue="{Binding Play.AGuardKey}" DisplayMemberPath="GuardFullName" />
 						<ComboBox ItemsSource="{Binding Tags.GuardModifiers}" SelectedValuePath="GuardModifierKey" SelectedValue="{Binding Play.AGuardModifierKey}" DisplayMemberPath="GuardModifierName" />
 					</StackPanel>
 
 					<StackPanel>
 						<Label Content="Patient Guard" />
-						<ComboBox ItemsSource="{Binding Tags.Guards}" SelectedValuePath="GuardKey" SelectedValue="{Binding Play.PGuardKey}" DisplayMemberPath="GuardName" />
+						<ComboBox ItemsSource="{Binding Tags.Guards}" SelectedValuePath="GuardKey" SelectedValue="{Binding Play.PGuardKey}" DisplayMemberPath="GuardFullName" />
 						<ComboBox ItemsSource="{Binding Tags.GuardModifiers}" SelectedValuePath="GuardModifierKey" SelectedValue="{Binding Play.PGuardModifierKey}" DisplayMemberPath="GuardModifierName" />
 					</StackPanel>
 
@@ -74,9 +74,9 @@
 										<StackPanel>
 											<Label Content="Techniques" />
 											<ComboBox ItemsSource="{Binding DataContext.Tags.Techniques, ElementName=Root}" SelectedValuePath="TechniqueKey" SelectedValue="{Binding TechniqueKey1}"
-											  DisplayMemberPath="TechniqueName" />
-											<ComboBox ItemsSource="{Binding DataContext.Tags.Techniques, ElementName=Root}" SelectedValuePath="TechniqueKey" SelectedValue="{Binding TechniqueKey2}" DisplayMemberPath="TechniqueName" />
-											<ComboBox ItemsSource="{Binding DataContext.Tags.Techniques, ElementName=Root}" SelectedValuePath="TechniqueKey" SelectedValue="{Binding TechniqueKey3}" DisplayMemberPath="TechniqueName" />
+											  DisplayMemberPath="TechniqueFullName" />
+											<ComboBox ItemsSource="{Binding DataContext.Tags.Techniques, ElementName=Root}" SelectedValuePath="TechniqueKey" SelectedValue="{Binding TechniqueKey2}" DisplayMemberPath="TechniqueFullName" />
+											<ComboBox ItemsSource="{Binding DataContext.Tags.Techniques, ElementName=Root}" SelectedValuePath="TechniqueKey" SelectedValue="{Binding TechniqueKey3}" DisplayMemberPath="TechniqueFullName" />
 										</StackPanel>
 
 										<StackPanel>
@@ -90,14 +90,14 @@
 										<StackPanel>
 											<Label Content="Final Guard" />
 											<ComboBox ItemsSource="{Binding DataContext.Tags.Guards, ElementName=Root}" SelectedValuePath="GuardKey" SelectedValue="{Binding GuardKey}"
-											  DisplayMemberPath="GuardName" />
+											  DisplayMemberPath="GuardFullName" />
 											<ComboBox ItemsSource="{Binding DataContext.Tags.GuardModifiers, ElementName=Root}" SelectedValuePath="GuardModifierKey" SelectedValue="{Binding GuardModifierKey}" DisplayMemberPath="GuardModifierName" />
 										</StackPanel>
 
 										<StackPanel>
 											<Label Content="Intermediate Guard" />
 											<ComboBox ItemsSource="{Binding DataContext.Tags.Guards, ElementName=Root}" SelectedValuePath="GuardKey" SelectedValue="{Binding IntermediateGuardKey}"
-											  DisplayMemberPath="GuardName" />
+											  DisplayMemberPath="GuardFullName" />
 											<ComboBox ItemsSource="{Binding DataContext.Tags.GuardModifiers, ElementName=Root}" SelectedValuePath="GuardModifierKey" SelectedValue="{Binding IntermediateGuardModifierKey}" DisplayMemberPath="GuardModifierName" />
 										</StackPanel>
 										<StackPanel>

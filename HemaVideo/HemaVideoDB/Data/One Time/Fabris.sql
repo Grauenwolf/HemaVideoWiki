@@ -417,17 +417,18 @@ INSERT INTO @Video
 	StartTime
 )
 VALUES
-(7006,1,'XAI_4ttn8MA',NULL),
+(7006,1,'XAI_4ttn8MA','0:1:28'),
+(7006,1,'XAI_4ttn8MA','0:4:24'),
 (7007,1,'KKA-FRuDuLQ',NULL),
-(7007,1,'XAI_4ttn8MA',NULL),
-(7008,1,'XAI_4ttn8MA',NULL),
+(7007,1,'XAI_4ttn8MA','0:3:24'),
+(7008,1,'XAI_4ttn8MA','0:2:02'),
 (7011,1,'5E4607cWQaM',NULL),
 (7012,1,'5E4607cWQaM',NULL),
-(7013,1,'5E4607cWQaM',NULL),
-(7016,1,'SsBBrcJUrqA',NULL),
-(7017,1,'SsBBrcJUrqA',NULL),
-(7018,1,'SsBBrcJUrqA',NULL),
-(7020,1,'XAI_4ttn8MA',NULL),
+(7013,1,'5E4607cWQaM','0:1:10'),
+(7016,1,'SsBBrcJUrqA','0:0:37'),
+(7017,1,'SsBBrcJUrqA','0:1:06'),
+(7018,1,'SsBBrcJUrqA','0:1:06'),
+(7020,1,'XAI_4ttn8MA','0:1:50'),
 (7021,1,'nEvJO9hgW2A',NULL),
 (7023,1,'KKA-FRuDuLQ',NULL),
 (7024,1,'5E4607cWQaM',NULL),
@@ -476,6 +477,7 @@ WHEN NOT MATCHED THEN
     )
     VALUES
     (s.SectionKey, s.VideoServiceKey, s.VideoServiceVideoId, NULL, StartTime, s.CreatedByUserKey)
+WHEN NOT MATCHED BY SOURCE AND t.CreatedByUserKey = -1 THEN DELETE
 	;
 
 /**** WEAPONS *******/
