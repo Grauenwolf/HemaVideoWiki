@@ -23,6 +23,7 @@
 				ItemsSource="{Binding BookList}"
 				SelectedItem="{Binding Book}" />
 			<Button Content="Reload Tags" Command="{Binding LoadTagsCommand}" IsEnabled="{Binding TagsLoading, Converter={StaticResource NotConverter}}" />
+			<Button Content="Open Browser" Command="{Binding ShowInBrowserCommand}" IsEnabled="{Binding TagsLoading, Converter={StaticResource NotConverter}}" />
 		</StackPanel>
 		<TreeView  ItemsSource="{Binding BookDetail.Sections}" DockPanel.Dock="Left" SelectedItemChanged="TreeView_SelectedItemChanged" MinWidth="150">
 			<TreeView.ItemTemplate>
@@ -31,9 +32,28 @@
 				</HierarchicalDataTemplate>
 			</TreeView.ItemTemplate>
 		</TreeView>
-		<TabControl>
-			<TabItem Header="Book" Visibility="{Binding BookDetail, Converter={StaticResource NotNullToVisibleConverter}}">
-				<TextBlock Text="TODO: Book Details" />
+		<TabControl Visibility="{Binding BookDetail, Converter={StaticResource NotNullToVisibleConverter}}">
+			<TabItem Header="Section">
+				<StackPanel>
+
+					<GroupBox Header="Book">
+						<StackPanel>
+							<StackPanel Orientation="Horizontal">
+								<Label Content="Book" VerticalAlignment="Center" />
+								<TextBlock Text="{Binding BookDetail.BookName}" VerticalAlignment="Center" />
+							</StackPanel>
+						</StackPanel>
+					</GroupBox>
+
+					<GroupBox Header="Section" Visibility="{Binding SectionDetail, Converter={StaticResource NotNullToVisibleConverter}}">
+						<StackPanel>
+							<StackPanel Orientation="Horizontal">
+								<Label Content="Section" VerticalAlignment="Center" />
+								<TextBlock Text="{Binding SectionDetail.SectionName}" VerticalAlignment="Center" />
+							</StackPanel>
+						</StackPanel>
+					</GroupBox>
+				</StackPanel>
 			</TabItem>
 			<TabItem Header="Videos" Visibility="{Binding SectionDetail, Converter={StaticResource NotNullToVisibleConverter}}">
 				<!-- TODO: Make the StartTime column editable and add a Save button. -->

@@ -1,6 +1,6 @@
 ﻿CREATE TABLE Tags.Footwork
 (
-    FootworkKey INT NOT NULL
+    FootworkKey INT NOT NULL IDENTITY
         CONSTRAINT PK_Footwork PRIMARY KEY,
     FootworkName NVARCHAR(100) NOT NULL
         CONSTRAINT UK_Measure_FootworkName
@@ -12,6 +12,6 @@
 )
 WITH (SYSTEM_VERSIONING = ON (HISTORY_TABLE = Tags.Footwork_History));
 GO
-GRANT SELECT ON Tags.Footwork TO HemaWeb;
+GRANT SELECT, INSERT, UPDATE ON Tags.Footwork TO HemaWeb;
 
 

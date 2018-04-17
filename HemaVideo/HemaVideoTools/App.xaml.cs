@@ -1,4 +1,5 @@
 ﻿using HemaVideoTools.Properties;
+using System;
 using System.Windows;
 
 namespace HemaVideoTools
@@ -32,7 +33,9 @@ namespace HemaVideoTools
 			Settings.Default.Password = loginViewModel.Password;
 			Settings.Default.Save();
 
-			var window = new MainWindow() { DataContext = new MainViewModel(loginViewModel.ApiClient) };
+			var args = AppDomain.CurrentDomain.SetupInformation.ActivationArguments;
+
+			var window = new MainWindow() { DataContext = new MainViewModel(loginViewModel.ApiClient, args) };
 			window.Show();
 		}
 	}

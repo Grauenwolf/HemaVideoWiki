@@ -477,7 +477,6 @@ WHEN NOT MATCHED THEN
     )
     VALUES
     (s.SectionKey, s.VideoServiceKey, s.VideoServiceVideoId, NULL, StartTime, s.CreatedByUserKey)
-WHEN NOT MATCHED BY SOURCE AND t.CreatedByUserKey = -1 THEN DELETE
 	;
 
 /**** WEAPONS *******/

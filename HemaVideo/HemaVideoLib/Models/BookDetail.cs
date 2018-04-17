@@ -9,5 +9,7 @@ namespace HemaVideoLib.Models
 		public List<WeaponVersus> Weapons { get; } = new List<WeaponVersus>();
 
 		public BookStats Stats { get; set; }
+
+		public bool CanEdit { get; set; }
 	}
 }

@@ -12,12 +12,12 @@ Post-Deployment Script Template
 
 
 :r .\Data\Weapon.sql
-:r .\Data\Guard.sql
-:r .\Data\Footwork.sql
-:r .\Data\Measure.sql
-:r .\Data\GuardModifier.sql
-:r .\Data\Target.sql
-:r .\Data\Technique.sql
+--:r .\Data\Guard.sql
+--:r .\Data\Footwork.sql
+--:r .\Data\Measure.sql
+--:r .\Data\GuardModifier.sql
+--:r .\Data\Target.sql
+--:r .\Data\Technique.sql
 
 ----- Video Services
 

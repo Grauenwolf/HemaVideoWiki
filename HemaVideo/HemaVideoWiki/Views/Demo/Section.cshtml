@@ -6,6 +6,10 @@
 
 <h1>
 	@Model.SectionName
+	@if (Model.CanEdit)
+	{
+		<a href="/tools/HemaVideoTools.application?book=@(Model.BookKey)&section=@(Model.SectionKey)">Edit</a>
+	}
 </h1>
 <div>
 	Source: <a href="~/demo/book/@Model.BookKey">@Model.BookName</a>

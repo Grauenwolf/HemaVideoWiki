@@ -79,14 +79,10 @@ namespace HemaVideoTools
 
 		public ICommand SaveCommand => GetCommand(async () => await SaveAsync());
 
-		void ShowInBrowser()
-		{
-			Process.Start($"{m_ApiClient.BaseUrl}/demo/book/{m_BookKey}/section/{Play.SectionKey}#Play{Play.PlayKey}");
-		}
+		public string SectionName { get; }
 
 		public ICommand ShowInBrowserCommand => GetCommand(ShowInBrowser);
 
-		public string SectionName { get; }
 		public Tags Tags { get; }
 
 		public void AddStep()
@@ -175,10 +171,81 @@ namespace HemaVideoTools
 			}
 		}
 
+		void ShowInBrowser()
+		{
+			Process.Start($"{m_ApiClient.BaseUrl}/demo/book/{m_BookKey}/section/{Play.SectionKey}#Play{Play.PlayKey}");
+		}
+
 		private void Step_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
 		{
 			if (string.IsNullOrEmpty(e.PropertyName) || e.PropertyName == nameof(PlayStep.Actor))
 				Normalize();
+		}
+
+		public ICommand AddMeasureCommand => GetCommand(AddMeasure);
+
+		void AddMeasure()
+		{
+			var vm = new TagViewModel<Measure>(m_ApiClient);
+			var dialog = new TagEditorDialog() { DataContext = vm };
+			var result = dialog.ShowDialog();
+			if (result == true)
+				Tags.Measures.Insert(1, vm.Tag);
+		}
+
+		public ICommand AddTargetCommand => GetCommand(AddTarget);
+
+		void AddTarget()
+		{
+			var vm = new TagViewModel<Target>(m_ApiClient);
+			var dialog = new TagEditorDialog() { DataContext = vm };
+			var result = dialog.ShowDialog();
+			if (result == true)
+				Tags.Targets.Insert(1, vm.Tag);
+		}
+
+		public ICommand AddGuardCommand => GetCommand(AddGuard);
+
+		void AddGuard()
+		{
+			var vm = new TagViewModel<Guard>(m_ApiClient);
+			var dialog = new TagEditorDialog() { DataContext = vm };
+			var result = dialog.ShowDialog();
+			if (result == true)
+				Tags.Guards.Insert(1, vm.Tag);
+		}
+
+		public ICommand AddGuardModifierCommand => GetCommand(AddGuardModifier);
+
+		void AddGuardModifier()
+		{
+			var vm = new TagViewModel<GuardModifier>(m_ApiClient);
+			var dialog = new TagEditorDialog() { DataContext = vm };
+			var result = dialog.ShowDialog();
+			if (result == true)
+				Tags.GuardModifiers.Insert(1, vm.Tag);
+		}
+
+		public ICommand AddFootworkCommand => GetCommand(AddFootwork);
+
+		void AddFootwork()
+		{
+			var vm = new TagViewModel<Footwork>(m_ApiClient);
+			var dialog = new TagEditorDialog() { DataContext = vm };
+			var result = dialog.ShowDialog();
+			if (result == true)
+				Tags.Footwork.Insert(1, vm.Tag);
+		}
+
+		public ICommand AddTechniqueCommand => GetCommand(AddTechnique);
+
+		void AddTechnique()
+		{
+			var vm = new TagViewModel<Technique>(m_ApiClient);
+			var dialog = new TagEditorDialog() { DataContext = vm };
+			var result = dialog.ShowDialog();
+			if (result == true)
+				Tags.Techniques.Insert(1, vm.Tag);
 		}
 	}
 }

@@ -1,6 +1,6 @@
 ﻿using HemaVideoTools.Services;
 using System.Collections.Generic;
-using System.Linq;
+using Tortuga.Anchor.Collections;
 
 namespace HemaVideoTools
 {
@@ -13,12 +13,12 @@ namespace HemaVideoTools
 			IEnumerable<GuardModifier> guardModifiers,
 			IEnumerable<Measure> measures)
 		{
-			Footwork = footwork.ToList();
-			Techniques = techniques.ToList();
-			Targets = targets.ToList();
-			Guards = guards.ToList();
-			GuardModifiers = guardModifiers.ToList();
-			Measures = measures.ToList();
+			Footwork.AddRange(footwork);
+			Techniques.AddRange(techniques);
+			Targets.AddRange(targets);
+			Guards.AddRange(guards);
+			GuardModifiers.AddRange(guardModifiers);
+			Measures.AddRange(measures);
 
 			Footwork.Insert(0, new Footwork() { });
 			Techniques.Insert(0, new Technique() { });
@@ -28,11 +28,11 @@ namespace HemaVideoTools
 			Measures.Insert(0, new Measure() { });
 		}
 
-		public List<Footwork> Footwork { get; }
-		public List<Technique> Techniques { get; }
-		public List<Target> Targets { get; }
-		public List<Guard> Guards { get; }
-		public List<GuardModifier> GuardModifiers { get; }
-		public List<Measure> Measures { get; }
+		public ObservableCollectionExtended<Footwork> Footwork { get; } = new ObservableCollectionExtended<Footwork>();
+		public ObservableCollectionExtended<Technique> Techniques { get; } = new ObservableCollectionExtended<Technique>();
+		public ObservableCollectionExtended<Target> Targets { get; } = new ObservableCollectionExtended<Target>();
+		public ObservableCollectionExtended<Guard> Guards { get; } = new ObservableCollectionExtended<Guard>();
+		public ObservableCollectionExtended<GuardModifier> GuardModifiers { get; } = new ObservableCollectionExtended<GuardModifier>();
+		public ObservableCollectionExtended<Measure> Measures { get; } = new ObservableCollectionExtended<Measure>();
 	}
 }

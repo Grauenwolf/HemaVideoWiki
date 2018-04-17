@@ -27,7 +27,8 @@
     <InstallUrl>http://hemavideos.azurewebsites.net/tools/</InstallUrl>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>2</ApplicationRevision>
+    <TrustUrlParameters>true</TrustUrlParameters>
+    <ApplicationRevision>6</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -42,6 +43,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -51,6 +53,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <PropertyGroup>
     <ManifestCertificateThumbprint>9D89966330969D1BFF383E85F57BB35AFE643E85</ManifestCertificateThumbprint>
@@ -75,8 +78,10 @@
     </Reference>
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Net" />
     <Reference Include="System.Numerics" />
     <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -110,10 +115,22 @@
       <DependentUpon>PlayEditor.xaml</DependentUpon>
     </Compile>
     <Compile Include="PlayEditorViewModel.cs" />
+    <Compile Include="Services\BookDetail.cs" />
     <Compile Include="Services\Client.cs" />
+    <Compile Include="Services\Footwork.cs" />
     <Compile Include="Services\Formatter.cs" />
+    <Compile Include="Services\Guard.cs" />
+    <Compile Include="Services\GuardModifier.cs" />
+    <Compile Include="Services\ITag.cs" />
+    <Compile Include="Services\Measure.cs" />
     <Compile Include="Services\PlayStep.cs" />
+    <Compile Include="Services\Target.cs" />
+    <Compile Include="Services\Technique.cs" />
+    <Compile Include="TagEditorDialog.xaml.cs">
+      <DependentUpon>TagEditorDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Tags.cs" />
+    <Compile Include="TagViewModel.cs" />
     <Page Include="Blue.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -135,6 +152,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="PlayEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TagEditorDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -22,7 +22,7 @@
 				<Label Content="Password" />
 				<PasswordBox PasswordChanged="PasswordBox_PasswordChanged" Width="150" />
 			</StackPanel>
-			<Button Content="Login" Command="{Binding LoginCommand}" CommandParameter="{Binding ElementName=Root}" Width="100" HorizontalAlignment="Center" />
+			<Button Content="Login" Command="{Binding LoginCommand}" CommandParameter="{Binding ElementName=Root}" Width="100" HorizontalAlignment="Center" IsDefault="True" />
 		</StackPanel>
 	</GroupBox>
 </Window>

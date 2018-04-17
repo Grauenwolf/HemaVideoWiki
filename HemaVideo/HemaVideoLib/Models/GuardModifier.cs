@@ -2,7 +2,7 @@
 {
 	public class GuardModifier
 	{
-		public int GuardModifierKey { get; set; }
+		public int? GuardModifierKey { get; set; }
 		public string GuardModifierName { get; set; }
 	}
 }

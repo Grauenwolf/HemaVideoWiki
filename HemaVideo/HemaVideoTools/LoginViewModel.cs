@@ -2,6 +2,7 @@
 using System;
 using System.Net.Http;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 using Tortuga.Sails;
 
@@ -16,9 +17,9 @@ namespace HemaVideoTools
 		public string Password { get => Get<String>(); set => Set(value); }
 		public bool IsLoggedIn { get => Get<bool>(); set => Set(value); }
 
-		public ICommand LoginCommand => GetCommand<LoginDialog>(async (dialog) => await Login(dialog));
+		public ICommand LoginCommand => GetCommand<Window>(async (dialog) => await Login(dialog));
 
-		public async Task Login(LoginDialog dialog)
+		public async Task Login(Window dialog)
 		{
 			var apiClient = new Client(Url, new HttpClient());
 			var result = await apiClient.ApiAccountLoginPostAsync(EmailAddress, Password, false);
