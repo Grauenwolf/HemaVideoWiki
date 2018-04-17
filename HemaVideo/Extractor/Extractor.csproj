@@ -590,7 +590,7 @@
     <None Include="Figueyredo\Figueyredo Simple Rule 9">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Old\Fiore de%27i Liberi">
+    <None Include="Fiore\Fiore de%27i Liberi">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Old\Francesco Alfieri">

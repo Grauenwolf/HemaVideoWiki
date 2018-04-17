@@ -145,6 +145,7 @@
     <Build Include="Interpretations\Views\GuardsByBook.sql" />
     <None Include="Data\One Time\Marozzo.sql" />
     <Build Include="Interpretations\Views\MeasureByBook.sql" />
+    <None Include="Data\One Time\Fiore.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Script.PostDeployment.sql" />
