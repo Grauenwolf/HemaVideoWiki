@@ -1,13 +1,16 @@
 ﻿@model System.Collections.Generic.List<HemaVideoLib.Models.BookAuthorDetail>
 
 @{
-    ViewData["Title"] = "All Books";
+	ViewData["Title"] = "All Books";
 }
 
 <h1>All Books</h1>
 
 @foreach (var book in Model)
 {
-    <h2><a href="~/demo/book/@book.BookKey">@book.BookName</a> by @book.AuthorName</h2>
+	<h2><a href="~/demo/book/@book.BookKey">@book.BookName</a> by @book.AuthorName</h2>
 }
 
+<h1>Tools</h1>
+
+Anyone can add videos by logging in. But to do other things like edit plays you need to use the <a href="http://hemavideos.azurewebsites.net/tools/HemaVideoTools.application">HEMA Video Wiki Tools</a> Windows application. (Yea, I know. But I'm not a web developer so unless you're <a href="https://github.com/Grauenwolf/HemaVideoWiki">volunteering</a> this is how it's going to work for now.)
