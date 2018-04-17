@@ -16,7 +16,7 @@ namespace HemaVideoTools
 	{
 		bool m_Zelda = false;
 		readonly Client m_ApiClient;
-		readonly ActivationArguments m_Args;
+		ActivationArguments m_Args;
 
 		public MainViewModel(Client apiClient, System.Runtime.Hosting.ActivationArguments args)
 		{
@@ -45,7 +45,10 @@ namespace HemaVideoTools
 		{
 			BookList.Clear();
 			BookList.AddRange(await m_ApiClient.ApiBookGetAsync());
+		}
 
+		public async Task ProcessStartupArgsAsync()
+		{
 			m_Zelda = true;
 			try
 			{
@@ -77,6 +80,7 @@ namespace HemaVideoTools
 			{
 				MessageBox.Show(ex.Message, "Unable to automatically open book/section.");
 			}
+			m_Args = null;
 			m_Zelda = false;
 		}
 

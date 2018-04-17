@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:HemaVideoTools"
         mc:Ignorable="d"
 		x:Name="Root"
-        Title="HEMA Video Wiki" Height="200" Width="400">
+        Title="HEMA Video Wiki" Height="200" Width="400" Loaded="Window_Loaded">
 	<GroupBox Header="Login to HEMA Video Wiki">
 		<StackPanel>
 			<StackPanel Orientation="Horizontal" HorizontalAlignment="Center">

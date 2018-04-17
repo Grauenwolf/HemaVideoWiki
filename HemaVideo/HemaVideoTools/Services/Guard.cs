@@ -4,10 +4,10 @@
 	{
 		public string GuardFullName => Formatter.MultiPart(GuardName, AlternateGuardName);
 
-		int? ITag.Key { get => GuardKey; set => GuardKey = value; }
-		string ITag.Name { get => GuardName; set => GuardName = value; }
-		string ITag.AlternateName { get => AlternateGuardName; set => AlternateGuardName = value; }
+		public int? Key { get => GuardKey; set => GuardKey = value; }
+		public string Name { get => GuardName; set => GuardName = value; }
+		public string AlternateName { get => AlternateGuardName; set => AlternateGuardName = value; }
 
-		bool ITag.HasAlternateName => true;
+		public bool HasAlternateName => true;
 	}
 }

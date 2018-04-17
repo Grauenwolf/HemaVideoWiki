@@ -68,7 +68,7 @@
 											<Button Content="Up" Command="{Binding DataContext.MoveUpCommand, ElementName=Root}" CommandParameter="{Binding}" />
 											<StackPanel Orientation="Horizontal">
 												<RadioButton Content="Agent"  IsChecked="{Binding IsAgent}" />
-												<RadioButton Content="Patient" />
+												<RadioButton Content="Patient" IsChecked="{Binding IsAgent, Converter={StaticResource NotConverter}}" />
 												<TextBox IsReadOnly="True" Text="{Binding TempoNumber}" />
 											</StackPanel>
 											<Button Content="Down" Command="{Binding DataContext.MoveDownCommand, ElementName=Root}" CommandParameter="{Binding}" />

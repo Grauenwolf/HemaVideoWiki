@@ -18,5 +18,10 @@ namespace HemaVideoTools
 			if (this.DataContext != null)
 				((LoginViewModel)DataContext).Password = ((PasswordBox)sender).Password;
 		}
+
+		private async void Window_Loaded(object sender, RoutedEventArgs e)
+		{
+			await ((LoginViewModel)DataContext).Login(this);
+		}
 	}
 }

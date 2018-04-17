@@ -51,7 +51,7 @@ namespace HemaVideoTools
 
 			foreach (var step in play.Steps)
 			{
-				Play.Steps.Add(new PlayStep()
+				PlayStep item = new PlayStep()
 				{
 					Actor = step.Actor,
 					FootworkKey = step.FootworkKey,
@@ -67,7 +67,10 @@ namespace HemaVideoTools
 					TechniqueKey2 = step.TechniqueKey2,
 					TechniqueKey3 = step.TechniqueKey3,
 					TempoNumber = step.TempoNumber
-				});
+				};
+				Play.Steps.Add(item);
+
+				item.PropertyChanged += Step_PropertyChanged;
 			}
 		}
 
@@ -159,6 +162,8 @@ namespace HemaVideoTools
 
 		async Task SaveAsync()
 		{
+			Normalize();
+
 			try
 			{
 				Play.PlayKey = await m_ApiClient.ApiBookUpdatePlayPostAsync(Play);
