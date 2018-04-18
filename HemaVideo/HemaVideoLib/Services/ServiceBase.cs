@@ -18,6 +18,8 @@ namespace HemaVideoLib.Services
 
 		protected async Task<bool> CanEditBookAsync(int bookKey, IUser currentUser)
 		{
+			if (currentUser == null)
+				return false;
 			var result = await m_DataSource.From("dbo.BookEditor", new { bookKey, currentUser.UserKey }).AsCount().ExecuteAsync();
 			return (result > 0);
 		}
