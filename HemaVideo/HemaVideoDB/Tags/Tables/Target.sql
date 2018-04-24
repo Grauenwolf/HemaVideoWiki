@@ -1,6 +1,6 @@
 ﻿CREATE TABLE Tags.Target
 (
-    TargetKey INT NOT NULL
+    TargetKey INT NOT NULL IDENTITY
         CONSTRAINT PK_Target PRIMARY KEY,
     TargetName NVARCHAR(50) NOT NULL
         CONSTRAINT UK_Measure_TargetName
@@ -11,4 +11,4 @@
 )
 WITH (SYSTEM_VERSIONING = ON (HISTORY_TABLE = Tags.Target_History) );
 GO
-GRANT SELECT ON Tags.Target TO HemaWeb;
+GRANT SELECT, INSERT, UPDATE  ON Tags.Target TO HemaWeb;

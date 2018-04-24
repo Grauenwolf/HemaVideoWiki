@@ -1,20 +1,5 @@
 ﻿namespace HemaVideoTools.Services
 {
-	partial class Technique
-	{
-		public string TechniqueFullName => Formatter.MultiPart(TechniqueName, AlternateTechniqueName);
-	}
-
-	partial class Guard
-	{
-		public string GuardFullName => Formatter.MultiPart(GuardName, AlternateGuardName);
-	}
-
-	partial class Measure
-	{
-		public string MeasureFullName => Formatter.MultiPart(MeasureName, AlternateMeasureName);
-	}
-
 	partial class PlayStep
 	{
 		public PlayStep()

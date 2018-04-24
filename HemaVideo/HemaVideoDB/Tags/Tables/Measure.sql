@@ -1,12 +1,15 @@
 ﻿CREATE TABLE Tags.Measure
 (
-	MeasureKey INT NOT NULL CONSTRAINT PK_Measure PRIMARY KEY,
-	MeasureName nvarchar(50) NOT NULL CONSTRAINT UK_Measure_MeasureName UNIQUE,
-	AlternateMeasureName NVARCHAR(50) NULL,
+    MeasureKey INT NOT NULL IDENTITY
+        CONSTRAINT PK_Measure PRIMARY KEY,
+    MeasureName NVARCHAR(50) NOT NULL
+        CONSTRAINT UK_Measure_MeasureName
+        UNIQUE,
+    AlternateMeasureName NVARCHAR(50) NULL,
     SysStartTime DATETIME2 GENERATED ALWAYS AS ROW START NOT NULL,
     SysEndTime DATETIME2 GENERATED ALWAYS AS ROW END NOT NULL,
     PERIOD FOR SYSTEM_TIME(SysStartTime, SysEndTime)
 )
-WITH (SYSTEM_VERSIONING = ON (HISTORY_TABLE = Tags.Measure_History) );
+WITH (SYSTEM_VERSIONING = ON (HISTORY_TABLE = Tags.Measure_History));
 GO
-GRANT SELECT ON Tags.Measure TO HemaWeb;
+GRANT SELECT, INSERT, UPDATE ON Tags.Measure TO HemaWeb;

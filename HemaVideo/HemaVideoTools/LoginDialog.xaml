@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:HemaVideoTools"
         mc:Ignorable="d"
 		x:Name="Root"
-        Title="HEMA Video Wiki" Height="200" Width="400">
+        Title="HEMA Video Wiki" Height="200" Width="400" Loaded="Window_Loaded">
 	<GroupBox Header="Login to HEMA Video Wiki">
 		<StackPanel>
 			<StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
@@ -22,7 +22,7 @@
 				<Label Content="Password" />
 				<PasswordBox PasswordChanged="PasswordBox_PasswordChanged" Width="150" />
 			</StackPanel>
-			<Button Content="Login" Command="{Binding LoginCommand}" CommandParameter="{Binding ElementName=Root}" Width="100" HorizontalAlignment="Center" />
+			<Button Content="Login" Command="{Binding LoginCommand}" CommandParameter="{Binding ElementName=Root}" Width="100" HorizontalAlignment="Center" IsDefault="True" />
 		</StackPanel>
 	</GroupBox>
 </Window>

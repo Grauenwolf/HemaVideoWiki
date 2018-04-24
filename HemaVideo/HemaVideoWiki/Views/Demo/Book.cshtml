@@ -4,8 +4,15 @@
 	ViewData["Title"] = Model.BookName;
 }
 
-<h1>@Model.BookName</h1>
+<h1>
+	@Model.BookName
+	@if (Model.CanEdit)
+	{
+		<a href="/tools/HemaVideoTools.application?book=@(Model.BookKey)">Edit</a>
+	}
+</h1>
 <div>@Model.AlternateBookName</div>
+<div>@Model.Notes</div>
 <h2>Authors</h2>
 @foreach (var author in Model.Authors)
 {

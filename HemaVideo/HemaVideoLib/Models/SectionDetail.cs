@@ -19,5 +19,6 @@ namespace HemaVideoLib.Models
 		public List<PlayDetail> Plays { get; } = new List<PlayDetail>();
 
 		public int TotalPlayCount => Plays.Count + Subsections.Sum(x => x.TotalPlayCount);
+		public bool CanEdit { get; set; }
 	}
 }

@@ -6,6 +6,10 @@
 
 <h1>
 	@Model.SectionName
+	@if (Model.CanEdit)
+	{
+		<a href="/tools/HemaVideoTools.application?book=@(Model.BookKey)&section=@(Model.SectionKey)">Edit</a>
+	}
 </h1>
 <div>
 	Source: <a href="~/demo/book/@Model.BookKey">@Model.BookName</a>
@@ -127,7 +131,7 @@
 @if (Context.User.Identity.IsAuthenticated)
 {
 	<table class="gridtable">
-		<tr><th>URL</th><th>Description (optional)</th><th>Author (optional)</th><th>Start Time (optional)</th></tr>
+		<tr><th>URL</th><th>Description (optional)</th><th>Author (optional)</th><th>Start Time (optional, H:MM:SS)</th></tr>
 		<tr>
 			<td><input type="text" id="url" /></td>
 			<td><input type="text" id="description" /></td>
@@ -138,6 +142,7 @@
     @Model.SectionKey, readValue('url'), readValue('description'), readValue('author'), readValue('startTime'))" />
 			</td>
 		</tr>
+		<tr><td colspan="4">Example start time: 1 min, 45 seconds would be "0:1:45".</td></tr>
 	</table>
 }
 else

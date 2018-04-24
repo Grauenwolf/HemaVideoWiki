@@ -16,6 +16,21 @@ namespace HemaVideoLib.Services
 
 		protected SqlServerDataSource DataSource(IUser currentUser) => m_DataSource.WithUser(currentUser);
 
+		protected async Task<bool> CanEditBookAsync(int bookKey, IUser currentUser)
+		{
+			if (currentUser == null)
+				return false;
+			var result = await m_DataSource.From("dbo.BookEditor", new { bookKey, currentUser.UserKey }).AsCount().ExecuteAsync();
+			return (result > 0);
+		}
+
+		protected async Task CheckPermissionTagEditorAsync(IUser currentUser)
+		{
+			var result = await m_DataSource.From("dbo.BookEditor", new { currentUser.UserKey }).AsCount().ExecuteAsync();
+			if (result == 0)
+				throw new UnauthorizedAccessException("Permission denied to edit this record.");
+		}
+
 		protected async Task CheckPermissionBookAsync(int bookKey, IUser currentUser)
 		{
 			var result = await m_DataSource.From("dbo.BookEditor", new { bookKey, currentUser.UserKey }).AsCount().ExecuteAsync();

@@ -20,6 +20,15 @@
 				</StackPanel>
 
 				<StackPanel Orientation="Horizontal">
+					<Button Content="New Measure" Command="{Binding AddMeasureCommand}" />
+					<Button Content="New Footwork" Command="{Binding AddFootworkCommand}" />
+					<Button Content="New Guard" Command="{Binding AddGuardCommand}" />
+					<Button Content="New Guard Modifier" Command="{Binding AddGuardModifierCommand}" />
+					<Button Content="New Technique" Command="{Binding AddTechniqueCommand}" />
+					<Button Content="New Target" Command="{Binding AddTargetCommand}" />
+				</StackPanel>
+
+				<StackPanel Orientation="Horizontal">
 
 					<StackPanel>
 						<Label Content="Agent Guard" />
@@ -35,7 +44,7 @@
 
 					<StackPanel>
 						<Label Content="Measure" />
-						<ComboBox ItemsSource="{Binding Tags.Measures}" SelectedValuePath="MeasureKey" SelectedValue="{Binding Play.MeasureKey}" DisplayMemberPath="MeasureName" />
+						<ComboBox ItemsSource="{Binding Tags.Measures}" SelectedValuePath="MeasureKey" SelectedValue="{Binding Play.MeasureKey}" DisplayMemberPath="MeasureFullName" />
 					</StackPanel>
 				</StackPanel>
 			</StackPanel>
@@ -59,7 +68,7 @@
 											<Button Content="Up" Command="{Binding DataContext.MoveUpCommand, ElementName=Root}" CommandParameter="{Binding}" />
 											<StackPanel Orientation="Horizontal">
 												<RadioButton Content="Agent"  IsChecked="{Binding IsAgent}" />
-												<RadioButton Content="Patient" />
+												<RadioButton Content="Patient" IsChecked="{Binding IsAgent, Converter={StaticResource NotConverter}}" />
 												<TextBox IsReadOnly="True" Text="{Binding TempoNumber}" />
 											</StackPanel>
 											<Button Content="Down" Command="{Binding DataContext.MoveDownCommand, ElementName=Root}" CommandParameter="{Binding}" />
@@ -68,7 +77,7 @@
 										<StackPanel>
 											<Label Content="Footwork" />
 											<ComboBox ItemsSource="{Binding DataContext.Tags.Footwork, ElementName=Root}" SelectedValuePath="FootworkKey" SelectedValue="{Binding FootworkKey}"
-											  DisplayMemberPath="FootworkName" />
+											  DisplayMemberPath="FootworkFullName" />
 										</StackPanel>
 
 										<StackPanel>

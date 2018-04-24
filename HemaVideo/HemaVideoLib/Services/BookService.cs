@@ -27,6 +27,8 @@ namespace HemaVideoLib.Services
 
 			book.Weapons.AddRange(await DataSource(currentUser).From("Sources.BookWeaponDetail", filter).WithSorting("PrimaryWeaponName").ToCollection<WeaponVersus>().ExecuteAsync());
 
+			book.CanEdit = await CanEditBookAsync(bookKey, currentUser);
+
 			return book;
 		}
 
@@ -56,6 +58,8 @@ namespace HemaVideoLib.Services
 			section.Weapons.AddRange(await DataSource(currentUser).From("Sources.SectionWeaponMapDetail", filter).ToCollection<WeaponVersus>().ExecuteAsync());
 
 			section.Plays.AddRange(await m_PlayService.GetPlayDetailsForSectionAsync(sectionKey, currentUser));
+
+			section.CanEdit = await CanEditBookAsync(section.BookKey, currentUser);
 
 			return section;
 		}

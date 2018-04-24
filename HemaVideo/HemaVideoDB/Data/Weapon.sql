@@ -19,7 +19,7 @@ VALUES
 (6, 'Sidesword and Small Buckler'),
 (7, 'Arming Sword and Buckler'),
 (8, 'Dagger'),
-(9, 'Wrestling'),
+(9, 'Grappling/Wrestling'),
 (10, 'Rapier and Dagger'),
 (12, 'Sidesword and Dagger'),
 (13, 'Pike'),
@@ -41,8 +41,15 @@ VALUES
 (29, 'Rapier and Targa'),
 (30, 'Sidesword and Large Buckler'),
 (31, 'Two Sideswords'),
-(32, 'Two Rapier')
-;
+(32, 'Two Rapier'),
+(33, 'Baton'),
+(34, 'Longsword in Armor'),
+(35, 'Axe in Armor'),
+(36, 'Dagger and Staff'),
+(37, 'Pair of Clubs'),
+(38, 'Mounted Lance'),
+(39, 'Mounted Sword'),
+(40, 'Mounted Grappling');
 
 
 

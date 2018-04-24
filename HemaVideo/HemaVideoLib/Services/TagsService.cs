@@ -11,29 +11,42 @@ namespace HemaVideoLib.Services
 		{
 		}
 
-		public Task<List<Weapon>> GetWeaponsAsync(IUser currentUser)
+		//TODO: Check for duplicates before inserting new rows.
+
+		public async Task<int> AddFootworkAsync(Footwork footwork, IUser currentUser)
 		{
-			return DataSource(currentUser).From("Tags.Weapon").ToCollection<Weapon>().ExecuteAsync();
+			await CheckPermissionTagEditorAsync(currentUser);
+			return await DataSource(currentUser).Insert("Tags.Footwork", footwork).ToInt32().ExecuteAsync();
 		}
 
-		public Task<List<Technique>> GetTechniquesAsync(IUser currentUser)
+		public async Task<int> AddGuardAsync(Guard guard, IUser currentUser)
 		{
-			return DataSource(currentUser).From("Tags.Technique").ToCollection<Technique>().ExecuteAsync();
+			await CheckPermissionTagEditorAsync(currentUser);
+			return await DataSource(currentUser).Insert("Tags.Guard", guard).ToInt32().ExecuteAsync();
 		}
 
-		public Task<List<Target>> GetTargetsAsync(IUser currentUser)
+		public async Task<int> AddGuardModifierAsync(GuardModifier guardModifier, IUser currentUser)
 		{
-			return DataSource(currentUser).From("Tags.Target").ToCollection<Target>().ExecuteAsync();
+			await CheckPermissionTagEditorAsync(currentUser);
+			return await DataSource(currentUser).Insert("Tags.GuardModifier", guardModifier).ToInt32().ExecuteAsync();
 		}
 
-		public Task<List<Guard>> GetGuardsAsync(IUser currentUser)
+		public async Task<int> AddMeasureAsync(Measure measure, IUser currentUser)
 		{
-			return DataSource(currentUser).From("Tags.Guard").ToCollection<Guard>().ExecuteAsync();
+			await CheckPermissionTagEditorAsync(currentUser);
+			return await DataSource(currentUser).Insert("Tags.Measure", measure).ToInt32().ExecuteAsync();
 		}
 
-		public Task<List<GuardModifier>> GetGuardModifiersAsync(IUser currentUser)
+		public async Task<int> AddTargetAsync(Target target, IUser currentUser)
 		{
-			return DataSource(currentUser).From("Tags.GuardModifier").ToCollection<GuardModifier>().ExecuteAsync();
+			await CheckPermissionTagEditorAsync(currentUser);
+			return await DataSource(currentUser).Insert("Tags.Target", target).ToInt32().ExecuteAsync();
+		}
+
+		public async Task<int> AddTechniqueAsync(Technique technique, IUser currentUser)
+		{
+			await CheckPermissionTagEditorAsync(currentUser);
+			return await DataSource(currentUser).Insert("Tags.Technique", technique).ToInt32().ExecuteAsync();
 		}
 
 		public Task<List<Footwork>> GetFootworkAsync(IUser currentUser)
@@ -41,9 +54,34 @@ namespace HemaVideoLib.Services
 			return DataSource(currentUser).From("Tags.Footwork").ToCollection<Footwork>().ExecuteAsync();
 		}
 
+		public Task<List<GuardModifier>> GetGuardModifiersAsync(IUser currentUser)
+		{
+			return DataSource(currentUser).From("Tags.GuardModifier").ToCollection<GuardModifier>().ExecuteAsync();
+		}
+
+		public Task<List<Guard>> GetGuardsAsync(IUser currentUser)
+		{
+			return DataSource(currentUser).From("Tags.Guard").ToCollection<Guard>().ExecuteAsync();
+		}
+
 		public Task<List<Measure>> GetMeasureAsync(IUser currentUser)
 		{
 			return DataSource(currentUser).From("Tags.Measure").ToCollection<Measure>().ExecuteAsync();
+		}
+
+		public Task<List<Target>> GetTargetsAsync(IUser currentUser)
+		{
+			return DataSource(currentUser).From("Tags.Target").ToCollection<Target>().ExecuteAsync();
+		}
+
+		public Task<List<Technique>> GetTechniquesAsync(IUser currentUser)
+		{
+			return DataSource(currentUser).From("Tags.Technique").ToCollection<Technique>().ExecuteAsync();
+		}
+
+		public Task<List<Weapon>> GetWeaponsAsync(IUser currentUser)
+		{
+			return DataSource(currentUser).From("Tags.Weapon").ToCollection<Weapon>().ExecuteAsync();
 		}
 	}
 }

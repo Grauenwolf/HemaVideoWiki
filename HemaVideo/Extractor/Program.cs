@@ -17,6 +17,7 @@ namespace Extractor
 			ProcessDallAgocchie();
 			ProcessFabris();
 			ProcessMarozzo();
+			ProcessFiore();
 		}
 
 		private static string Escape(string value) => value == null ? "NULL" : "'" + value.Replace("'", "''") + "'";
@@ -196,6 +197,25 @@ N'', -- PageReference - nvarchar(50)
 
 			var fileName1 = "Fabris-1.sql";
 			var fileName2 = "Fabris-2.sql";
+
+			GenerateSql(sections, fileName1, fileName2, false);
+		}
+
+		private static void ProcessFiore()
+		{
+			var bookKey = 9;
+			var sections = new SectionCollection(bookKey);
+
+			var indexFileName = $@"Fiore\Fiore de'i Liberi";
+			var lines = File.ReadAllLines(indexFileName);
+			var currentLineIndex = 0;
+
+			ProcessSection(lines, ref currentLineIndex, bookKey, null, 1, sections);
+
+			ProcessFiles(sections, "Fiore");
+
+			var fileName1 = "Fiore-1.sql";
+			var fileName2 = "Fiore-2.sql";
 
 			GenerateSql(sections, fileName1, fileName2, false);
 		}

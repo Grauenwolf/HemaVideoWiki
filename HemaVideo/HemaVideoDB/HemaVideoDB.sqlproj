@@ -81,7 +81,6 @@
     <None Include="Localhost.publish.xml" />
     <None Include="HemaVideoDB.publish.xml" />
     <None Include="Data\Weapon.sql" />
-    <None Include="Data\Footwork.sql" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\AspNetRoles.sql" />
@@ -125,11 +124,6 @@
     <Build Include="Interpretations\Tables\PlayStep.sql" />
     <Build Include="Tags\Tables\Footwork.sql" />
     <Build Include="Sources\Views\SectionWeaponMapDetail.sql" />
-    <None Include="Data\Guard.sql" />
-    <None Include="Data\Measure.sql" />
-    <None Include="Data\GuardModifier.sql" />
-    <None Include="Data\Target.sql" />
-    <None Include="Data\Technique.sql" />
     <None Include="Data\One Time\dall'Agocchie.sql" />
     <None Include="Data\One Time\Fabris.sql" />
     <Build Include="dbo\Tables\BookEditor.sql" />
@@ -147,6 +141,13 @@
     <Build Include="Interpretations\Views\GuardsByBook.sql" />
     <None Include="Data\One Time\Marozzo.sql" />
     <Build Include="Interpretations\Views\MeasureByBook.sql" />
+    <None Include="Data\One Time\Fiore.sql" />
+    <None Include="Data\One Time\Technique.sql" />
+    <None Include="Data\One Time\Footwork.sql" />
+    <None Include="Data\One Time\Guard.sql" />
+    <None Include="Data\One Time\GuardModifier.sql" />
+    <None Include="Data\One Time\Measure.sql" />
+    <None Include="Data\One Time\Target.sql" />
     <Build Include="Translations\Translations.sql" />
     <Build Include="Translations\Tables\Translator.sql" />
     <Build Include="Translations\Tables\SectionTranslation.sql" />

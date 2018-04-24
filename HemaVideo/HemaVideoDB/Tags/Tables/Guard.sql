@@ -1,6 +1,6 @@
 ﻿CREATE TABLE Tags.Guard
 (
-    GuardKey INT NOT NULL
+    GuardKey INT NOT NULL IDENTITY
         CONSTRAINT PK_Guard PRIMARY KEY,
     GuardName NVARCHAR(100) NOT NULL
         CONSTRAINT UX_Guard_GuardName
@@ -12,5 +12,5 @@
 )
 WITH (SYSTEM_VERSIONING = ON (HISTORY_TABLE = Tags.Guard_History) );
 GO
-GRANT SELECT ON Tags.Guard TO HemaWeb;
+GRANT SELECT, INSERT, UPDATE ON Tags.Guard TO HemaWeb;
 
