@@ -74,6 +74,8 @@
     <Folder Include="Sources\Programability" />
     <Folder Include="dbo\Views" />
     <Folder Include="Security" />
+    <Folder Include="Translations" />
+    <Folder Include="Translations\Tables" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Localhost.publish.xml" />
@@ -145,6 +147,10 @@
     <Build Include="Interpretations\Views\GuardsByBook.sql" />
     <None Include="Data\One Time\Marozzo.sql" />
     <Build Include="Interpretations\Views\MeasureByBook.sql" />
+    <Build Include="Translations\Translations.sql" />
+    <Build Include="Translations\Tables\Translator.sql" />
+    <Build Include="Translations\Tables\SectionTranslation.sql" />
+    <Build Include="Translations\Tables\BookTranslation.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Script.PostDeployment.sql" />
