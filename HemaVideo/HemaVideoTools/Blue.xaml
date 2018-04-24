@@ -1392,7 +1392,7 @@
 					<Border x:Name="DropDownBorder" Background="{DynamicResource ShadeBrush}" BorderBrush="{DynamicResource SolidBorderBrush}" BorderThickness="1" />
 					<ScrollViewer Margin="4,6,4,6"   SnapsToDevicePixels="True" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" CanContentScroll="True">
 
-						<StackPanel IsItemsHost="True" KeyboardNavigation.DirectionalNavigation="Contained" />
+						<VirtualizingStackPanel IsItemsHost="True" KeyboardNavigation.DirectionalNavigation="Contained" />
 					</ScrollViewer>
 				</Grid>
 			</Popup>
