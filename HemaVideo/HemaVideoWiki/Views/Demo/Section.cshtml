@@ -23,9 +23,15 @@
 	<h2>Translations</h2>
 	foreach (var translation in Model.Translations)
 	{
-		<h3>@(translation.TranslationTitle) <i>@(translation.TranslatorName)</i></h3>
-		<div style="margin-left: 25px; margin-right: 25px;">
-			@(translation.Translation)
+		<div style="margin-left: 25px; margin-right: 25px">
+			<h3>@(translation.TranslationTitle) <i>@(translation.TranslatorName)</i></h3>
+			<div style="font-style: italic">
+				@(translation.Translation)
+			</div>
+			<h4>Copyright</h4>
+			<div>
+				@(translation.Copyright)
+			</div>
 		</div>
 	}
 }
