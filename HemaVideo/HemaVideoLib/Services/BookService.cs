@@ -18,14 +18,20 @@ namespace HemaVideoLib.Services
 
 		public async Task<BookDetail> GetBookDetailAsync(int bookKey, bool includeWeaponsBySection, IUser currentUser)
 		{
+			var ds = DataSource(currentUser);
 			var filter = new { bookKey };
-			var book = await DataSource(currentUser).From("Sources.Book", filter).ToObject<BookDetail>().ExecuteAsync();
+			var book = await ds.From("Sources.Book", filter).ToObject<BookDetail>().ExecuteAsync();
 
-			book.Authors.AddRange(await DataSource(currentUser).From("Sources.BookAuthorDetail", filter).ToCollection<Author>().ExecuteAsync());
+			book.Authors.AddRange(await ds.From("Sources.BookAuthorDetail", filter).ToCollection<Author>().ExecuteAsync());
 
 			book.Sections.AddRange(await GetSectionsAsync(bookKey, includeWeaponsBySection, currentUser));
 
-			book.Weapons.AddRange(await DataSource(currentUser).From("Sources.BookWeaponDetail", filter).WithSorting("PrimaryWeaponName").ToCollection<WeaponVersus>().ExecuteAsync());
+			book.Weapons.AddRange(await ds.From("Sources.BookWeaponDetail", filter).WithSorting("PrimaryWeaponName").ToCollection<WeaponVersus>().ExecuteAsync());
+
+			book.Translations.AddRange(await ds.From("Translations.TranslationDetail",
+				"BookKey = @BookKey"
+				,
+				new { bookKey }).ToCollection<Translation>().ExecuteAsync());
 
 			book.CanEdit = await CanEditBookAsync(bookKey, currentUser);
 
@@ -50,14 +56,17 @@ namespace HemaVideoLib.Services
 
 		public async Task<SectionDetail> GetSectionDetailAsync(int sectionKey, bool includeSubsectionWeapons, bool includeSubsectionPlays, IUser currentUser)
 		{
+			var ds = DataSource(currentUser);
 			var filter = new { sectionKey };
-			var section = await DataSource(currentUser).From("Sources.SectionDetail", filter).ToObject<SectionDetail>().ExecuteAsync();
+			var section = await ds.From("Sources.SectionDetail", filter).ToObject<SectionDetail>().ExecuteAsync();
 			section.Subsections.AddRange(await GetSubsectionsAsync(section.BookKey, section.SectionKey, includeSubsectionWeapons, includeSubsectionPlays, currentUser));
 
-			section.Videos.AddRange(await DataSource(currentUser).From("Interpretations.Video", filter).ToCollection<Video>().ExecuteAsync());
-			section.Weapons.AddRange(await DataSource(currentUser).From("Sources.SectionWeaponMapDetail", filter).ToCollection<WeaponVersus>().ExecuteAsync());
+			section.Videos.AddRange(await ds.From("Interpretations.Video", filter).ToCollection<Video>().ExecuteAsync());
+			section.Weapons.AddRange(await ds.From("Sources.SectionWeaponMapDetail", filter).ToCollection<WeaponVersus>().ExecuteAsync());
 
 			section.Plays.AddRange(await m_PlayService.GetPlayDetailsForSectionAsync(sectionKey, currentUser));
+
+			section.Translations.AddRange(await ds.From("Translations.SectionTranslationDetail", filter).ToCollection<SectionTranslationDetail>().ExecuteAsync());
 
 			section.CanEdit = await CanEditBookAsync(section.BookKey, currentUser);
 
@@ -66,15 +75,16 @@ namespace HemaVideoLib.Services
 
 		private async Task<List<SectionSummary>> GetSectionsAsync(int bookKey, bool includeWeapons, IUser currentUser)
 		{
+			var ds = DataSource(currentUser);
 			var filter = new { bookKey };
-			var sections = await DataSource(currentUser).From("Sources.SectionDetail", filter).WithSorting("DisplayOrder").ToCollection<SectionSummary>().ExecuteAsync();
+			var sections = await ds.From("Sources.SectionDetail", filter).WithSorting("DisplayOrder").ToCollection<SectionSummary>().ExecuteAsync();
 
 			foreach (var section in sections)
 				section.Subsections.AddRange(sections.Where(x => x.ParentSectionKey == section.SectionKey));
 
 			if (includeWeapons)
 			{
-				var weapons = await DataSource(currentUser).From("Sources.SectionWeaponMapDetail", filter).ToCollection<WeaponVersusSummary>().ExecuteAsync();
+				var weapons = await ds.From("Sources.SectionWeaponMapDetail", filter).ToCollection<WeaponVersusSummary>().ExecuteAsync();
 				foreach (var section in sections)
 					section.Weapons.AddRange(weapons.Where(x => x.SectionKey == section.SectionKey));
 			}
@@ -89,21 +99,22 @@ namespace HemaVideoLib.Services
 		{
 			//This could be more efficient using a recursive CTE
 
+			var ds = DataSource(currentUser);
 			var filter = new { bookKey };
-			var sections = await DataSource(currentUser).From("Sources.SectionDetail", filter).WithSorting("DisplayOrder").ToCollection<SectionSummary>().ExecuteAsync();
+			var sections = await ds.From("Sources.SectionDetail", filter).WithSorting("DisplayOrder").ToCollection<SectionSummary>().ExecuteAsync();
 			foreach (var section in sections)
 				section.Subsections.AddRange(sections.Where(x => x.ParentSectionKey == section.SectionKey));
 
 			if (includeWeapons)
 			{
-				var weapons = await DataSource(currentUser).From("Sources.SectionWeaponMapDetail", filter).ToCollection<WeaponVersusSummary>().ExecuteAsync();
+				var weapons = await ds.From("Sources.SectionWeaponMapDetail", filter).ToCollection<WeaponVersusSummary>().ExecuteAsync();
 				foreach (var section in sections)
 					section.Weapons.AddRange(weapons.Where(x => x.SectionKey == section.SectionKey));
 			}
 
 			if (includePlays)
 			{
-				var plays = await DataSource(currentUser).From("Interpretations.PlayDetail", filter).ToCollection<PlaySummary>().ExecuteAsync();
+				var plays = await ds.From("Interpretations.PlayDetail", filter).ToCollection<PlaySummary>().ExecuteAsync();
 				foreach (var section in sections)
 					section.Plays.AddRange(plays.Where(x => x.SectionKey == section.SectionKey));
 			}

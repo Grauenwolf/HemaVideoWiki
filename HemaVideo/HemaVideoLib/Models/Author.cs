@@ -1,13 +1,9 @@
 ﻿namespace HemaVideoLib.Models
 {
-    public class Author
-    {
-        public int AuthorKey { get; set; }
-        public string AuthorName { get; set; }
-        public string AuthorSlug { get; set; }
-
-    }
+	public class Author
+	{
+		public int AuthorKey { get; set; }
+		public string AuthorName { get; set; }
+		public string AuthorSlug { get; set; }
+	}
 }
-
-
-   

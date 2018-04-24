@@ -76,6 +76,7 @@
     <Folder Include="Security" />
     <Folder Include="Translations" />
     <Folder Include="Translations\Tables" />
+    <Folder Include="Translations\Views" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Localhost.publish.xml" />
@@ -151,7 +152,9 @@
     <Build Include="Translations\Translations.sql" />
     <Build Include="Translations\Tables\Translator.sql" />
     <Build Include="Translations\Tables\SectionTranslation.sql" />
-    <Build Include="Translations\Tables\BookTranslation.sql" />
+    <Build Include="Translations\Tables\Translation.sql" />
+    <Build Include="Translations\Views\SectionTranslationDetail.sql" />
+    <Build Include="Translations\Views\TranslationDetail.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Script.PostDeployment.sql" />

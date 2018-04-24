@@ -11,12 +11,40 @@
 		<a href="/tools/HemaVideoTools.application?book=@(Model.BookKey)">Edit</a>
 	}
 </h1>
+
 <div>@Model.AlternateBookName</div>
 <div>@Model.Notes</div>
 <h2>Authors</h2>
 @foreach (var author in Model.Authors)
 {
 	<div>@author.AuthorName</div>
+}
+@if (Model.WiktenauerUrl != null || Model.Translations.Count > 0)
+{
+
+	<h2>Translations</h2>
+	@foreach (var author in Model.Authors)
+	{
+		@if (Model.WiktenauerUrl != null)
+		{
+			<div><a href="@Model.WiktenauerUrl">Wiktenauer Entry</a></div>
+		}
+		foreach (var translation in Model.Translations)
+		{
+			if (translation.TranslationTitle == null && translation.TranslationUrl == null)
+			{
+				<div>@(translation.TranslatorName)</div>
+			}
+			else if (translation.TranslationUrl == null)
+			{
+				<div>@(translation.TranslationTitle) by @(translation.TranslatorName)</div>
+			}
+			else
+			{
+				<div><a href="@(translation.TranslationUrl)">@(translation.TranslationTitle)</a> by @(translation.TranslatorName)</div>
+			}
+		}
+	}
 }
 
 <h2>Weapons</h2>

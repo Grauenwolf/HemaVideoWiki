@@ -18,6 +18,17 @@
 		<text> (@Model.PageReference)</text>
 	}
 </div>
+@if (Model.Translations.Count > 0)
+{
+	<h2>Translations</h2>
+	foreach (var translation in Model.Translations)
+	{
+		<h3>@(translation.TranslationTitle) <i>@(translation.TranslatorName)</i></h3>
+		<div style="margin-left: 25px; margin-right: 25px;">
+			@(translation.Translation)
+		</div>
+	}
+}
 
 @if (Model.TotalPlayCount > 0)
 {

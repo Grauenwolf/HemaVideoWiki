@@ -3,9 +3,9 @@
     SectionKey INT NOT NULL
         CONSTRAINT FK_SectionTranslation_Section
         REFERENCES Sources.Section (SectionKey),
-    TranslatorKey INT NOT NULL
-        CONSTRAINT FK_SectionTranslation_Translator
-        REFERENCES Translations.Translator (TranslatorKey),
+    TranslationKey INT NOT NULL
+        CONSTRAINT FK_SectionTranslation_Translation
+        REFERENCES Translations.Translation (TranslationKey),
     Translation NVARCHAR(MAX) NOT NULL
         CONSTRAINT C_SectionTranslation_Translation CHECK (LEN(Translation) > 0),
     CreatedByUserKey INT NOT NULL
@@ -24,6 +24,8 @@
     CONSTRAINT PK_SectionTranslation
         PRIMARY KEY (
                         SectionKey,
-                        TranslatorKey
+                        TranslationKey
                     )
 );
+GO
+GRANT SELECT, INSERT, UPDATE, DELETE ON Translations.SectionTranslation TO HemaWeb;
