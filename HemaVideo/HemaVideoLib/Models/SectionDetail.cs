@@ -8,9 +8,12 @@ namespace HemaVideoLib.Models
 		public int BookKey { get; set; }
 		public string BookName { get; set; }
 		public bool CanEdit { get; set; }
+		public SectionSummary Next { get; set; }
+		public SectionSummary Up { get; set; }
 		public string PageReference { get; set; }
 		public int? ParentSectionKey { get; set; }
 		public List<PlayDetail> Plays { get; } = new List<PlayDetail>();
+		public SectionSummary Previous { get; set; }
 		public int SectionKey { get; set; }
 		public string SectionName { get; set; }
 		public SectionSummaryCollection Subsections { get; } = new SectionSummaryCollection();

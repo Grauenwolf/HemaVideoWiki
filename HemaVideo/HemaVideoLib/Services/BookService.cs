@@ -59,7 +59,12 @@ namespace HemaVideoLib.Services
 			var ds = DataSource(currentUser);
 			var filter = new { sectionKey };
 			var section = await ds.From("Sources.SectionDetail", filter).ToObject<SectionDetail>().ExecuteAsync();
-			section.Subsections.AddRange(await GetSubsectionsAsync(section.BookKey, section.SectionKey, includeSubsectionWeapons, includeSubsectionPlays, currentUser));
+
+			var (subsections, previous, next, up) = await GetSubsectionsAsync(section.BookKey, section.SectionKey, includeSubsectionWeapons, includeSubsectionPlays, currentUser);
+			section.Subsections.AddRange(subsections);
+			section.Previous = previous;
+			section.Next = next;
+			section.Up = up;
 
 			section.Videos.AddRange(await ds.From("Interpretations.Video", filter).ToCollection<Video>().ExecuteAsync());
 			section.Weapons.AddRange(await ds.From("Sources.SectionWeaponMapDetail", filter).ToCollection<WeaponVersus>().ExecuteAsync());
@@ -95,13 +100,14 @@ namespace HemaVideoLib.Services
 			return result;
 		}
 
-		async Task<List<SectionSummary>> GetSubsectionsAsync(int bookKey, int sectionKey, bool includeWeapons, bool includePlays, IUser currentUser)
+		async Task<(SectionSummaryCollection List, SectionSummary Next, SectionSummary Previous, SectionSummary Up)> GetSubsectionsAsync(int bookKey, int sectionKey, bool includeWeapons, bool includePlays, IUser currentUser)
 		{
 			//This could be more efficient using a recursive CTE
 
 			var ds = DataSource(currentUser);
 			var filter = new { bookKey };
 			var sections = await ds.From("Sources.SectionDetail", filter).WithSorting("DisplayOrder").ToCollection<SectionSummary>().ExecuteAsync();
+
 			foreach (var section in sections)
 				section.Subsections.AddRange(sections.Where(x => x.ParentSectionKey == section.SectionKey));
 
@@ -119,12 +125,43 @@ namespace HemaVideoLib.Services
 					section.Plays.AddRange(plays.Where(x => x.SectionKey == section.SectionKey));
 			}
 
-			List<SectionSummary> result = sections.Where(x => x.ParentSectionKey == sectionKey).ToList();
+			var flatList = Flatten(sections);
 
-			foreach (var section in result)
+			var result = flatList.Single(x => x.SectionKey == sectionKey);
+			var index = flatList.IndexOf(result);
+
+			foreach (var section in result.Subsections)
 				section.Depth = 1;
 
+			var previous = (index > 0) ? flatList[index - 1] : null;
+			var next = (index < flatList.Count - 2) ? flatList[index + 1] : null;
+			var up = (result.ParentSectionKey != null) ? flatList.Single(x => x.SectionKey == result.ParentSectionKey) : null;
+			return (result.Subsections, previous, next, up);
+		}
+
+		/// <summary>
+		/// Creates a flat list of sections in the correct order.
+		/// </summary>
+		/// <param name="sections">The sections.</param>
+		/// <returns>List&lt;SectionSummary&gt;.</returns>
+		List<SectionSummary> Flatten(List<SectionSummary> sections)
+		{
+			var result = new List<SectionSummary>(sections.Count);
+			var roots = sections.Where(s => s.ParentSectionKey == null).ToList();
+			foreach (var section in roots)
+			{
+				AddWithChildern(section);
+			}
 			return result;
+
+			void AddWithChildern(SectionSummary section)
+			{
+				result.Add(section);
+				foreach (var subsection in section.Subsections)
+				{
+					AddWithChildern(subsection);
+				}
+			}
 		}
 	}
 }

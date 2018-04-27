@@ -6,17 +6,64 @@
 
 <h1>
 	@Model.SectionName
+	@if (!string.IsNullOrEmpty(Model.PageReference))
+	{
+		<text>(@Model.PageReference)</text>
+	}
 	@if (Model.CanEdit)
 	{
 		<a href="/tools/HemaVideoTools.application?book=@(Model.BookKey)&section=@(Model.SectionKey)">Edit</a>
 	}
 </h1>
 <div>
-	Source: <a href="~/demo/book/@Model.BookKey">@Model.BookName</a>
-	@if (!string.IsNullOrEmpty(Model.PageReference))
-	{
-		<text> (@Model.PageReference)</text>
-	}
+	<table class="gridtable">
+		<tr>
+			<th>
+				@if (Model.Previous != null)
+				{
+					<a href="~/demo/book/@Model.BookKey/section/@(Model.Previous.SectionKey)">
+						&lt;--
+						@Model.Previous.SectionName
+						@if (!string.IsNullOrEmpty(Model.Previous.PageReference))
+						{
+							@( " (" + Model.Previous.PageReference + ")" )
+						}
+					</a>
+				}
+			</th>
+			<th>
+				@if (Model.Up != null)
+				{
+					<a href="~/demo/book/@Model.BookKey/section/@(Model.Up.SectionKey)">
+						Up
+						@Model.Up.SectionName
+						@if (!string.IsNullOrEmpty(Model.Up.PageReference))
+						{
+							@( " (" + Model.Up.PageReference + ")" )
+						}
+					</a>
+
+				}
+				else
+				{
+					<a href="~/demo/book/@Model.BookKey">@Model.BookName</a>
+				}
+			</th>
+			<th>
+				@if (Model.Next != null)
+				{
+					<a href="~/demo/book/@Model.BookKey/section/@(Model.Next.SectionKey)">
+						@Model.Next.SectionName
+						@if (!string.IsNullOrEmpty(Model.Next.PageReference))
+						{
+							@( " (" + Model.Next.PageReference + ")" )
+						}
+						--&gt;
+					</a>
+				}
+			</th>
+		</tr>
+	</table>
 </div>
 @if (Model.Translations.Count > 0)
 {
