@@ -26,6 +26,7 @@
                         SectionKey,
                         TranslationKey
                     )
-);
+)
+WITH (SYSTEM_VERSIONING = ON (HISTORY_TABLE = Translations.SectionTranslation_History));
 GO
 GRANT SELECT, INSERT, UPDATE, DELETE ON Translations.SectionTranslation TO HemaWeb;

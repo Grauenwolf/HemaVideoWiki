@@ -27,4 +27,6 @@
     SysEndTime DATETIME2 GENERATED ALWAYS AS ROW END NOT NULL,
     PERIOD FOR SYSTEM_TIME(SysStartTime, SysEndTime),
 	CONSTRAINT C_Translation_Purchase CHECK (TranslationTitle IS NOT NULL OR TranslationUrl IS NULL) -- URL needs a title
-);
+)
+WITH (SYSTEM_VERSIONING = ON (HISTORY_TABLE = Translations.Translation_History));
+
