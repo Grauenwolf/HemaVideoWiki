@@ -42,9 +42,6 @@
 				</StackPanel>
 			</GroupBox>
 
-			<GroupBox Header="Weapons" Visibility="{Binding BookDetail, Converter={StaticResource NotNullToVisibleConverter}}">
-				<DataGrid ItemsSource="{Binding SectionDetail.Weapons}" AutoGenerateColumns="True"  IsReadOnly="True" />
-			</GroupBox>
 			<GroupBox Header="Authors" Visibility="{Binding BookDetail, Converter={StaticResource NotNullToVisibleConverter}}">
 				<DataGrid ItemsSource="{Binding BookDetail.Authors}" AutoGenerateColumns="True"  IsReadOnly="True" />
 			</GroupBox>
@@ -54,21 +51,60 @@
 					<StackPanel Orientation="Horizontal">
 						<Label Content="Section" VerticalAlignment="Center" />
 						<TextBox IsReadOnly="True" Text="{Binding SectionDetail.SectionName}" VerticalAlignment="Center" />
+						<Button Content="Edit" Command="{Binding EditSectionNameCommand}" IsEnabled="{Binding SectionDetail.CanEdit}" />
+					</StackPanel>
+					<StackPanel Orientation="Horizontal">
+						<Label Content="Page Number" VerticalAlignment="Center" />
+						<TextBox IsReadOnly="True" Text="{Binding SectionDetail.PageReference}" VerticalAlignment="Center" />
 					</StackPanel>
 				</StackPanel>
 			</GroupBox>
+
+			<GroupBox Header="Weapons" Visibility="{Binding SectionDetail, Converter={StaticResource NotNullToVisibleConverter}}">
+				<StackPanel>
+					<StackPanel Orientation="Horizontal" IsEnabled="{Binding SectionDetail.CanEdit}">
+						<Button Content="Add Weapon" Command="{Binding AddSectionWeaponCommand}" />
+					</StackPanel>
+					<DataGrid ItemsSource="{Binding SectionDetail.Weapons}" AutoGenerateColumns="True" IsReadOnly="True">
+						<DataGrid.Columns>
+							<DataGridTemplateColumn>
+								<DataGridTemplateColumn.CellTemplate>
+									<DataTemplate>
+										<StackPanel Orientation="Horizontal">
+											<Button Content="Delete" Command="{Binding DataContext.DeleteSectionWeaponCommand, ElementName=Root}" CommandParameter="{Binding}" IsEnabled="{Binding DataContext.SectionDetail.CanEdit, ElementName=Root}" />
+										</StackPanel>
+									</DataTemplate>
+								</DataGridTemplateColumn.CellTemplate>
+							</DataGridTemplateColumn>
+						</DataGrid.Columns>
+					</DataGrid>
+				</StackPanel>
+			</GroupBox>
+
 			<GroupBox Header="Videos" Visibility="{Binding SectionDetail, Converter={StaticResource NotNullToVisibleConverter}}">
 				<!-- TODO: Make the StartTime column editable and add a Save button. -->
-				<DataGrid ItemsSource="{Binding SectionDetail.Videos}" AutoGenerateColumns="True" IsReadOnly="True" />
+				<DataGrid ItemsSource="{Binding SectionDetail.Videos}" AutoGenerateColumns="True" IsReadOnly="True">
+					<DataGrid.Columns>
+						<DataGridTemplateColumn>
+							<DataGridTemplateColumn.CellTemplate>
+								<DataTemplate>
+									<StackPanel Orientation="Horizontal">
+										<Button Content="Edit" Command="{Binding DataContext.EditVideoCommand, ElementName=Root}" CommandParameter="{Binding}" IsEnabled="{Binding DataContext.SectionDetail.CanEdit, ElementName=Root}" />
+										<Button Content="Delete" Command="{Binding DataContext.DeleteVideoCommand, ElementName=Root}" CommandParameter="{Binding}" IsEnabled="{Binding DataContext.SectionDetail.CanEdit, ElementName=Root}" />
+									</StackPanel>
+								</DataTemplate>
+							</DataGridTemplateColumn.CellTemplate>
+						</DataGridTemplateColumn>
+					</DataGrid.Columns>
+				</DataGrid>
 			</GroupBox>
 			<GroupBox Header="Plays" Visibility="{Binding SectionDetail, Converter={StaticResource NotNullToVisibleConverter}}">
 				<StackPanel>
-					<StackPanel Orientation="Horizontal">
-
+					<StackPanel Orientation="Horizontal" IsEnabled="{Binding SectionDetail.CanEdit}">
 						<Button Content="Add Play" Command="{Binding AddPlayCommand}" />
 						<Button Content="Paste Copy of Marked Play" Command="{Binding CopyMarkedPlayCommand}" IsEnabled="{Binding MarkedPlay, Converter={StaticResource NotNullToTrueConverter}}" />
 					</StackPanel>
-					<DataGrid ItemsSource="{Binding SectionDetail.Plays}" AutoGenerateColumns="False"   IsReadOnly="True">
+					<DataGrid ItemsSource="{Binding SectionDetail.Plays}" AutoGenerateColumns="False" IsReadOnly="True">
 						<DataGrid.Columns>
 							<DataGridTextColumn Binding="{Binding PlayKey}" Header="PlayKey" />
 							<DataGridTextColumn Binding="{Binding VariantName}" Header="Variant" />
@@ -77,9 +113,10 @@
 								<DataGridTemplateColumn.CellTemplate>
 									<DataTemplate>
 										<StackPanel Orientation="Horizontal">
-											<Button Content="Edit" Command="{Binding DataContext.EditPlayCommand, ElementName=Root}" CommandParameter="{Binding}" />
-											<Button Content="Copy" Command="{Binding DataContext.CopyPlayCommand, ElementName=Root}" CommandParameter="{Binding}" />
+											<Button Content="Edit" Command="{Binding DataContext.EditPlayCommand, ElementName=Root}" CommandParameter="{Binding}" IsEnabled="{Binding DataContext.SectionDetail.CanEdit, ElementName=Root}" />
+											<Button Content="Copy" Command="{Binding DataContext.CopyPlayCommand, ElementName=Root}" CommandParameter="{Binding}" IsEnabled="{Binding DataContext.SectionDetail.CanEdit, ElementName=Root}" />
 											<Button Content="Mark" Command="{Binding DataContext.MarkPlayCommand, ElementName=Root}" CommandParameter="{Binding}" />
+											<Button Content="Delete" Command="{Binding DataContext.DeletePlayCommand, ElementName=Root}" CommandParameter="{Binding}" IsEnabled="{Binding DataContext.SectionDetail.CanEdit, ElementName=Root}" />
 										</StackPanel>
 									</DataTemplate>
 								</DataGridTemplateColumn.CellTemplate>

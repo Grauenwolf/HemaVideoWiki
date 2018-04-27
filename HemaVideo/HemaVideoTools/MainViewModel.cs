@@ -14,9 +14,9 @@ namespace HemaVideoTools
 {
 	public class MainViewModel : Tortuga.Sails.ViewModelBase
 	{
-		bool m_Zelda = false;
 		readonly Client m_ApiClient;
 		ActivationArguments m_Args;
+		bool m_Zelda = false;
 
 		public MainViewModel(Client apiClient, System.Runtime.Hosting.ActivationArguments args)
 		{
@@ -26,25 +26,55 @@ namespace HemaVideoTools
 		}
 
 		public ICommand AddPlayCommand => GetCommand(AddPlay);
+		public ICommand AddSectionWeaponCommand => GetCommand(AddSectionWeapon);
 		public BookSummary Book { get => Get<BookSummary>(); set => Set(value); }
-		public WindowState WindowState { get => Get<WindowState>(); set => Set(value); }
 		public BookDetail BookDetail { get => Get<BookDetail>(); set => Set(value); }
 		public ObservableCollectionExtended<BookSummary> BookList => GetNew<ObservableCollectionExtended<BookSummary>>();
 		public ICommand CopyMarkedPlayCommand => GetCommand(CopyMarkedPlay);
 		public ICommand CopyPlayCommand => GetCommand<PlayDetail>(CopyPlay);
+		public ICommand DeletePlayCommand => GetCommand<PlayDetail>(DeletePlay);
+		public ICommand DeleteSectionWeaponCommand => GetCommand<WeaponVersus>(DeleteSectionWeapon);
+		public ICommand DeleteVideoCommand => GetCommand<Video>(DeleteVideo);
 		public ICommand EditPlayCommand => GetCommand<PlayDetail>(EditPlay);
+		public ICommand EditSectionNameCommand => GetCommand(EditSectionName);
+		public ICommand EditVideoCommand => GetCommand<Video>(EditVideo);
+
 		public ICommand LoadTagsCommand => GetCommand(async () => await LoadTagsAsync());
+
 		public PlayDetail MarkedPlay { get => Get<PlayDetail>(); set => Set(value); }
-		public bool TagsLoading { get => Get<bool>(); set => Set(value); }
+
 		public ICommand MarkPlayCommand => GetCommand<PlayDetail>(MarkPlay);
+
 		public SectionSummary Section { get => Get<SectionSummary>(); set => Set(value); }
+
 		public SectionDetail SectionDetail { get => Get<SectionDetail>(); set => Set(value); }
+
+		public ICommand ShowInBrowserCommand => GetCommand(ShowInBrowser);
+
 		public Tags Tags { get => Get<Tags>(); set => Set(value); }
+
+		public bool TagsLoading { get => Get<bool>(); set => Set(value); }
+
+		public WindowState WindowState { get => Get<WindowState>(); set => Set(value); }
 
 		public async Task LoadBooksAsync()
 		{
 			BookList.Clear();
 			BookList.AddRange(await m_ApiClient.ApiBookGetAsync());
+		}
+
+		public async Task LoadTagsAsync()
+		{
+			TagsLoading = true;
+			var techniques = (await m_ApiClient.ApiTagTechniqueGetAsync()).OrderBy(x => x.TechniqueName);
+			var guards = (await m_ApiClient.ApiTagGuardGetAsync()).OrderBy(x => x.GuardName);
+			var footwork = (await m_ApiClient.ApiTagFootworkGetAsync()).OrderBy(x => x.FootworkName);
+			var targets = (await m_ApiClient.ApiTagTargetGetAsync()).OrderBy(x => x.TargetName);
+			var guardModifiers = (await m_ApiClient.ApiTagGuardModifierGetAsync()).OrderBy(x => x.GuardModifierName);
+			var measures = (await m_ApiClient.ApiTagMeasureGetAsync()).OrderBy(x => x.MeasureName);
+
+			Tags = new Tags(footwork, techniques, targets, guards, guardModifiers, measures);
+			TagsLoading = false;
 		}
 
 		public async Task ProcessStartupArgsAsync()
@@ -84,20 +114,6 @@ namespace HemaVideoTools
 			m_Zelda = false;
 		}
 
-		public async Task LoadTagsAsync()
-		{
-			TagsLoading = true;
-			var techniques = (await m_ApiClient.ApiTagTechniqueGetAsync()).OrderBy(x => x.TechniqueName);
-			var guards = (await m_ApiClient.ApiTagGuardGetAsync()).OrderBy(x => x.GuardName);
-			var footwork = (await m_ApiClient.ApiTagFootworkGetAsync()).OrderBy(x => x.FootworkName);
-			var targets = (await m_ApiClient.ApiTagTargetGetAsync()).OrderBy(x => x.TargetName);
-			var guardModifiers = (await m_ApiClient.ApiTagGuardModifierGetAsync()).OrderBy(x => x.GuardModifierName);
-			var measures = (await m_ApiClient.ApiTagMeasureGetAsync()).OrderBy(x => x.MeasureName);
-
-			Tags = new Tags(footwork, techniques, targets, guards, guardModifiers, measures);
-			TagsLoading = false;
-		}
-
 		public async Task RefreshSectionDetailAsync()
 		{
 			if (Section?.SectionKey != null)
@@ -108,6 +124,11 @@ namespace HemaVideoTools
 		{
 			var vm = new PlayEditorViewModel(m_ApiClient, Tags, SectionDetail, RefreshSectionDetailAsync);
 			ShowPlayEditor(vm);
+		}
+
+		void AddSectionWeapon()
+		{
+			MessageBox.Show("TODO add weapon to section");
 		}
 
 		void CopyMarkedPlay()
@@ -122,18 +143,35 @@ namespace HemaVideoTools
 			ShowPlayEditor(vm);
 		}
 
+		void DeletePlay(PlayDetail play)
+		{
+			MessageBox.Show("TODO: Delete play command");
+		}
+
+		void DeleteSectionWeapon(WeaponVersus obj)
+		{
+			MessageBox.Show("TODO delete weapon from section");
+		}
+
+		void DeleteVideo(Video video)
+		{
+			MessageBox.Show("TODO: add ability to delete videos");
+		}
+
 		void EditPlay(PlayDetail play)
 		{
 			var vm = new PlayEditorViewModel(m_ApiClient, Tags, SectionDetail, RefreshSectionDetailAsync, play, false);
 			ShowPlayEditor(vm);
 		}
 
-		private void ShowPlayEditor(PlayEditorViewModel vm)
+		void EditSectionName(T obj)
 		{
-			var window = new PlayEditor() { DataContext = vm };
-			if (WindowState == WindowState.Maximized)
-				window.WindowState = WindowState.Maximized;
-			window.Show();
+			MessageBox.Show("TODO edit section name");
+		}
+
+		void EditVideo(Video video)
+		{
+			MessageBox.Show("TODO: add ability to edit videos");
 		}
 
 		private async void MainViewModel_PropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -164,8 +202,6 @@ namespace HemaVideoTools
 			MarkedPlay = play;
 		}
 
-		public ICommand ShowInBrowserCommand => GetCommand(ShowInBrowser);
-
 		void ShowInBrowser()
 		{
 			if (SectionDetail != null)
@@ -174,6 +210,14 @@ namespace HemaVideoTools
 				Process.Start($"{m_ApiClient.BaseUrl}/demo/book/{BookDetail.BookKey}");
 			else
 				Process.Start($"{m_ApiClient.BaseUrl}/demo");
+		}
+
+		private void ShowPlayEditor(PlayEditorViewModel vm)
+		{
+			var window = new PlayEditor() { DataContext = vm };
+			if (WindowState == WindowState.Maximized)
+				window.WindowState = WindowState.Maximized;
+			window.Show();
 		}
 	}
 }
