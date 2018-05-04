@@ -4,6 +4,7 @@ using HemaVideoWiki.Models;
 using HemaVideoWiki.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -77,6 +78,27 @@ namespace HemaVideoWiki
 			{
 				app.UseExceptionHandler("/Home/Error");
 			}
+
+			app.Use(async (context, next) =>
+			{
+				var request = context.Request;
+
+				if (request.IsHttps)
+				{
+					await next();
+				}
+				else
+				{
+					var devPort = Configuration.GetValue<int>("iisSettings:iisExpress:sslPort");
+
+					var host = env.IsDevelopment() && devPort > 0
+						? new HostString(request.Host.Host, devPort)
+						: new HostString(request.Host.Host);
+
+					string newUrl = $"https://{host}{request.PathBase}{request.Path}{request.QueryString}";
+					context.Response.Redirect(newUrl, true);
+				}
+			});
 
 			app.UseStaticFiles(new StaticFileOptions() { ServeUnknownFileTypes = true });
 

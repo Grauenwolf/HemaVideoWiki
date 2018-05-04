@@ -15,7 +15,7 @@ namespace HemaVideoTools
 
 			LoginViewModel loginViewModel = new LoginViewModel()
 			{
-				Url = "http://hemavideos.azurewebsites.net",
+				Url = "https://hemavideos.azurewebsites.net",
 				EmailAddress = Settings.Default.EmailAddress,
 				Password = Settings.Default.Password
 			};

@@ -36,7 +36,7 @@ namespace HemaVideoTools
 		public ICommand DeleteSectionWeaponCommand => GetCommand<WeaponVersus>(DeleteSectionWeapon);
 		public ICommand DeleteVideoCommand => GetCommand<Video>(DeleteVideo);
 		public ICommand EditPlayCommand => GetCommand<PlayDetail>(EditPlay);
-		public ICommand EditSectionNameCommand => GetCommand(EditSectionName);
+		public ICommand EditSectionNameCommand => GetCommand<SectionDetail>(EditSectionName);
 		public ICommand EditVideoCommand => GetCommand<Video>(EditVideo);
 
 		public ICommand LoadTagsCommand => GetCommand(async () => await LoadTagsAsync());
@@ -164,7 +164,7 @@ namespace HemaVideoTools
 			ShowPlayEditor(vm);
 		}
 
-		void EditSectionName(T obj)
+		void EditSectionName(SectionDetail obj)
 		{
 			MessageBox.Show("TODO edit section name");
 		}
