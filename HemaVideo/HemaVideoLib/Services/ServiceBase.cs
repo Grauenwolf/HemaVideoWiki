@@ -5,58 +5,58 @@ using Tortuga.Chain;
 
 namespace HemaVideoLib.Services
 {
-	public abstract class ServiceBase
-	{
-		private readonly SqlServerDataSource m_DataSource;
+    public abstract class ServiceBase
+    {
+        private readonly SqlServerDataSource m_DataSource;
 
-		public ServiceBase(SqlServerDataSource dataSource)
-		{
-			m_DataSource = dataSource ?? throw new ArgumentNullException(nameof(dataSource));
-		}
+        protected ServiceBase(SqlServerDataSource dataSource)
+        {
+            m_DataSource = dataSource ?? throw new ArgumentNullException(nameof(dataSource));
+        }
 
-		protected SqlServerDataSource DataSource(IUser currentUser) => m_DataSource.WithUser(currentUser);
+        protected SqlServerDataSource DataSource(IUser currentUser) => m_DataSource.WithUser(currentUser);
 
-		protected async Task<bool> CanEditBookAsync(int bookKey, IUser currentUser)
-		{
-			if (currentUser == null)
-				return false;
-			var result = await m_DataSource.From("dbo.BookEditor", new { bookKey, currentUser.UserKey }).AsCount().ExecuteAsync();
-			return (result > 0);
-		}
+        protected async Task<bool> CanEditBookAsync(int bookKey, IUser currentUser)
+        {
+            if (currentUser == null)
+                return false;
+            var result = await m_DataSource.From("dbo.BookEditor", new { bookKey, currentUser.UserKey }).AsCount().ExecuteAsync();
+            return (result > 0);
+        }
 
-		protected async Task CheckPermissionTagEditorAsync(IUser currentUser)
-		{
-			var result = await m_DataSource.From("dbo.BookEditor", new { currentUser.UserKey }).AsCount().ExecuteAsync();
-			if (result == 0)
-				throw new UnauthorizedAccessException("Permission denied to edit this record.");
-		}
+        protected async Task CheckPermissionTagEditorAsync(IUser currentUser)
+        {
+            var result = await m_DataSource.From("dbo.BookEditor", new { currentUser.UserKey }).AsCount().ExecuteAsync();
+            if (result == 0)
+                throw new UnauthorizedAccessException("Permission denied to edit this record.");
+        }
 
-		protected async Task CheckPermissionBookAsync(int bookKey, IUser currentUser)
-		{
-			var result = await m_DataSource.From("dbo.BookEditor", new { bookKey, currentUser.UserKey }).AsCount().ExecuteAsync();
-			if (result == 0)
-				throw new UnauthorizedAccessException("Permission denied to edit this record.");
-		}
+        protected async Task CheckPermissionBookAsync(int bookKey, IUser currentUser)
+        {
+            var result = await m_DataSource.From("dbo.BookEditor", new { bookKey, currentUser.UserKey }).AsCount().ExecuteAsync();
+            if (result == 0)
+                throw new UnauthorizedAccessException("Permission denied to edit this record.");
+        }
 
-		protected async Task CheckPermissionSectionAsyc(int sectionKey, IUser currentUser)
-		{
-			var result = await m_DataSource.From("dbo.SectionEditor", new { sectionKey, currentUser.UserKey }).AsCount().ExecuteAsync();
-			if (result == 0)
-				throw new UnauthorizedAccessException("Permission denied to edit this record.");
-		}
+        protected async Task CheckPermissionSectionAsyc(int sectionKey, IUser currentUser)
+        {
+            var result = await m_DataSource.From("dbo.SectionEditor", new { sectionKey, currentUser.UserKey }).AsCount().ExecuteAsync();
+            if (result == 0)
+                throw new UnauthorizedAccessException("Permission denied to edit this record.");
+        }
 
-		protected async Task CheckPermissionVideoAsync(int videoKey, IUser currentUser)
-		{
-			var result = await m_DataSource.From("dbo.VideoEditor", new { videoKey, currentUser.UserKey }).AsCount().ExecuteAsync();
-			if (result == 0)
-				throw new UnauthorizedAccessException("Permission denied to edit this record.");
-		}
+        protected async Task CheckPermissionVideoAsync(int videoKey, IUser currentUser)
+        {
+            var result = await m_DataSource.From("dbo.VideoEditor", new { videoKey, currentUser.UserKey }).AsCount().ExecuteAsync();
+            if (result == 0)
+                throw new UnauthorizedAccessException("Permission denied to edit this record.");
+        }
 
-		protected async Task CheckPermissionPlayAsync(int playKey, IUser currentUser)
-		{
-			var result = await m_DataSource.From("dbo.PlayEditor", new { playKey, currentUser.UserKey }).AsCount().ExecuteAsync();
-			if (result == 0)
-				throw new UnauthorizedAccessException("Permission denied to edit this record.");
-		}
-	}
+        protected async Task CheckPermissionPlayAsync(int playKey, IUser currentUser)
+        {
+            var result = await m_DataSource.From("dbo.PlayEditor", new { playKey, currentUser.UserKey }).AsCount().ExecuteAsync();
+            if (result == 0)
+                throw new UnauthorizedAccessException("Permission denied to edit this record.");
+        }
+    }
 }

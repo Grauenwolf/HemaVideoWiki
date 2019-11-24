@@ -4,6 +4,8 @@
     TargetName NVARCHAR(50) NOT NULL
 );
 
+
+
 INSERT INTO @Target
 (
     TargetKey,
